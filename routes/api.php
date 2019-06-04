@@ -5,6 +5,7 @@
     Route::post('login', 'UserController@login');
     Route::post('register', 'UserController@register');
     Route::get('/products', 'ProductController@index');
+    Route::get('/categories', 'CategoryController@index');
     Route::post('/upload-file', 'ProductController@uploadFile');
     Route::get('/products/{product}', 'ProductController@show');
 

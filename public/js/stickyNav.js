@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\Iophoto\resources\js\stickyNav.js */"./resources/js/stickyNav.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\iophoto_v2\resources\js\stickyNav.js */"./resources/js/stickyNav.js");
 
 
 /***/ })

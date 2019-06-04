@@ -5,57 +5,69 @@
         </v-layout>
 
          <v-layout dark black align-center justify-center class="white--text nav_shop header" id="myHeader" py-3>
-            <a class="mr-2 white--text" href="#stickers" v-smooth-scroll="{ duration: 1000, offset: -180}">Stickers</a> |
-            <a class="mx-2 white--text" href="#materiel" v-smooth-scroll="{ duration: 1000, offset: -130}">Materiel</a> |
-            <a class="ml-2 white--text" href="#album" v-smooth-scroll="{ duration: 1000, offset: -130}">Album Photo</a>
-        </v-layout> 
+            <a v-for="(category,index) in categories" v-bind:key="index" 
+            class=" white--text" 
+            :href="'#'+category.name" 
+            v-smooth-scroll="{ duration: 1000, offset: -180}">
+            | {{category.name}} |
+            </a> 
         
-        
-        <div class="container content" id="example-content">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="row">
-                        <v-card hover class="my-2 mx-3 rounded-card" style="min-width:200; max-width:300px" v-for="(product,index) in products" v-bind:key="index">
-                            <router-link :to="{ path: '/products/'+product.id}">
-                                <v-img
-                                class="rounded-img"
-                                height="400px"
-                                :src="product.image">
-                            
-                                </v-img>
-                                
-                                <v-card-text class="pb-0 fade-out product-card-description">
-                                    <span class="headline shadow-text grey--text text--darken-4">
-                                    {{ product.name }}
-                                    </span><br>
 
-                                    {{product.description}}
-                                </v-card-text>
-                                <v-card-text class="pb-0 center-text small-text text-muted">
-                                    {{ product.price}} € &nbsp; - &nbsp;
-                                    Stock: {{product.units}}
-                                </v-card-text>
-                                <v-card-actions class="justify-start">
-                                    <v-btn primary
-                                        v-if="product.units > 0"
-                                        @click.native="addToCart(product)"
-                                    >
-                                        Acheter
-                                    </v-btn>
-                                    <v-btn disabled
-                                        v-if="product.units <= 0">
-                                        Produit épuisé
-                                    </v-btn>
-                                </v-card-actions>
-                            </router-link>
-                        </v-card>
+        </v-layout>
+        <v-layout v-for="(category,index) in categories" v-bind:key="index" class="">
+            <v-flex :id="category.name" class="categoryPart align-center">
+                <v-layout justify-content-center>
+                    <h1 class="text-xs-center text-md-center title text--black hr">{{category.name}}</h1>
+                </v-layout>
+                <div  class="container content" id="example-content">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                
+                                <v-card  hover class="mx-3 rounded-card" style="min-width:200; max-width:300px" v-for="(product,index) in products" v-bind:key="index" >
+                                    <v-layout v-if="product.category_id == category.id">
+                                        <router-link :to="{ path: '/products/'+product.id}">
+                                            <v-img
+                                            class="rounded-img"
+                                            height="300px"
+                                            :src="product.image">
+                                        
+                                            </v-img>
+                                            
+                                            <v-card-text class="pb-0 fade-out product-card-description">
+                                                <span class="headline shadow-text grey--text text--darken-4">
+                                                {{ product.name }}
+                                                </span><br>
+
+                                                {{product.description}}
+                                            </v-card-text>
+                                            <v-card-text class="pb-0 center-text small-text text-muted">
+                                                {{ product.price}} € &nbsp; - &nbsp;
+                                                Stock: {{product.units}}
+                                            </v-card-text>
+                                            <v-card-actions class="justify-start">
+                                                <v-btn primary
+                                                    v-if="product.units > 0"
+                                                    @click.native="addToCart(product)"
+                                                >
+                                                    Acheter
+                                                </v-btn>
+                                                <v-btn disabled
+                                                    v-if="product.units <= 0">
+                                                    Produit épuisé
+                                                </v-btn>
+                                            </v-card-actions>
+                                        </router-link>
+                                    </v-layout>
+                                </v-card>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4 teal darken-2 cart">
-                    <h1 class="title white--text">Shopping Cart</h1>
-                </div>
-            </div>
-        </div>
+            </v-flex> 
+        </v-layout>
+        
     </div>
 </template>
 
@@ -63,11 +75,13 @@
     export default {
         data(){
             return {
-                products : []
+                products : [],
+                categories : []
             }
         },
         mounted(){
             axios.get("api/products/").then(response => this.products = response.data)
+            axios.get("api/categories/").then(response => this.categories = response.data)
 
             // STICKY NAV PRODUCTS
 
@@ -95,6 +109,9 @@
 
 a {  text-decoration: none;}
 /* Style the header */
+.categoryPart {
+    min-height:80vh;
+}
 .header {
   padding:30px;
   background: #555;
@@ -117,7 +134,7 @@ a {  text-decoration: none;}
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + .content {
-  padding-top: 80px;
+  
 }
 
 .cart {
@@ -143,15 +160,24 @@ a {  text-decoration: none;}
     align-items: center;
     margin-top: -20px;
 }
-.title {
-    font-size: 60px;
-    color: #ffffff;
-}
+
 .images_shop {
     max-width:200px;
     max-height:200px;
 }
 .marginNav {
     margin-top:100px;
+}
+.hr {
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+    width:340px;
+}
+ .hr::after {
+    content: '';
+    flex: 1;
+    margin: 0 .75em;
+    border-bottom: 1px solid #000;
 }
 </style>

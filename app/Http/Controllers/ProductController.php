@@ -19,7 +19,8 @@
                 'description' => $request->description,
                 'units' => $request->units,
                 'price' => $request->price,
-                'image' => $request->image
+                'image' => $request->image,
+                'category_id' => $request->category_id,
             ]);
 
             return response()->json([
@@ -46,7 +47,7 @@
         public function update(Request $request, Product $product)
         {
             $status = $product->update(
-                $request->only(['name', 'description', 'units', 'price', 'image'])
+                $request->only(['name', 'description', 'units', 'price', 'image', 'category_id'])
             );
 
             return response()->json([

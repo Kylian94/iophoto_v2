@@ -422,10 +422,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      products: []
+      products: [],
+      categories: []
     };
   },
   mounted: function mounted() {
@@ -433,6 +446,9 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("api/products/").then(function (response) {
       return _this.products = response.data;
+    });
+    axios.get("api/categories/").then(function (response) {
+      return _this.categories = response.data;
     }); // STICKY NAV PRODUCTS
 
     window.onscroll = function () {
@@ -506,7 +522,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na[data-v-e1ea323e] {  text-decoration: none;}\r\n/* Style the header */\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\r\n\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.sticky + .content[data-v-e1ea323e] {\r\n  padding-top: 80px;\n}\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n.hero-section[data-v-e1ea323e] {\r\n    height: 30vh;\r\n    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.title[data-v-e1ea323e] {\r\n    font-size: 60px;\r\n    color: #ffffff;\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\r\n", ""]);
+exports.push([module.i, "\na[data-v-e1ea323e] {  text-decoration: none;}\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:80vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\r\n\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.sticky + .content[data-v-e1ea323e] {\n}\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n.hero-section[data-v-e1ea323e] {\r\n    height: 30vh;\r\n    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n", ""]);
 
 // exports
 
@@ -2612,8 +2628,8 @@ var render = function() {
             "py-3": ""
           }
         },
-        [
-          _c(
+        _vm._l(_vm.categories, function(category, index) {
+          return _c(
             "a",
             {
               directives: [
@@ -2624,185 +2640,207 @@ var render = function() {
                   expression: "{ duration: 1000, offset: -180}"
                 }
               ],
-              staticClass: "mr-2 white--text",
-              attrs: { href: "#stickers" }
+              key: index,
+              staticClass: " white--text",
+              attrs: { href: "#" + category.name }
             },
-            [_vm._v("Stickers")]
-          ),
-          _vm._v(" |\n        "),
-          _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "smooth-scroll",
-                  rawName: "v-smooth-scroll",
-                  value: { duration: 1000, offset: -130 },
-                  expression: "{ duration: 1000, offset: -130}"
-                }
-              ],
-              staticClass: "mx-2 white--text",
-              attrs: { href: "#materiel" }
-            },
-            [_vm._v("Materiel")]
-          ),
-          _vm._v(" |\n        "),
-          _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "smooth-scroll",
-                  rawName: "v-smooth-scroll",
-                  value: { duration: 1000, offset: -130 },
-                  expression: "{ duration: 1000, offset: -130}"
-                }
-              ],
-              staticClass: "ml-2 white--text",
-              attrs: { href: "#album" }
-            },
-            [_vm._v("Album Photo")]
+            [_vm._v("\n        | " + _vm._s(category.name) + " |\n        ")]
           )
-        ]
+        }),
+        0
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container content", attrs: { id: "example-content" } },
-        [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-8" }, [
-              _c(
-                "div",
-                { staticClass: "row" },
-                _vm._l(_vm.products, function(product, index) {
-                  return _c(
-                    "v-card",
+      _vm._l(_vm.categories, function(category, index) {
+        return _c(
+          "v-layout",
+          { key: index },
+          [
+            _c(
+              "v-flex",
+              {
+                staticClass: "categoryPart align-center",
+                attrs: { id: category.name }
+              },
+              [
+                _c("v-layout", { attrs: { "justify-content-center": "" } }, [
+                  _c(
+                    "h1",
                     {
-                      key: index,
-                      staticClass: "my-2 mx-3 rounded-card",
-                      staticStyle: { "min-width": "200", "max-width": "300px" },
-                      attrs: { hover: "" }
+                      staticClass:
+                        "text-xs-center text-md-center title text--black hr"
                     },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { path: "/products/" + product.id } } },
-                        [
-                          _c("v-img", {
-                            staticClass: "rounded-img",
-                            attrs: { height: "400px", src: product.image }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            {
-                              staticClass:
-                                "pb-0 fade-out product-card-description"
-                            },
-                            [
-                              _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "headline shadow-text grey--text text--darken-4"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(product.name) +
-                                      "\n                                "
-                                  )
-                                ]
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                "\n\n                                " +
-                                  _vm._s(product.description) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            {
-                              staticClass:
-                                "pb-0 center-text small-text text-muted"
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(product.price) +
-                                  " €   -  \n                                Stock: " +
-                                  _vm._s(product.units) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            { staticClass: "justify-start" },
-                            [
-                              product.units > 0
-                                ? _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { primary: "" },
-                                      nativeOn: {
-                                        click: function($event) {
-                                          return _vm.addToCart(product)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    Acheter\n                                "
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              product.units <= 0
-                                ? _c("v-btn", { attrs: { disabled: "" } }, [
-                                    _vm._v(
-                                      "\n                                    Produit épuisé\n                                "
-                                    )
-                                  ])
-                                : _vm._e()
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
+                    [_vm._v(_vm._s(category.name))]
                   )
-                }),
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ])
-        ]
-      )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "container content",
+                    attrs: { id: "example-content" }
+                  },
+                  [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c(
+                          "div",
+                          { staticClass: "row" },
+                          _vm._l(_vm.products, function(product, index) {
+                            return _c(
+                              "v-card",
+                              {
+                                key: index,
+                                staticClass: "mx-3 rounded-card",
+                                staticStyle: {
+                                  "min-width": "200",
+                                  "max-width": "300px"
+                                },
+                                attrs: { hover: "" }
+                              },
+                              [
+                                product.category_id == category.id
+                                  ? _c(
+                                      "v-layout",
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: {
+                                                path: "/products/" + product.id
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-img", {
+                                              staticClass: "rounded-img",
+                                              attrs: {
+                                                height: "300px",
+                                                src: product.image
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-card-text",
+                                              {
+                                                staticClass:
+                                                  "pb-0 fade-out product-card-description"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "headline shadow-text grey--text text--darken-4"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                            " +
+                                                        _vm._s(product.name) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]
+                                                ),
+                                                _c("br"),
+                                                _vm._v(
+                                                  "\n\n                                            " +
+                                                    _vm._s(
+                                                      product.description
+                                                    ) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-card-text",
+                                              {
+                                                staticClass:
+                                                  "pb-0 center-text small-text text-muted"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            " +
+                                                    _vm._s(product.price) +
+                                                    " €   -  \n                                            Stock: " +
+                                                    _vm._s(product.units) +
+                                                    "\n                                        "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-card-actions",
+                                              { staticClass: "justify-start" },
+                                              [
+                                                product.units > 0
+                                                  ? _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: { primary: "" },
+                                                        nativeOn: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.addToCart(
+                                                              product
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                Acheter\n                                            "
+                                                        )
+                                                      ]
+                                                    )
+                                                  : _vm._e(),
+                                                _vm._v(" "),
+                                                product.units <= 0
+                                                  ? _c(
+                                                      "v-btn",
+                                                      {
+                                                        attrs: { disabled: "" }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                Produit épuisé\n                                            "
+                                                        )
+                                                      ]
+                                                    )
+                                                  : _vm._e()
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          }),
+                          1
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      })
     ],
-    1
+    2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 teal darken-2 cart" }, [
-      _c("h1", { staticClass: "title white--text" }, [_vm._v("Shopping Cart")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44249,8 +44287,8 @@ component.options.__file = "resources/js/components/UserBoard.vue"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\Iophoto\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\Iophoto\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\iophoto_v2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\iophoto_v2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
