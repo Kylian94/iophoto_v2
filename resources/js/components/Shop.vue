@@ -1,21 +1,18 @@
 <template>
     <div class="marginNav">
+        <!-- HEADER -->
         <v-layout class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
             <h2 class=" title text-md-center text-xs-center">Welcome to the IOPhoto Store</h2>
         </v-layout>
-
-         <v-layout dark black align-center justify-center class="white--text nav_shop header" id="myHeader" py-3>
-            <a v-for="(category,index) in categories" v-bind:key="index" 
-            class=" white--text" 
-            :href="'#'+category.name" 
-            v-smooth-scroll="{ duration: 1000, offset: -180}">
+        <!-- NAVBAR CATEGORIES -->
+        <v-layout dark black align-center justify-center class="white--text nav_shop header" id="myHeader" py-3>
+            <a v-for="(category,index) in categories" v-bind:key="index" class=" white--text" :href="'#'+category.name" v-smooth-scroll="{ duration: 1000, offset: -200}">
             | {{category.name}} |
             </a> 
-        
-
         </v-layout>
+        <!-- CATEGORIES PARTS WITH ARTICLES -->
         <v-layout v-for="(category,index) in categories" v-bind:key="index" class="">
-            <v-flex :id="category.name" class="categoryPart align-center">
+            <v-flex :id="category.name" class="categoryPart align-center pt-md-4">
                 <v-layout justify-content-center>
                     <h1 class="text-xs-center text-md-center title text--black hr">{{category.name}}</h1>
                 </v-layout>
@@ -23,7 +20,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="row">
-                                
+                                <!-- ARTICLE BY CATEGORY -->
                                 <v-card  hover class="mx-3 rounded-card" style="min-width:200; max-width:300px" v-for="(product,index) in products" v-bind:key="index" >
                                     <v-layout v-if="product.category_id == category.id">
                                         <router-link :to="{ path: '/products/'+product.id}">

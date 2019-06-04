@@ -431,9 +431,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2636,8 +2633,8 @@ var render = function() {
                 {
                   name: "smooth-scroll",
                   rawName: "v-smooth-scroll",
-                  value: { duration: 1000, offset: -180 },
-                  expression: "{ duration: 1000, offset: -180}"
+                  value: { duration: 1000, offset: -200 },
+                  expression: "{ duration: 1000, offset: -200}"
                 }
               ],
               key: index,
@@ -2658,7 +2655,7 @@ var render = function() {
             _c(
               "v-flex",
               {
-                staticClass: "categoryPart align-center",
+                staticClass: "categoryPart align-center pt-md-4",
                 attrs: { id: category.name }
               },
               [
@@ -44287,8 +44284,8 @@ component.options.__file = "resources/js/components/UserBoard.vue"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\iophoto_v2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\iophoto_v2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\Iophoto\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\Iophoto\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
