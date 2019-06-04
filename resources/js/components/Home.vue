@@ -1,0 +1,200 @@
+<template>
+    <main>
+        <v-flex column>
+
+            <v-layout class="full-height" dark grey darken-3 align-center justify-space-between fill-height wrap>
+                <v-flex xs12 sm12 md6 pl-4>
+                    <h1 class="display-4 font-weight-black white--text hidden-sm-and-down">LOREM IPSUM ABEBAT ERATUM</h1>
+                    <h1 class="display-1 font-weight-black white--text hidden-sm-and-up">LOREM IPSUM ABEBAT ERATUM</h1>
+                        <v-btn class="font-weight-bold large" dark color="teal darken-1" href="#scrollBot" v-smooth-scroll="{ duration: 1000, offset: -130}"> DÉCOUVRIR </v-btn>
+                </v-flex>
+                <v-flex xs12 sm12 md5>
+                    <v-img src="/img/appareil_home.png"></v-img>
+                </v-flex>
+            </v-layout>
+
+
+            <v-layout class="my-5 mx-3">
+                
+                <v-flex column>
+                    <v-layout justify-center>
+                        <p id="scrollBot" class="title text-xs-center text-sm-center" center >Découvrez nos articles à personaliser - Concevez - Montez - Produisez !</p>
+                    </v-layout>
+                    <v-container >
+                        <v-layout justify-space-around align-center mt-5 wrap>
+                            <v-flex xs10 sm10 md3 mb-2>
+                                <v-card >
+                                    <v-parallax
+                                    class="white--text"
+                                    height="200"
+                                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                    >
+                                    <v-container fill-height fluid>
+                                        <v-layout fill-height>
+                                        <v-flex xs12 align-end flexbox>
+                                            <span class="headline">Top 10 Australian beaches</span>
+                                        </v-flex>
+                                        </v-layout>
+                                    </v-container>
+                                    </v-parallax>
+                                    <v-card-title>
+                                    <div>
+                                        <span class="grey--text">Number 10</span><br>
+                                        <span>Whitehaven Beach</span><br>
+                                        <span>Whitsunday Island, Whitsunday Islands</span>
+                                    </div>
+                                    </v-card-title>
+                                    <v-card-actions>
+                                    <v-btn flat color="teal darken-1">Share</v-btn>
+                                    <v-btn flat color="teal darken-1">Explore</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+                            <v-flex xs10 sm10 md3 mb-2>
+                                <v-card>
+                                    <v-parallax
+                                    class="white--text"
+                                    height="200"
+                                    src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+                                    gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+                                    >
+                                    <v-container fill-height fluid>
+                                        <v-layout fill-height>
+                                        <v-flex xs12 align-end flexbox>
+                                            <span class="headline">Top 25 </span>
+                                        </v-flex>
+                                        </v-layout>
+                                    </v-container>
+                                    </v-parallax>
+                                    <v-card-title>
+                                    <div>
+                                        <span class="grey--text">Number 10</span><br>
+                                        <span>Whitehaven Beach</span><br>
+                                        <span>Whitsunday Island, Whitsunday Islands</span>
+                                    </div>
+                                    </v-card-title>
+                                    <v-card-actions>
+                                    <v-btn flat color="teal darken-1">Share</v-btn>
+                                    <v-btn flat color="teal darken-1">Explore</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+                            <v-flex xs10 sm10 md3 mb-2>
+                                <v-card>
+                                    <v-parallax
+                                    class="white--text"
+                                    height="200"
+                                    src="https://picsum.photos/510/300?random"
+                                    >
+                                    <v-container fill-height fluid>
+                                        <v-layout fill-height>
+                                        <v-flex xs12 align-end flexbox>
+                                            <span class="headline">Top 50 French beaches</span>
+                                        </v-flex>
+                                        </v-layout>
+                                    </v-container>
+                                    </v-parallax>
+                                    <v-card-title>
+                                    <div>
+                                        <span class="grey--text">Number 10</span><br>
+                                        <span>Whitehaven Beach</span><br>
+                                        <span>Whitsunday Island, Whitsunday Islands</span>
+                                    </div>
+                                    </v-card-title>
+                                    <v-card-actions>
+                                    <v-btn flat color="teal darken-1">Share</v-btn>
+                                    <v-btn flat color="teal darken-1">Explore</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                    <v-container>
+                        <p class="hr subheading mt-5"> Voir tous nos produits</p>
+                    </v-container>
+                    <v-layout justify-center>
+                        <router-link to="/shop"><v-btn class="font-weight-bold large" dark color="teal darken-1"> Accédez au shop </v-btn></router-link>
+                        
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+            <v-layout class="full-height newsletter">
+                <v-layout align-center justify-center>
+                    <v-flex xs10 sm10 md3 >
+                        <p class="title white--text text-xs-center text-sm-center" center >Restez au courant des nouveautés en vous inscrivant à la newsletter !</p>   
+                        <v-text-field dark
+                        class=""
+                        label="Email" value="" required name="email"
+                        ></v-text-field>
+                        <v-layout align-center justify-center>
+                            <v-btn dark type="submit" color="teal darken-1"> S'inscrire</v-btn>
+                        </v-layout>
+                    </v-flex>
+                </v-layout>
+            </v-layout>
+            <v-container class="dark">
+            
+                <v-layout row wrap justify-center>
+
+                    <v-flex xs6 sm3 md3 hidden-xs-only >
+                        <v-img src="/img/contact.jpg"></v-img>
+                    </v-flex>
+
+                    <v-flex xs12 sm6 md6 class="mt-5">
+                        <v-layout justify-center >
+                            <v-flex xs12 sm12 md12 ma-2>
+                                <h2>Nous contacter</h2>
+                                <v-flex column grey darken-3 pa-4 class="mt-5">
+                                    <v-text-field dark
+                                    class=""
+                                    label="Email" value="" required name="email"
+                                    ></v-text-field>
+                                
+                                
+                                    <v-textarea dark
+                                        name="input-7-1"
+                                        label="Message" required></v-textarea>
+                                    
+                                </v-flex>
+                                <v-layout align-center justify-center class="mt-5">
+                                    <v-btn dark type="submit" color="teal darken-1"> Envoyer</v-btn>
+                                </v-layout>
+                            </v-flex>
+                        </v-layout>
+                    </v-flex>
+                </v-layout>
+                
+            </v-container>
+
+
+        </v-flex>
+    </main>
+</template>
+<script>
+export default {
+    scrollBehavior() {
+    return { x: 0, y: 0 };
+  }
+}
+</script>
+<style>
+    .full-height {
+        min-height:100%;
+        height: 100vh;
+       padding-top:100px;
+    }
+    .hr {
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
+.hr::before, .hr::after {
+    content: '';
+    flex: 1;
+    margin: 0 .75em;
+    border-bottom: 1px solid #000;
+}
+.newsletter {
+    background: url('/img/bg_newsletter.jpg')
+}
+</style>
