@@ -519,7 +519,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na[data-v-e1ea323e] {  text-decoration: none;}\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:80vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\r\n\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.sticky + .content[data-v-e1ea323e] {\n}\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n.hero-section[data-v-e1ea323e] {\r\n    height: 30vh;\r\n    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n", ""]);
+exports.push([module.i, "\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\r\nmargin-left:5px;\r\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\r\n\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:80vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\r\n\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.sticky + .content[data-v-e1ea323e] {\n}\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n.hero-section[data-v-e1ea323e] {\r\n    height: 30vh;\r\n    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n", ""]);
 
 // exports
 
@@ -2638,10 +2638,10 @@ var render = function() {
                 }
               ],
               key: index,
-              staticClass: " white--text",
+              staticClass: "navCatLink white--text mx-4",
               attrs: { href: "#" + category.name }
             },
-            [_vm._v("\n        | " + _vm._s(category.name) + " |\n        ")]
+            [_vm._v("\n        " + _vm._s(category.name) + "\n        ")]
           )
         }),
         0

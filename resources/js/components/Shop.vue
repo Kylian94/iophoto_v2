@@ -6,8 +6,8 @@
         </v-layout>
         <!-- NAVBAR CATEGORIES -->
         <v-layout dark black align-center justify-center class="white--text nav_shop header" id="myHeader" py-3>
-            <a v-for="(category,index) in categories" v-bind:key="index" class=" white--text" :href="'#'+category.name" v-smooth-scroll="{ duration: 1000, offset: -200}">
-            | {{category.name}} |
+            <a v-for="(category,index) in categories" v-bind:key="index" class="navCatLink white--text mx-4" :href="'#'+category.name" v-smooth-scroll="{ duration: 1000, offset: -200}">
+            {{category.name}}
             </a> 
         </v-layout>
         <!-- CATEGORIES PARTS WITH ARTICLES -->
@@ -105,6 +105,11 @@
 <style scoped>
 
 a {  text-decoration: none;}
+.navCatLink { transition: all .3s ease-in-out;
+margin-left:5px;
+margin-right:5px; }
+.navCatLink:hover { transform: scale(1.3); }
+
 /* Style the header */
 .categoryPart {
     min-height:80vh;
