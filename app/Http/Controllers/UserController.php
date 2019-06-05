@@ -25,7 +25,7 @@
                     'user' => Auth::user(),
                     'token' => Auth::user()->createToken('IophotoStore')->accessToken,
                 ];
-            }
+            } 
 
             return response()->json($response, $status);
         }

@@ -67,4 +67,7 @@ nav {
     min-height:110px;
     max-height:110px;
 }
+.nav-link {
+    cursor:pointer;
+}
 </style>
