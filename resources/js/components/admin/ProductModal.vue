@@ -10,9 +10,10 @@
                             Name: <input type="text" v-model="data.name">
                             Units: <input type="text" v-model="data.units">
                             Price: <input type="text" v-model="data.price">
+                            Category: <input type="text" v-model="data.category_id">
                             <textarea v-model="data.description" placeholder="description"></textarea>
                             <span >
-                                <img :src="data.image" v-show="data.image != null">
+                                <img class="img-modal" :src="data.image" v-show="data.image != null">
                                 <input type="file" id="file" @change="attachFile">
                             </span>
                         </slot>
@@ -30,6 +31,9 @@
     </template>
 
     <style scoped>
+    .img-modal {
+        max-width: 200px;
+    }
     .modal-mask {
         position: fixed;
         z-index: 9998;
@@ -95,7 +99,8 @@
                     units: "",
                     price: "",
                     description: "",
-                    image: false
+                    image: false,
+                    category_id: ""
                 }
             }
         },

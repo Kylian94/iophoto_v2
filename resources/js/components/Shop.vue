@@ -6,7 +6,7 @@
         </v-layout>
         <!-- NAVBAR CATEGORIES -->
         <v-layout dark black align-center justify-center class="white--text nav_shop header" id="myHeader" py-3>
-            <a v-for="(category,index) in categories" v-bind:key="index" class="navCatLink white--text mx-4" :href="'#'+category.name" v-smooth-scroll="{ duration: 1000, offset: -200}">
+            <a v-for="(category,index) in categories" v-bind:key="index" class="navCatLink white--text mx-4" :href="'#'+category.name" v-smooth-scroll="{ duration: 1000, offset: -180}">
             {{category.name}}
             </a> 
         </v-layout>
@@ -125,7 +125,9 @@ margin-right:5px; }
   
   z-index:1;
 }
-
+.product-card-description {
+    width:300px;
+}
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
   position: fixed;

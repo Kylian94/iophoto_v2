@@ -15,7 +15,7 @@
                 $table->unsignedInteger('units')->default(0);
                 $table->double('price');
                 $table->string('image');
-                $table->unsignedInteger('category_id');
+                $table->integer('category_id');
                 $table->timestamps();
                 $table->softDeletes();
             });

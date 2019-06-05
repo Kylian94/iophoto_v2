@@ -535,69 +535,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   scrollBehavior: function scrollBehavior() {
     return {
       x: 0,
       y: 0
     };
+  },
+  data: function data() {
+    return {
+      categories: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("api/categories/").then(function (response) {
+      return _this.categories = response.data;
+    });
   }
 });
 
@@ -1231,6 +1186,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product'],
   data: function data() {
@@ -1249,7 +1208,8 @@ __webpack_require__.r(__webpack_exports__);
         units: "",
         price: "",
         description: "",
-        image: false
+        image: false,
+        category_id: ""
       };
     }
   },
@@ -1320,6 +1280,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1345,8 +1307,9 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         units: null,
         price: null,
+        description: null,
         image: null,
-        description: null
+        category_id: null
       };
     },
     endEditing: function endEditing(product) {
@@ -1358,11 +1321,13 @@ __webpack_require__.r(__webpack_exports__);
       var units = product.units;
       var price = product.price;
       var description = product.description;
+      var category_id = product.category_id;
       axios.put("/api/products/".concat(product.id), {
         name: name,
         units: units,
         price: price,
-        description: description
+        description: description,
+        category_id: category_id
       }).then(function (response) {
         return _this2.products[index] = product;
       });
@@ -1376,12 +1341,14 @@ __webpack_require__.r(__webpack_exports__);
       var price = product.price;
       var description = product.description;
       var image = product.image;
+      var category_id = product.category_id;
       axios.post("/api/products/", {
         name: name,
         units: units,
         price: price,
         description: description,
-        image: image
+        image: image,
+        category_id: category_id
       }).then(function (response) {
         return _this3.products.push(product);
       });
@@ -1568,7 +1535,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\r\nmargin-left:5px;\r\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\r\n\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:80vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\r\n\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.sticky + .content[data-v-e1ea323e] {\n}\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n.hero-section[data-v-e1ea323e] {\r\n    height: 30vh;\r\n    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n", ""]);
+exports.push([module.i, "\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\r\nmargin-left:5px;\r\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\r\n\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:80vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\n.product-card-description[data-v-e1ea323e] {\r\n    width:300px;\n}\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.sticky + .content[data-v-e1ea323e] {\n}\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n.hero-section[data-v-e1ea323e] {\r\n    height: 30vh;\r\n    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n", ""]);
 
 // exports
 
@@ -1644,7 +1611,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.modal-mask[data-v-3988972e] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-3988972e] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-3988972e] {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-3988972e] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-3988972e] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-3988972e] {\n    float: right;\n}\n.modal-enter[data-v-3988972e] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-3988972e] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-3988972e],\n.modal-leave-active .modal-container[data-v-3988972e] {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "\n.img-modal[data-v-3988972e] {\n    max-width: 200px;\n}\n.modal-mask[data-v-3988972e] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n    transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-3988972e] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-3988972e] {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n    transition: all .3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-3988972e] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-3988972e] {\n    margin: 20px 0;\n}\n.modal-default-button[data-v-3988972e] {\n    float: right;\n}\n.modal-enter[data-v-3988972e] {\n    opacity: 0;\n}\n.modal-leave-active[data-v-3988972e] {\n    opacity: 0;\n}\n.modal-enter .modal-container[data-v-3988972e],\n.modal-leave-active .modal-container[data-v-3988972e] {\n    -webkit-transform: scale(1.1);\n    transform: scale(1.1);\n}\n", ""]);
 
 // exports
 
@@ -3704,10 +3671,11 @@ var render = function() {
                             wrap: ""
                           }
                         },
-                        [
-                          _c(
+                        _vm._l(_vm.categories, function(category, index) {
+                          return _c(
                             "v-flex",
                             {
+                              key: index,
                               attrs: { xs10: "", sm10: "", md3: "", "mb-2": "" }
                             },
                             [
@@ -3738,27 +3706,13 @@ var render = function() {
                                             "v-layout",
                                             { attrs: { "fill-height": "" } },
                                             [
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    "align-end": "",
-                                                    flexbox: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "headline" },
-                                                    [
-                                                      _vm._v(
-                                                        "Top 10 Australian beaches"
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              )
+                                              _c("v-flex", {
+                                                attrs: {
+                                                  xs12: "",
+                                                  "align-end": "",
+                                                  flexbox: ""
+                                                }
+                                              })
                                             ],
                                             1
                                           )
@@ -3774,241 +3728,7 @@ var render = function() {
                                       _c(
                                         "span",
                                         { staticClass: "grey--text" },
-                                        [_vm._v("Number 10")]
-                                      ),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("span", [_vm._v("Whitehaven Beach")]),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("span", [
-                                        _vm._v(
-                                          "Whitsunday Island, Whitsunday Islands"
-                                        )
-                                      ])
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card-actions",
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            flat: "",
-                                            color: "teal darken-1"
-                                          }
-                                        },
-                                        [_vm._v("Share")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            flat: "",
-                                            color: "teal darken-1"
-                                          }
-                                        },
-                                        [_vm._v("Explore")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: { xs10: "", sm10: "", md3: "", "mb-2": "" }
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                [
-                                  _c(
-                                    "v-parallax",
-                                    {
-                                      staticClass: "white--text",
-                                      attrs: {
-                                        height: "200",
-                                        src:
-                                          "https://cdn.vuetifyjs.com/images/parallax/material2.jpg",
-                                        gradient:
-                                          "to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-container",
-                                        {
-                                          attrs: {
-                                            "fill-height": "",
-                                            fluid: ""
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-layout",
-                                            { attrs: { "fill-height": "" } },
-                                            [
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    "align-end": "",
-                                                    flexbox: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "headline" },
-                                                    [_vm._v("Top 25 ")]
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("v-card-title", [
-                                    _c("div", [
-                                      _c(
-                                        "span",
-                                        { staticClass: "grey--text" },
-                                        [_vm._v("Number 10")]
-                                      ),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("span", [_vm._v("Whitehaven Beach")]),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("span", [
-                                        _vm._v(
-                                          "Whitsunday Island, Whitsunday Islands"
-                                        )
-                                      ])
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card-actions",
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            flat: "",
-                                            color: "teal darken-1"
-                                          }
-                                        },
-                                        [_vm._v("Share")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            flat: "",
-                                            color: "teal darken-1"
-                                          }
-                                        },
-                                        [_vm._v("Explore")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: { xs10: "", sm10: "", md3: "", "mb-2": "" }
-                            },
-                            [
-                              _c(
-                                "v-card",
-                                [
-                                  _c(
-                                    "v-parallax",
-                                    {
-                                      staticClass: "white--text",
-                                      attrs: {
-                                        height: "200",
-                                        src:
-                                          "https://picsum.photos/510/300?random"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-container",
-                                        {
-                                          attrs: {
-                                            "fill-height": "",
-                                            fluid: ""
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-layout",
-                                            { attrs: { "fill-height": "" } },
-                                            [
-                                              _c(
-                                                "v-flex",
-                                                {
-                                                  attrs: {
-                                                    xs12: "",
-                                                    "align-end": "",
-                                                    flexbox: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "headline" },
-                                                    [
-                                                      _vm._v(
-                                                        "Top 50 French beaches"
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("v-card-title", [
-                                    _c("div", [
-                                      _c(
-                                        "span",
-                                        { staticClass: "grey--text" },
-                                        [_vm._v("Number 10")]
+                                        [_vm._v(_vm._s(category.name))]
                                       ),
                                       _c("br"),
                                       _vm._v(" "),
@@ -4056,7 +3776,7 @@ var render = function() {
                             ],
                             1
                           )
-                        ],
+                        }),
                         1
                       )
                     ],
@@ -4685,8 +4405,8 @@ var render = function() {
                 {
                   name: "smooth-scroll",
                   rawName: "v-smooth-scroll",
-                  value: { duration: 1000, offset: -200 },
-                  expression: "{ duration: 1000, offset: -200}"
+                  value: { duration: 1000, offset: -180 },
+                  expression: "{ duration: 1000, offset: -180}"
                 }
               ],
               key: index,
@@ -5314,6 +5034,27 @@ var render = function() {
                   }
                 }
               }),
+              _vm._v("\n                    Category: "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.data.category_id,
+                    expression: "data.category_id"
+                  }
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.data.category_id },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.data, "category_id", $event.target.value)
+                  }
+                }
+              }),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
@@ -5346,6 +5087,7 @@ var render = function() {
                       expression: "data.image != null"
                     }
                   ],
+                  staticClass: "img-modal",
                   attrs: { src: _vm.data.image }
                 }),
                 _vm._v(" "),
@@ -5463,6 +5205,20 @@ var render = function() {
                   "td",
                   {
                     model: {
+                      value: product.category_id,
+                      callback: function($$v) {
+                        _vm.$set(product, "category_id", $$v)
+                      },
+                      expression: "product.category_id"
+                    }
+                  },
+                  [_vm._v(_vm._s(product.category_id))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    model: {
                       value: product.price,
                       callback: function($$v) {
                         _vm.$set(product, "price", $$v)
@@ -5530,6 +5286,8 @@ var staticRenderFns = [
         _c("td", [_vm._v("Units")]),
         _vm._v(" "),
         _c("td", [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Category")]),
         _vm._v(" "),
         _c("td", [_vm._v("Description")])
       ])

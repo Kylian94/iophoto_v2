@@ -7,6 +7,7 @@
                         <td>Product</td>
                         <td>Units</td>
                         <td>Price</td>
+                        <td>Category</td>
                         <td>Description</td>
                     </tr>
                 </thead>
@@ -16,6 +17,7 @@
                         <td v-html="product.name"></td>
                         <td v-model="product.units">{{product.units}}</td>
                         <td v-model="product.price">{{product.price}}</td>
+                        <td v-model="product.category_id">{{product.category_id}}</td>
                         <td v-model="product.price">{{product.description}}</td>
                     </tr>
                 </tbody>
@@ -47,8 +49,9 @@
                     name: null,
                     units: null,
                     price: null,
-                    image: null,
                     description: null,
+                    image: null,
+                    category_id: null,
                 }
             },
             endEditing(product) {
@@ -59,8 +62,9 @@
                 let units = product.units
                 let price = product.price
                 let description = product.description
+                let category_id = product.category_id
 
-                axios.put(`/api/products/${product.id}`, {name, units, price, description})
+                axios.put(`/api/products/${product.id}`, {name, units, price,  description, category_id})
                      .then(response => this.products[index] = product)
             },
             addProduct(product) {
@@ -71,8 +75,9 @@
                 let price = product.price
                 let description = product.description
                 let image = product.image 
+                let category_id = product.category_id
 
-                axios.post("/api/products/", {name, units, price, description, image})
+                axios.post("/api/products/", {name, units, price, description, image, category_id})
                      .then(response => this.products.push(product))
             }
         }

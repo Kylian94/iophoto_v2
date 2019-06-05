@@ -21,8 +21,8 @@
                         <p id="scrollBot" class="title text-xs-center text-sm-center" center >Découvrez nos articles à personaliser - Concevez - Montez - Produisez !</p>
                     </v-layout>
                     <v-container >
-                        <v-layout justify-space-around align-center mt-5 wrap>
-                            <v-flex xs10 sm10 md3 mb-2>
+                        <v-layout justify-space-around align-center mt-5 wrap >
+                            <v-flex xs10 sm10 md3 mb-2 v-for="(category,index) in categories" v-bind:key="index">
                                 <v-card >
                                     <v-parallax
                                     class="white--text"
@@ -32,71 +32,14 @@
                                     <v-container fill-height fluid>
                                         <v-layout fill-height>
                                         <v-flex xs12 align-end flexbox>
-                                            <span class="headline">Top 10 Australian beaches</span>
+                                            <!-- <span class="headline">{{category.name}}</span> -->
                                         </v-flex>
                                         </v-layout>
                                     </v-container>
                                     </v-parallax>
                                     <v-card-title>
                                     <div>
-                                        <span class="grey--text">Number 10</span><br>
-                                        <span>Whitehaven Beach</span><br>
-                                        <span>Whitsunday Island, Whitsunday Islands</span>
-                                    </div>
-                                    </v-card-title>
-                                    <v-card-actions>
-                                    <v-btn flat color="teal darken-1">Share</v-btn>
-                                    <v-btn flat color="teal darken-1">Explore</v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-flex>
-                            <v-flex xs10 sm10 md3 mb-2>
-                                <v-card>
-                                    <v-parallax
-                                    class="white--text"
-                                    height="200"
-                                    src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
-                                    gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-                                    >
-                                    <v-container fill-height fluid>
-                                        <v-layout fill-height>
-                                        <v-flex xs12 align-end flexbox>
-                                            <span class="headline">Top 25 </span>
-                                        </v-flex>
-                                        </v-layout>
-                                    </v-container>
-                                    </v-parallax>
-                                    <v-card-title>
-                                    <div>
-                                        <span class="grey--text">Number 10</span><br>
-                                        <span>Whitehaven Beach</span><br>
-                                        <span>Whitsunday Island, Whitsunday Islands</span>
-                                    </div>
-                                    </v-card-title>
-                                    <v-card-actions>
-                                    <v-btn flat color="teal darken-1">Share</v-btn>
-                                    <v-btn flat color="teal darken-1">Explore</v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-flex>
-                            <v-flex xs10 sm10 md3 mb-2>
-                                <v-card>
-                                    <v-parallax
-                                    class="white--text"
-                                    height="200"
-                                    src="https://picsum.photos/510/300?random"
-                                    >
-                                    <v-container fill-height fluid>
-                                        <v-layout fill-height>
-                                        <v-flex xs12 align-end flexbox>
-                                            <span class="headline">Top 50 French beaches</span>
-                                        </v-flex>
-                                        </v-layout>
-                                    </v-container>
-                                    </v-parallax>
-                                    <v-card-title>
-                                    <div>
-                                        <span class="grey--text">Number 10</span><br>
+                                        <span class="grey--text">{{category.name}}</span><br>
                                         <span>Whitehaven Beach</span><br>
                                         <span>Whitsunday Island, Whitsunday Islands</span>
                                     </div>
@@ -174,7 +117,15 @@
 export default {
     scrollBehavior() {
     return { x: 0, y: 0 };
-  }
+  },
+  data(){
+            return {
+                categories : []
+            }
+        },
+  mounted() {
+      axios.get("api/categories/").then(response => this.categories = response.data)
+  },
 }
 </script>
 <style>
