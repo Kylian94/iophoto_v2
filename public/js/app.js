@@ -1320,12 +1320,14 @@ __webpack_require__.r(__webpack_exports__);
       var name = product.name;
       var units = product.units;
       var price = product.price;
+      var image = product.image;
       var description = product.description;
       var category_id = product.category_id;
       axios.put("/api/products/".concat(product.id), {
         name: name,
         units: units,
         price: price,
+        image: image,
         description: description,
         category_id: category_id
       }).then(function (response) {

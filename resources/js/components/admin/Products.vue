@@ -61,10 +61,11 @@
                 let name = product.name
                 let units = product.units
                 let price = product.price
+                let image = product.image
                 let description = product.description
                 let category_id = product.category_id
 
-                axios.put(`/api/products/${product.id}`, {name, units, price,  description, category_id})
+                axios.put(`/api/products/${product.id}`, {name, units, price, image, description, category_id})
                      .then(response => this.products[index] = product)
             },
             addProduct(product) {
