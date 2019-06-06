@@ -21,9 +21,9 @@
                         <div class="col-md-8">
                             <div class="row">
                                 <!-- ARTICLE BY CATEGORY -->
-                                <v-card  hover class="rounded-card" style="min-width:200; max-width:300px" v-for="(product,index) in products" v-bind:key="index" >
-                                    <v-layout v-if="product.category_id == category.id">
-                                        <router-link :to="{ path: '/products/'+product.id}" class="mx-3">
+                                <v-card  hover class="rounded-card mx-3" style="min-width:200; max-width:300px" v-for="(product,index) in products" v-bind:key="index" >
+                                    <v-layout v-if="product.category_id == category.id" v-show="product.category_id == category.id">
+                                        <router-link :to="{ path: '/products/'+product.id}" >
                                             <v-img
                                             class="rounded-img"
                                             height="300px"

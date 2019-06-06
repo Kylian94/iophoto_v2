@@ -4882,7 +4882,7 @@ var render = function() {
                               "v-card",
                               {
                                 key: index,
-                                staticClass: "rounded-card",
+                                staticClass: "rounded-card mx-3",
                                 staticStyle: {
                                   "min-width": "200",
                                   "max-width": "300px"
@@ -4893,11 +4893,23 @@ var render = function() {
                                 product.category_id == category.id
                                   ? _c(
                                       "v-layout",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value:
+                                              product.category_id ==
+                                              category.id,
+                                            expression:
+                                              "product.category_id == category.id"
+                                          }
+                                        ]
+                                      },
                                       [
                                         _c(
                                           "router-link",
                                           {
-                                            staticClass: "mx-3",
                                             attrs: {
                                               to: {
                                                 path: "/products/" + product.id
