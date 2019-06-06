@@ -1,32 +1,44 @@
-<template>
-        <div class="marginNav">
-            <table class="table table-responsive table-striped">
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td>Product</td>
-                        <td>Units</td>
-                        <td>Price</td>
-                        <td>Category</td>
-                        <td>Description</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(product,index) in products" v-bind:key="index" @dblclick="editingItem = product">
-                        <td>{{index+1}}</td>
-                        <td v-html="product.name"></td>
-                        <td v-model="product.units">{{product.units}}</td>
-                        <td v-model="product.price">{{product.price}}</td>
-                        <td v-model="product.category_id">{{product.category_id}}</td>
-                        <td v-model="product.price">{{product.description}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <modal @close="endEditing" :product="editingItem" v-show="editingItem != null"></modal>
-            <modal @close="addProduct"  :product="addingProduct" v-show="addingProduct != null"></modal>
-            <br>
-            <button class="btn btn-primary" @click="newProduct">Add New Product</button>
-        </div>
+    <template>
+        <v-layout align-center justify-center>
+            <v-flex md8>
+                <button class="btn btn-primary m-2" @click="newProduct">Add New Product</button>
+                <br>
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>Product</td>
+                            <td>Units</td>
+                            <td>Price</td>
+                            <td>Category</td>
+                            <td>Description</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(product,index) in products" v-bind:key="index">
+                            <td>{{index+1}}</td>
+                            <td v-html="product.name"></td>
+                            <td v-model="product.units">{{product.units}}</td>
+                            <td v-model="product.price">{{product.price}}</td>
+                            <td v-model="product.category_id">{{product.category_id}}</td>
+                            <td v-model="product.price">{{product.description}}</td>
+                            <td>
+                                <v-btn @click="editingItem = product" raised color="teal darken-1">
+                                    <i class="fa fa-cog white--text" aria-hidden="true"></i>
+                                </v-btn>
+                                <v-btn raised color="red darken-1" @click.prevent="deleteItem(product)">
+                                    <i class="fa fa-times white--text" aria-hidden="true"></i>
+                                </v-btn>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <modal @close="endEditing" :product="editingItem" v-show="editingItem != null"></modal>
+                <modal @close="addProduct"  :product="addingProduct" v-show="addingProduct != null"></modal>
+                
+            </v-flex>
+        </v-layout>
     </template>
     <script>
     import Modal from './ProductModal'
@@ -36,7 +48,8 @@
             return {
                 products: [],
                 editingItem: null,
-                addingProduct: null
+                addingProduct: null,
+                
             }
         },
         components: {Modal},
@@ -67,6 +80,12 @@
 
                 axios.put(`/api/products/${product.id}`, {name, units, price, image, description, category_id})
                      .then(response => this.products[index] = product)
+            },
+            deleteItem(product) {
+            let item = this.products.indexOf(product)
+            axios.post('/api/products/' + product.id)
+                .then(
+                        this.products.splice(item, 1))
             },
             addProduct(product) {
                 this.addingProduct = null

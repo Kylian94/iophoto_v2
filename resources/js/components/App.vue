@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top">
+        <nav class="navbar homeNav navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top">
             <div class="container">
                 <img class="mr-2" src="/img/logo_white.png" alt="logo IOPhoto">
                 <router-link :to="{name: 'home'}" class="navbar-brand title">IO.Photo</router-link>
@@ -63,7 +63,7 @@
     }
 </script>
 <style>
-nav {
+.homeNav {
     min-height:110px;
     max-height:110px;
 }

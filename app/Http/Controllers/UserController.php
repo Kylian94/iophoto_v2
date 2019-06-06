@@ -65,4 +65,41 @@
             return response()->json($user->orders()->with(['product'])->get());
         }
 
+        public function store(Request $request)
+        {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'is_admin' => $request->is_admin,
+            ]);
+
+            return response()->json([
+                'status' => (bool) $user,
+                'data'   => $user,
+                'message' => $user ? 'User Created!' : 'Error Creating User'
+            ]);
+        }
+
+        public function update(Request $request, User $user)
+        {
+            $status = $user->update(
+                $request->only(['name', 'email', 'is_admin'])
+            );
+
+            return response()->json([
+                'status' => $status,
+                'message' => $status ? 'user Updated!' : 'Error Updating user'
+            ]);
+        }
+
+        public function destroy(User $user)
+        {
+            $status = $user->delete();
+
+            return response()->json([
+                'status' => $status,
+                'message' => $status ? 'User Deleted!' : 'Error Deleting User'
+            ]);
+        }
     }

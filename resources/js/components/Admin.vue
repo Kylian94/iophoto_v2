@@ -1,23 +1,76 @@
 <template>
         <div class="marginNav">
+
             <div class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
-                <h2 class="title">Admin Dashboard</h2>
+                <h2 class="title text-md-center text-xs-center">Admin Dashboard</h2>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <ul style="list-style-type:none">
-                            <li class="active"><button class="btn" @click="setComponent('main')">Dashboard</button></li>
-                            <li><button class="btn" @click="setComponent('orders')">Orders</button></li>
-                            <li><button class="btn" @click="setComponent('products')">Products</button></li>
-                            <li><button class="btn" @click="setComponent('users')">Users</button></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-9">
-                        <component :is="activeComponent"></component>
-                    </div>
-                </div>
-            </div>
+            
+            <v-layout>
+                
+                <v-navigation-drawer permanent>
+                    <v-layout class="align-center justify-center">
+                        <v-flex>
+                            <v-toolbar flat class="teal lighten-3">
+                            <v-list>
+                                <v-list-tile @click="setComponent('main')">
+                                    
+                                            <v-list-tile-title class="title">
+                                                Dashboard
+                                            </v-list-tile-title>
+                                        
+                                </v-list-tile>
+                            </v-list>
+                            </v-toolbar>
+                        </v-flex>
+                    </v-layout>
+                    <v-divider></v-divider>
+
+                    <v-list dense class="pt-0">
+                    <v-list-tile @click="setComponent('orders')">
+                        <v-list-tile-action>
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                        <v-list-tile-title>Orders</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    </v-list>
+
+                    <v-list dense class="pt-0">
+                    <v-list-tile  @click="setComponent('products')">
+                        <v-list-tile-action>
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                        <v-list-tile-title>Products</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    </v-list>
+
+                    <v-list dense class="pt-0">
+                    <v-list-tile @click="setComponent('users')">
+                        <v-list-tile-action>
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                        <v-list-tile-title>Users</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    </v-list>
+
+                </v-navigation-drawer>
+                    <!-- <ul style="list-style-type:none">
+                        <li class="active"><button class="btn" @click="setComponent('main')">Dashboard</button></li>
+                        <li><button class="btn" @click="setComponent('orders')">Orders</button></li>
+                        <li><button class="btn" @click="setComponent('products')">Products</button></li>
+                        <li><button class="btn" @click="setComponent('users')">Users</button></li>
+                    </ul> -->
+                
+                <v-flex md8>
+                    <component :is="activeComponent"></component>
+                </v-flex>
+            </v-layout>
+            
         </div>
     </template>
 
@@ -69,6 +122,6 @@
     </script>
 
     <style scoped>
-    .hero-section { height: 20vh; background: #ababab; align-items: center; margin-bottom: 20px; margin-top: -20px; }
+    .hero-section { height: 20vh; background: #ababab; align-items: center; margin-top: -20px; }
     .title { font-size: 60px; color: #ffffff; }
     </style>

@@ -4,7 +4,7 @@ import Vue from 'vue'
     import Vuetify from 'vuetify'
     import vueSmoothScroll from 'vue2-smooth-scroll'
     import Affix from 'vue-affix';
-
+   
     Vue.use(Affix);
     Vue.use(vueSmoothScroll)
     Vue.use(Vuetify)
