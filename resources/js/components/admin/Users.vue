@@ -1,6 +1,6 @@
 <template>
         <v-layout align-center justify-center>
-            <v-flex md8>
+            <v-flex>
                 <button class="btn btn-primary m-2" @click="newUser">Add New User</button>
                 <br>
                 <table class="table table-responsive table-striped">
@@ -20,9 +20,11 @@
                             <td>{{index+1}}</td>
                             <td v-model="user.name">{{user.name}}</td>
                             <td v-model="user.email">{{user.email}}</td>
-                            <td v-model="user.is_admin">{{user.is_admin}}</td>
+                            <td v-model="user.is_admin" v-if="user.is_admin == 1">Admin</td>
+                            <td v-else >User</td>
                             <td>{{user.created_at}}</td>
-                            <td>{{user.orders.length}}</td>
+                            <td v-if="user.orders">{{user.orders.length}}</td>
+                            <td v-else>0</td>
                             <td>
                                 <v-btn @click="editingUser = user" raised color="teal darken-1">
                                     <i class="fa fa-cog white--text" aria-hidden="true"></i>
@@ -46,15 +48,20 @@
 
     export default {
         data() {
+            
+            
             return {
                 users : [], 
                 editingUser: null,
                 addingUser: null,
+                
+                
             }
         },
         components: {Modal},
         beforeMount() {
-            axios.get('/api/users/').then(response => this.users = response.data)
+            axios.get('/api/users').then(response => this.users = response.data)
+            
         }, 
         methods: {
 
@@ -63,7 +70,7 @@
                     name: null,
                     email: null,
                     password: null,
-                    is_admin: null
+                    is_admin: null,
                 }
             }, 
 
@@ -94,10 +101,12 @@
                 let password = user.password
                 let is_admin = user.is_admin
                 
+            
                 axios.post("/api/users/", {name, email, password, is_admin})
                      .then(response => this.users.push(user))
-                     .catch(console.log('error'))
+                     
             },
-        }
+        },
+        
     }
     </script>

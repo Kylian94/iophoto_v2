@@ -1628,7 +1628,10 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         email: "",
         is_admin: "",
-        password: ""
+        password: "",
+        user: {
+          orders: []
+        }
       };
     }
   },
@@ -1694,6 +1697,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1709,7 +1714,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this = this;
 
-    axios.get('/api/users/').then(function (response) {
+    axios.get('/api/users').then(function (response) {
       return _this.users = response.data;
     });
   },
@@ -1759,7 +1764,7 @@ __webpack_require__.r(__webpack_exports__);
         is_admin: is_admin
       }).then(function (response) {
         return _this3.users.push(user);
-      })["catch"](console.log('error'));
+      });
     }
   }
 });
@@ -5445,7 +5450,7 @@ var render = function() {
     "v-layout",
     { attrs: { "align-center": "", "justify-center": "" } },
     [
-      _c("v-flex", { attrs: { md8: "" } }, [
+      _c("v-flex", [
         _c("table", { staticClass: "table table-responsive table-striped" }, [
           _c("thead", [
             _c("tr", [
@@ -6087,7 +6092,6 @@ var render = function() {
     [
       _c(
         "v-flex",
-        { attrs: { md8: "" } },
         [
           _c(
             "button",
@@ -6153,23 +6157,27 @@ var render = function() {
                       [_vm._v(_vm._s(user.email))]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        model: {
-                          value: user.is_admin,
-                          callback: function($$v) {
-                            _vm.$set(user, "is_admin", $$v)
+                    user.is_admin == 1
+                      ? _c(
+                          "td",
+                          {
+                            model: {
+                              value: user.is_admin,
+                              callback: function($$v) {
+                                _vm.$set(user, "is_admin", $$v)
+                              },
+                              expression: "user.is_admin"
+                            }
                           },
-                          expression: "user.is_admin"
-                        }
-                      },
-                      [_vm._v(_vm._s(user.is_admin))]
-                    ),
+                          [_vm._v("Admin")]
+                        )
+                      : _c("td", [_vm._v("User")]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(user.created_at))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.orders.length))]),
+                    user.orders
+                      ? _c("td", [_vm._v(_vm._s(user.orders.length))])
+                      : _c("td", [_vm._v("0")]),
                     _vm._v(" "),
                     _c(
                       "td",

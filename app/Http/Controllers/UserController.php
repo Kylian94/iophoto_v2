@@ -72,6 +72,7 @@
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'is_admin' => $request->is_admin,
+                'orders' => 0,
             ]);
 
             return response()->json([

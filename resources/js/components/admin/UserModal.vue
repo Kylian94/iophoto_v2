@@ -94,7 +94,9 @@
                     email: "",
                     is_admin: "",
                     password: "",
-                    
+                    user : {
+                    orders: []
+                    }
                 }
             }
         },

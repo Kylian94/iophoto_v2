@@ -1,6 +1,6 @@
  <template>
        <v-layout align-center justify-center>
-            <v-flex md8>
+            <v-flex>
                 <table class="table table-responsive table-striped">
                     <thead>
                         <tr>
