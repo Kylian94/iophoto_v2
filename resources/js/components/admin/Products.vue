@@ -47,6 +47,7 @@
         data() {
             return {
                 products: [],
+                categories: [],
                 editingItem: null,
                 addingProduct: null,
                 
@@ -55,6 +56,7 @@
         components: {Modal},
         beforeMount() {
             axios.get('/api/products/').then(response => this.products = response.data)
+            axios.get("/api/categories/").then(response => this.categories = response.data)
         },
         methods: {
             newProduct() {

@@ -18,11 +18,10 @@
                 </v-layout>
                 <div  class="container content" id="example-content">
                     <div class="row">
-                        <div class="col-md-8">
-                            <div class="row">
+                       
                                 <!-- ARTICLE BY CATEGORY -->
-                                <v-card  hover class="rounded-card mx-3" style="min-width:200; max-width:300px" v-for="(product,index) in products" v-bind:key="index" >
-                                    <v-layout v-if="product.category_id == category.id" v-show="product.category_id == category.id">
+                                <v-card  hover class="rounded-card mx-3" style="max-width:300px;" v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id">
+                                    <v-layout >
                                         <router-link :to="{ path: '/products/'+product.id}" >
                                             <v-img
                                             class="rounded-img"
@@ -59,8 +58,7 @@
                                 </v-card>
                                 
                             </div>
-                        </div>
-                    </div>
+                        
                 </div>
             </v-flex> 
         </v-layout>
@@ -97,7 +95,12 @@
             header.classList.remove("sticky");
             }
             }
- 
+        },
+        methods: {
+            
+        },
+        computed: {
+            
         }
     }
 </script>

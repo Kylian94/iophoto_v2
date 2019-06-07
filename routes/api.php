@@ -14,7 +14,7 @@
         Route::get('users/{user}','UserController@show');
         Route::patch('users/{user}','UserController@update');
         Route::get('users/{user}/orders','UserController@showOrders');
-        //Route::post('products/{product}','ProductController@destroy');
+        Route::post('products/{product}','ProductController@destroy');
         //Route::post('users/{user}','UserController@destroy');
         Route::patch('products/{product}/units/add','ProductController@updateUnits');
         Route::patch('orders/{order}/deliver','OrderController@deliverOrder');
