@@ -1,12 +1,13 @@
     <template>
         <v-layout align-center justify-center>
-            <v-flex md8>
+            <v-flex>
                 <button class="btn btn-primary m-2" @click="newProduct">Add New Product</button>
                 <br>
                 <table class="table table-responsive table-striped">
                     <thead>
                         <tr>
                             <td></td>
+                            <td>Image</td>
                             <td>Product</td>
                             <td>Units</td>
                             <td>Price</td>
@@ -18,6 +19,7 @@
                     <tbody>
                         <tr v-for="(product,index) in products" v-bind:key="index">
                             <td>{{index+1}}</td>
+                            <td><img class="imgList" :src="product.image" alt="image produit"></td>
                             <td v-html="product.name"></td>
                             <td v-model="product.units">{{product.units}}</td>
                             <td v-model="product.price">{{product.price}}</td>
@@ -105,3 +107,10 @@
         }
     }
     </script>
+    <style scoped>
+    .imgList {
+        max-width:100px;
+        max-height:100px;
+    }
+    </style>
+    
