@@ -3608,12 +3608,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-flex",
-            { attrs: { md8: "" } },
-            [_c(_vm.activeComponent, { tag: "component" })],
-            1
-          )
+          _c("v-flex", [_c(_vm.activeComponent, { tag: "component" })], 1)
         ],
         1
       )
@@ -5745,7 +5740,24 @@ var render = function() {
                         expression: "product.category_id"
                       }
                     },
-                    [_vm._v(_vm._s(product.category_id))]
+                    _vm._l(_vm.categories, function(category, index) {
+                      return _c(
+                        "p",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: product.category_id == category.id,
+                              expression: "product.category_id == category.id"
+                            }
+                          ],
+                          key: index
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    }),
+                    0
                   ),
                   _vm._v(" "),
                   _c(

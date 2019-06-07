@@ -66,7 +66,7 @@
                         <li><button class="btn" @click="setComponent('users')">Users</button></li>
                     </ul> -->
                 
-                <v-flex md8>
+                <v-flex>
                     <component :is="activeComponent"></component>
                 </v-flex>
             </v-layout>

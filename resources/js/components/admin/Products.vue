@@ -21,7 +21,7 @@
                             <td v-html="product.name"></td>
                             <td v-model="product.units">{{product.units}}</td>
                             <td v-model="product.price">{{product.price}}</td>
-                            <td v-model="product.category_id">{{product.category_id}}</td>
+                            <td v-model="product.category_id"><p v-for="(category, index) in categories" v-bind:key="index" v-show="product.category_id == category.id">{{category.name}}</p></td>
                             <td v-model="product.price">{{product.description}}</td>
                             <td>
                                 <v-btn @click="editingItem = product" raised color="teal darken-1">
