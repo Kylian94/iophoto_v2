@@ -18,6 +18,6 @@
         <script src="{{ mix('js/bootstrap.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
         <script crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2"></script>
-        <script src="js/facebook.js"></script>
+        <script src="/js/facebook.js"></script>
     </body>
     </html>

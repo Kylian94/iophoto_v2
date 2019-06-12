@@ -18283,124 +18283,118 @@ var render = function() {
           "navbar homeNav navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top"
       },
       [
+        _c("img", {
+          staticClass: "mr-2",
+          attrs: { src: "/img/logo_white.png", alt: "logo IOPhoto" }
+        }),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "navbar-brand title",
+            attrs: { to: { name: "home" } }
+          },
+          [_vm._v("IO.Photo")]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
         _c(
           "div",
-          { staticClass: "container" },
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
           [
-            _c("img", {
-              staticClass: "mr-2",
-              attrs: { src: "/img/logo_white.png", alt: "logo IOPhoto" }
-            }),
+            _c("ul", { staticClass: "navbar-nav mr-auto" }),
             _vm._v(" "),
             _c(
-              "router-link",
-              {
-                staticClass: "navbar-brand title",
-                attrs: { to: { name: "home" } }
-              },
-              [_vm._v("IO.Photo")]
-            ),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse",
-                attrs: { id: "navbarSupportedContent" }
-              },
+              "ul",
+              { staticClass: "navbar-nav ml-auto" },
               [
-                _c("ul", { staticClass: "navbar-nav mr-auto" }),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link white--text",
+                    attrs: { to: { name: "shop" } }
+                  },
+                  [_vm._v("🎁 Boutique")]
+                ),
                 _vm._v(" "),
                 _c(
-                  "ul",
-                  { staticClass: "navbar-nav ml-auto" },
-                  [
-                    _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link white--text",
+                    attrs: { to: { name: "a-propos" } }
+                  },
+                  [_vm._v("📰 A propos")]
+                ),
+                _vm._v(" "),
+                !_vm.isLoggedIn
+                  ? _c(
                       "router-link",
                       {
                         staticClass: "nav-link white--text",
-                        attrs: { to: { name: "shop" } }
+                        attrs: { to: { name: "login" } }
                       },
-                      [_vm._v("🎁 Boutique")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
+                      [_vm._v("🔒 Connexion")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.isLoggedIn
+                  ? _c("router-link", {
+                      staticClass: "nav-link white--text",
+                      attrs: { to: { name: "register" } }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isLoggedIn
+                  ? _c(
+                      "span",
+                      [
+                        _vm.user_type == 0
+                          ? _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link white--text",
+                                attrs: { to: { name: "userboard" } }
+                              },
+                              [_vm._v(" Hi, " + _vm._s(_vm.name))]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user_type == 1
+                          ? _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link white--text",
+                                attrs: { to: { name: "admin" } }
+                              },
+                              [_vm._v("🧙‍ Hi, " + _vm._s(_vm.name))]
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isLoggedIn
+                  ? _c(
+                      "li",
                       {
                         staticClass: "nav-link white--text",
-                        attrs: { to: { name: "a-propos" } }
+                        on: { click: _vm.logout }
                       },
-                      [_vm._v("📰 A propos")]
-                    ),
-                    _vm._v(" "),
-                    !_vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link white--text",
-                            attrs: { to: { name: "login" } }
-                          },
-                          [_vm._v("🔒 Connexion")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.isLoggedIn
-                      ? _c("router-link", {
-                          staticClass: "nav-link white--text",
-                          attrs: { to: { name: "register" } }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "span",
-                          [
-                            _vm.user_type == 0
-                              ? _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link white--text",
-                                    attrs: { to: { name: "userboard" } }
-                                  },
-                                  [_vm._v(" Hi, " + _vm._s(_vm.name))]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.user_type == 1
-                              ? _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link white--text",
-                                    attrs: { to: { name: "admin" } }
-                                  },
-                                  [_vm._v("🧙‍ Hi, " + _vm._s(_vm.name))]
-                                )
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "li",
-                          {
-                            staticClass: "nav-link white--text",
-                            on: { click: _vm.logout }
-                          },
-                          [_vm._v("⛔️ Logout")]
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ]
+                      [_vm._v("⛔️ Logout")]
+                    )
+                  : _vm._e()
+              ],
+              1
             )
-          ],
-          1
+          ]
         )
-      ]
+      ],
+      1
     ),
     _vm._v(" "),
     _c(
