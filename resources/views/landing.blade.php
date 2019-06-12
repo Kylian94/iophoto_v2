@@ -6,16 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{csrf_token()}}">
         <title>IO.Photo Store</title>
+        <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
         <link href=" {{ mix('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        
     </head>
     <body>
         <div id="app">
             <app></app>
         </div>
         <script src="{{ mix('js/bootstrap.js') }}"></script>
-        <script src="{{ mix('js/stickyNav.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
+        <script crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2"></script>
+        <script src="js/facebook.js"></script>
     </body>
     </html>

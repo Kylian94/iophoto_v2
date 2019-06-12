@@ -2,7 +2,7 @@
     <div class="marginNav">
         <!-- HEADER -->
         <v-layout class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
-            <h2 class=" title text-md-center text-xs-center">Welcome to the IOPhoto Store</h2>
+            <h2 class=" title text-md-center text-xs-center"></h2>
         </v-layout>
         <!-- NAVBAR CATEGORIES -->
         <v-layout dark black align-center justify-center class="white--text nav_shop header" id="myHeader" py-3>
@@ -11,54 +11,57 @@
             </a> 
         </v-layout>
         <!-- CATEGORIES PARTS WITH ARTICLES -->
-        <v-layout v-for="(category,index) in categories" v-bind:key="index" class="">
+        <v-layout v-for="(category,index) in categories" v-bind:key="index" >
             <v-flex :id="category.name" class="categoryPart align-center pt-md-4">
                 <v-layout justify-content-center>
                     <h1 class="text-xs-center text-md-center title text--black hr">{{category.name}}</h1>
                 </v-layout>
                 <div  class="container content" id="example-content">
-                    <div class="row">
-                       
-                                <!-- ARTICLE BY CATEGORY -->
-                                <v-card  hover class="rounded-card mx-3" style="max-width:300px;" v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id">
-                                    <v-layout >
-                                        <router-link :to="{ path: '/products/'+product.id}" >
-                                            <v-img
-                                            class="rounded-img"
-                                            height="300px"
-                                            :src="product.image">
-                                        
-                                            </v-img>
-                                            
-                                            <v-card-text class="pb-0 fade-out product-card-description">
-                                                <span class="headline shadow-text grey--text text--darken-4">
-                                                {{ product.name }}
-                                                </span><br>
-
-                                                {{product.description}}
-                                            </v-card-text>
-                                            <v-card-text class="pb-0 center-text small-text text-muted">
-                                                {{ product.price}} € &nbsp; - &nbsp;
-                                                Stock: {{product.units}}
-                                            </v-card-text>
-                                            <v-card-actions class="justify-start">
-                                                <v-btn primary
-                                                    v-if="product.units > 0"
-                                                    @click.native="addToCart(product)"
-                                                >
-                                                    Acheter
-                                                </v-btn>
-                                                <v-btn disabled
-                                                    v-if="product.units <= 0">
-                                                    Produit épuisé
-                                                </v-btn>
-                                            </v-card-actions>
-                                        </router-link>
+                    <div class="row justify-xs-center">
+                        <v-flex v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id" xs10 sm10 md3>
+                            <v-badge raised color="grey lighten-3" overlap>
+                                <template v-slot:badge>
+                                    <span v-if="product.units > 0">✅</span>
+                                    <span v-if="product.units <= 0">❌</span> 
+                                </template>
+                                <router-link :to="{ path: '/products/'+product.id}" >
+                                    <v-card color="" class=" card_product mx-4 mb-4" >
+                                    <v-layout>
+                                        <v-flex xs5>
+                                        <v-img
+                                            :src="product.image"
+                                            height="125px"
+                                            contain
+                                        ></v-img>
+                                        </v-flex>
+                                        <v-flex xs7>
+                                        <v-card-title primary-title >
+                                            <div>
+                                            <div class="headline">{{ product.name }}</div>
+                                            <div> {{product.description}}</div>
+                                            </div>
+                                        </v-card-title>
+                                        </v-flex>
                                     </v-layout>
-                                </v-card>
-                                
-                            </div>
-                        
+                                    <v-divider light></v-divider>
+                                    <v-card-actions class="pa-3" >
+                                        <span class="subheading teal--text text--darken-2"><b>{{ product.price}} €</b> </span>
+                                        <v-spacer></v-spacer>
+                                        <v-btn dark  color="teal darken-1"
+                                                v-if="product.units > 0">
+                                        <!-- @click.native="addToCart(product)" -->
+                                            Choisir
+                                        </v-btn>
+                                        <v-btn disabled dark raised color="teal darken-1"
+                                            v-if="product.units <= 0">
+                                            Produit épuisé
+                                        </v-btn>
+                                    </v-card-actions>
+                                    </v-card>
+                                </router-link>
+                            </v-badge>
+                        </v-flex>      
+                    </div>  
                 </div>
             </v-flex> 
         </v-layout>
@@ -89,7 +92,7 @@
             var sticky = header.offsetTop;
             // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
             function stickMenu() {
-            if (window.pageYOffset > sticky+10) {
+            if (window.pageYOffset > sticky-110) {
             header.classList.add("sticky");
             } else {
             header.classList.remove("sticky");
@@ -107,6 +110,19 @@
 
 <style scoped>
 
+.v-badge__badge{
+    padding:15px;
+  min-height:60px;
+  min-width:60px;
+}
+.v-card__title {
+    min-height:250px;
+    max-height:250px;
+}
+.v-card__actions {
+    height:50px;
+}
+
 a {  text-decoration: none;}
 .navCatLink { transition: all .3s ease-in-out;
 margin-left:5px;
@@ -115,7 +131,7 @@ margin-right:5px; }
 
 /* Style the header */
 .categoryPart {
-    min-height:80vh;
+    min-height:50vh;
 }
 .header {
   padding:30px;
@@ -161,11 +177,26 @@ margin-right:5px; }
     /* border: 1px solid #cccccc; */
     padding: 10px 15px;
 }
-.hero-section {
-    height: 30vh;
-    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+
+@media only screen 
+and (min-device-width : 375px) 
+{ 
+    .hero-section {
+    height: 600px;
+    background-image: url('/img/header_shop_mobile.jpg');
     align-items: center;
     margin-top: -20px;
+    }
+}
+@media only screen 
+and (min-device-width : 812px) 
+{ 
+    .hero-section {
+        height: 850px;
+        background-image: url('/img/header_shop.jpg');
+        align-items: center;
+        margin-top: -20px;
+    }
 }
 
 .images_shop {
@@ -187,4 +218,5 @@ margin-right:5px; }
     margin: 0 .75em;
     border-bottom: 1px solid #000;
 }
+
 </style>

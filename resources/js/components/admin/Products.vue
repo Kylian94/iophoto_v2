@@ -86,10 +86,28 @@
                      .then(response => this.products[index] = product)
             },
             deleteItem(product) {
-            let item = this.products.indexOf(product)
-            axios.post('/api/products/' + product.id)
-                .then(
-                        this.products.splice(item, 1))
+                let item = this.products.indexOf(product)
+                swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                            if (result.value) {
+
+                                axios.post('/api/products/' + product.id)
+                                .then(this.products.splice(item, 1))
+
+                                swal.fire(
+                                'Deleted!',
+                                'Your product has been deleted.',
+                                'success'
+                                )
+                            }
+                    })
             },
             addProduct(product) {
                 this.addingProduct = null
@@ -103,6 +121,7 @@
 
                 axios.post("/api/products/", {name, units, price, description, image, category_id})
                      .then(response => this.products.push(product))
+                     .then(toast.fire({ type: 'success', title: 'Product has been created'}))
             }
         }
     }

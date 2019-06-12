@@ -12,14 +12,15 @@
                     <ul class="navbar-nav mr-auto"></ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <router-link :to="{ name: 'shop' }" class="nav-link white--text">Shop</router-link>
-                        <router-link :to="{ name: 'login' }" class="nav-link white--text" v-if="!isLoggedIn">Login</router-link>
-                        <router-link :to="{ name: 'register' }" class="nav-link white--text" v-if="!isLoggedIn">Register</router-link>
+                        <router-link :to="{ name: 'shop' }" class="nav-link white--text">🎁 Boutique</router-link>
+                        <router-link :to="{ name: 'a-propos' }" class="nav-link white--text">📰 A propos</router-link>
+                        <router-link :to="{ name: 'login' }" class="nav-link white--text" v-if="!isLoggedIn">🔒 Connexion</router-link>
+                        <router-link :to="{ name: 'register' }" class="nav-link white--text" v-if="!isLoggedIn"></router-link>
                         <span v-if="isLoggedIn">
                             <router-link :to="{ name: 'userboard' }" class="nav-link white--text" v-if="user_type == 0"> Hi, {{name}}</router-link>
-                            <router-link :to="{ name: 'admin' }" class="nav-link white--text" v-if="user_type == 1"> Hi, {{name}}</router-link>
+                            <router-link :to="{ name: 'admin' }" class="nav-link white--text" v-if="user_type == 1">🧙‍ Hi, {{name}}</router-link>
                         </span>
-                        <li class="nav-link white--text" v-if="isLoggedIn" @click="logout"> Logout</li>
+                        <li class="nav-link white--text" v-if="isLoggedIn" @click="logout">⛔️ Logout</li>
                     </ul>
                 </div>
             </div>

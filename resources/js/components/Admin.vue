@@ -25,21 +25,11 @@
                     </v-layout>
                     <v-divider></v-divider>
 
-                    <v-list dense class="pt-0">
-                    <v-list-tile @click="setComponent('orders')">
-                        <v-list-tile-action>
-                        <i class="fa fa-truck" aria-hidden="true"></i>
-                        </v-list-tile-action>
-                        <v-list-tile-content>
-                        <v-list-tile-title>Orders</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    </v-list>
-
+                    
                     <v-list dense class="pt-0">
                     <v-list-tile  @click="setComponent('products')">
                         <v-list-tile-action>
-                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        📦
                         </v-list-tile-action>
                         <v-list-tile-content>
                         <v-list-tile-title>Products</v-list-tile-title>
@@ -48,15 +38,38 @@
                     </v-list>
 
                     <v-list dense class="pt-0">
+                    <v-list-tile @click="setComponent('categories')">
+                        <v-list-tile-action>
+                        📂
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                        <v-list-tile-title>Categories</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    </v-list>
+
+                    <v-list dense class="pt-0">
                     <v-list-tile @click="setComponent('users')">
                         <v-list-tile-action>
-                        <i class="fa fa-users" aria-hidden="true"></i>
+                        🐵
                         </v-list-tile-action>
                         <v-list-tile-content>
                         <v-list-tile-title>Users</v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
                     </v-list>
+
+                    <v-list dense class="pt-0">
+                    <v-list-tile @click="setComponent('orders')">
+                        <v-list-tile-action>
+                        🚚
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                        <v-list-tile-title>Orders</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                    </v-list>
+
 
                 </v-navigation-drawer>
                     <!-- <ul style="list-style-type:none">
@@ -79,6 +92,7 @@
     import Users from '../components/admin/Users'
     import Products from '../components/admin/Products'
     import Orders from '../components/admin/Orders'
+    import Categories from '../components/admin/Categories'
 
     export default {
         data() {
@@ -88,7 +102,7 @@
             }
         },
         components: {
-            Main, Users, Products, Orders
+            Main, Users, Products, Orders, Categories
         },
         beforeMount() {
             this.setComponent(this.$route.params.page)
@@ -110,6 +124,10 @@
                     case "products":
                         this.activeComponent = Products
                         this.$router.push({name: 'admin-pages', params: {page: 'products'}})
+                        break;
+                    case "categories":
+                        this.activeComponent = Categories
+                        this.$router.push({name: 'admin-pages', params: {page: 'categories'}})
                         break;
                     default:
                         this.activeComponent = Main

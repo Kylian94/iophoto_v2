@@ -8,3 +8,14 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import "~font-awesome/scss/font-awesome.scss";
+
+
+a:hover {
+  
+  text-decoration: none;
+}
+
+.v-badge__badge {
+    height:50px;
+    width:50px;
+}

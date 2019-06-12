@@ -4,11 +4,31 @@ import Vue from 'vue'
     import Vuetify from 'vuetify'
     import vueSmoothScroll from 'vue2-smooth-scroll'
     import Affix from 'vue-affix';
-   
+    import fr from 'vee-validate/dist/locale/fr';
+    import VeeValidate , { Validator } from 'vee-validate';
+
+    
+
+// CommonJS
+    const swal = require('sweetalert2')
+    window.swal = swal
+
+    const toast = swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
+    window.toast = toast
+    
     Vue.use(Affix);
     Vue.use(vueSmoothScroll)
     Vue.use(Vuetify)
     Vue.use(VueRouter)
+    Vue.use(VeeValidate);
+
+    Validator.localize('fr', fr);
 
     import App from './components/App.vue'
     import Home from './components/Home.vue'

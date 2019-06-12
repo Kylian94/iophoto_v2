@@ -1,18 +1,24 @@
 <template>
         <v-layout ml-4 mt-2>
+                
+                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
+                    <v-flex class="text-md-center text-xs-center">
+                        <a class="white--text" href='/admin/products'>📦 Products ({{products.length}})</a>
+                    </v-flex>
+                </v-layout>
+                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
+                    <v-flex class="text-md-center text-xs-center">
+                    <a class="white--text" href='/admin/categories'>📂 Categories ({{categories.length}})</a>
+                    </v-flex>
+                </v-layout>
+                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
+                    <v-flex class="text-md-center text-xs-center">
+                    <a class="white--text" href='/admin/users'>🐵 Users ({{users.length}})</a>
+                    </v-flex>
+                </v-layout>
                 <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA navCatLink">
                     <v-flex class="text-md-center text-xs-center">
-                        <a class="white--text" href='/admin/orders'>Orders ({{orders.length}})</a>
-                    </v-flex>
-                </v-layout>
-                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
-                    <v-flex class="text-md-center text-xs-center">
-                        <a class="white--text" href='/admin/products'>Products ({{products.length}})</a>
-                    </v-flex>
-                </v-layout>
-                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
-                    <v-flex class="text-md-center text-xs-center">
-                    <a class="white--text" href='/admin/users'>Users ({{users.length}})</a>
+                        <a class="white--text" href='/admin/orders'>🚚 Orders ({{orders.length}})</a>
                     </v-flex>
                 </v-layout>
                 <hr>
@@ -26,13 +32,15 @@
                 user : null,
                 orders : [],
                 products : [],
-                users : []
+                users : [],
+                categories: [],
             }
         },
         mounted() {
             axios.get('/api/users/').then(response => this.users = response.data)
             axios.get('/api/products/').then(response => this.products = response.data)
             axios.get('/api/orders/').then(response => this.orders = response.data)
+            axios.get('/api/categories/').then(response => this.categories = response.data)
         }
     }
     </script>

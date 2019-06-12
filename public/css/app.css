@@ -13715,3 +13715,12 @@ a.text-dark:focus {
   clip: auto;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+.v-badge__badge {
+  height: 50px;
+  width: 50px;
+}
+

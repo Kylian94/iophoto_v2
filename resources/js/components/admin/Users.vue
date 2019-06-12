@@ -48,8 +48,6 @@
 
     export default {
         data() {
-            
-            
             return {
                 users : [], 
                 editingUser: null,
@@ -89,8 +87,36 @@
 
             deleteUser(user) {
             let usr = this.users.indexOf(user)
-            axios.delete('/api/users/' + user.id)
-                .then(this.users.splice(usr, 1))
+
+            swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                        if (result.value) {
+
+                            axios.delete('/api/users/' + user.id)
+                            .then(this.users.splice(usr, 1))
+
+                            swal.fire(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                            )
+                        }
+                    })
+
+
+            // axios.delete('/api/users/' + user.id)
+            //     .then(this.users.splice(usr, 1))
+            //     .then(toast.fire({
+            //         type: 'success',
+            //         title: 'User deleted'
+            //     }))
             },
 
             addUser(user) {
@@ -101,9 +127,11 @@
                 let password = user.password
                 let is_admin = user.is_admin
                 
+
             
                 axios.post("/api/users/", {name, email, password, is_admin})
                      .then(response => this.users.push(user))
+                     .then(toast.fire({ type: 'success', title: 'User has been created'}))
                      
             },
         },

@@ -8,15 +8,6 @@
                     <div class="modal-body">
                         <slot name="body">
                             <v-text-field v-model="data.name" label="Name"></v-text-field>
-                            <v-text-field v-model="data.email" label="Email"></v-text-field>
-                            <v-text-field v-model="data.password" label="Password" type="password"></v-text-field>
-                            <p class="labelCat">Role</p>
-                            <div class="mdl-selectfield mb-4">
-                                <select v-model="data.is_admin">
-                                    <option value="0">User</option>
-                                    <option value="1">Admin</option>
-                                </select>
-                            </div>
                         </slot>
                     </div>
                     <div class="modal-footer">
@@ -51,7 +42,7 @@
         vertical-align: middle;
     }
     .modal-container {
-        width: 300px;
+        width: 600px;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #fff;
@@ -81,84 +72,103 @@
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
-    .mdl-selectfield label {
-    display: none;
-    }
 
-    /* Use custom arrow */
-    .mdl-selectfield select {
-    -webkit-appearance: none;
-        -moz-appearance: none;
-            appearance: none;
-    }
+    select {
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: 4px 0;
+  font-size: 16px;
+  color: rgba(0,0,0, .87);
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0, 0.42);
+}
 
-    .mdl-selectfield {
-    position: relative;
-    }
-    .mdl-selectfield:after {
-    position: absolute;
-    top: 0.75em;
-    right: 0.5em;
-    /* Styling the down arrow */
-    width: 0;
-    height: 0;
-    padding: 0;
-    content: '';
-    border-left: .25em solid transparent;
-    border-right: .25em solid transparent;
-    border-top: 0.375em solid rgba(0,0,0, 0.42);
-    pointer-events: none;
-    }
-    .labelCat {
-        color: rgba(0,0,0, 0.5);
-        margin:0;
-        padding:0;
-    }
-            select {
-    font-family: inherit;
-    background-color: transparent;
-    width: 100%;
-    padding: 4px 0;
-    font-size: 16px;
-    color: rgba(0,0,0, .87);
-    border: none;
-    border-bottom: 1px solid rgba(0,0,0, 0.42);
-    }
+/* Remove focus */
+select:focus {
+  outline: none;
+}
 
-    /* Remove focus */
-    select:focus {
-    outline: none;
-    }
+/* Hide label */
+.mdl-selectfield label {
+  display: none;
+}
+
+/* Use custom arrow */
+.mdl-selectfield select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.mdl-selectfield {
+  position: relative;
+}
+.mdl-selectfield:after {
+  position: absolute;
+  top: 0.75em;
+  right: 0.5em;
+  /* Styling the down arrow */
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: .25em solid transparent;
+  border-right: .25em solid transparent;
+  border-top: 0.375em solid rgba(0,0,0, 0.42);
+  pointer-events: none;
+}
+.labelCat {
+    color: rgba(0,0,0, 0.42);
+    margin:0;
+    padding:0;
+}
     </style>
     <script>
     export default {
-        props: ['user'],
+        props: ['category'],
         data() {
             return {
-                 attachment: null
+                attachment: null,
+                
+                
             }
         },
         computed: {
             data: function() {
-                if (this.user != null) {
-                    return this.user
+                if (this.category != null) {
+                    return this.category
+                    
                 }
                 return {
                     name: "",
-                    email: "",
-                    is_admin: "",
-                    password: "",
-                    user : {
-                    orders: []
-                    }
+                    
                 }
+                
             }
+            
+            
+        },
+        beforeMount() {
+            
+            axios.get("/api/categories/").then(response => this.categories = response.data)
         },
         methods: {
+            attachFile(event) {
+                this.attachment = event.target.files[0];
+            },
             uploadFile(event) {
+                
+                    this.$emit('close', this.category)
+            },
             
-                this.$emit('close', this.user)
-            }
-        }
+            
+        },
+        mounted() {
+            
+        },
+        created() {
+           
+        }, 
     }
     </script>

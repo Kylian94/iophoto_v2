@@ -23,7 +23,7 @@
                     <v-container >
                         <v-layout justify-space-around align-center mt-5 wrap >
                             <v-flex xs10 sm10 md3 mb-2 v-for="(category,index) in categories" v-bind:key="index">
-                                <v-card >
+                                <v-card class="mx-2">
                                     <v-parallax
                                     class="white--text"
                                     height="200"
@@ -39,14 +39,13 @@
                                     </v-parallax>
                                     <v-card-title>
                                     <div>
-                                        <span class="grey--text">{{category.name}}</span><br>
+                                        <span class="grey--text title mb-2">{{category.name}}</span><br>
                                         <span>Whitehaven Beach</span><br>
                                         <span>Whitsunday Island, Whitsunday Islands</span>
                                     </div>
                                     </v-card-title>
                                     <v-card-actions>
-                                    <v-btn flat color="teal darken-1">Share</v-btn>
-                                    <v-btn flat color="teal darken-1">Explore</v-btn>
+                                    <v-btn flat color="teal darken-1"><router-link :to="`/shop#`+category.name" class="teal--text text--darken-2">See now</router-link></v-btn>
                                     </v-card-actions>
                                 </v-card>
                             </v-flex>
@@ -67,8 +66,9 @@
                         <p class="title white--text text-xs-center text-sm-center" center >Restez au courant des nouveautés en vous inscrivant à la newsletter !</p>   
                         <v-text-field dark
                         class=""
-                        label="Email" value="" required name="email"
+                        label="Email" v-validate="'email'" v-model="email_newsletter" name="email"
                         ></v-text-field>
+                        <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email')">⚠️ {{ errors.first('email') }}</p>
                         <v-layout align-center justify-center>
                             <v-btn dark type="submit" color="teal darken-1"> S'inscrire</v-btn>
                         </v-layout>
@@ -89,14 +89,16 @@
                                 <h2>Nous contacter</h2>
                                 <v-flex column grey darken-3 pa-4 class="mt-5">
                                     <v-text-field dark
-                                    class=""
-                                    label="Email" value="" required name="email"
+                                    class="" v-validate="'required|email'"
+                                    label="Email" value="" name="email_contact"
                                     ></v-text-field>
+                                     <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email_contact')">⚠️ {{ errors.first('email_contact') }}</p>
                                 
                                 
                                     <v-textarea dark
-                                        name="input-7-1"
-                                        label="Message" required></v-textarea>
+                                        name="message_contact" v-validate="'required|min:5|max:255'"
+                                        label="Message" ></v-textarea>
+                                         <p class="teal--text text--lighten-3 subheading" v-if="errors.has('message_contact')">⚠️ {{ errors.first('message_contact') }}</p>
                                     
                                 </v-flex>
                                 <v-layout align-center justify-center class="mt-5">
@@ -120,7 +122,10 @@ export default {
   },
   data(){
             return {
-                categories : []
+                categories : [],
+                email_newsletter : "",
+                email_contact : "",
+                message_contact : "",
             }
         },
   mounted() {
@@ -147,5 +152,8 @@ export default {
 }
 .newsletter {
     background: url('/img/bg_newsletter.jpg')
+}
+a {
+    text-decoration:none;
 }
 </style>

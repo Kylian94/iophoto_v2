@@ -1,6 +1,70 @@
 <template>
-        <div class="container marginNav">
-            <div class="row justify-content-center">
+        <div class="container">
+
+            <v-container class="full-height">
+                <v-layout justify-center mb-2>
+                    <v-flex md4>
+                        <v-layout justify-center>
+                            <v-flex xs2 sm2 md2 mb-3>
+                                <v-img  src="/img/logo_dark.png"></v-img>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout justify-center>
+                            <h1>Welcome to IO.Photo</h1>
+                        </v-layout>
+                        <v-layout justify-center my-4>
+                            <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false" ma-auto></div>
+                        </v-layout>
+                        <hr>
+                        <p>ou inscrivez-vous directement sur IO.Photo</p>
+                    </v-flex>
+                </v-layout>
+
+
+
+                <v-form>
+                    <input type="hidden" name="_token" :value="csrf">
+                    <v-layout justify-center>
+                        <v-flex xs12 sm12 md4  ma-2>
+                            <h2>S'inscrire</h2>
+                            <v-flex column grey darken-3 pa-4>
+                                <v-text-field dark
+                                label="Pseudo" v-validate="'required'" v-model="name" name="name" required autofocus
+                                ></v-text-field>
+                                <p class="teal--text text--lighten-3 subheading" v-if="errors.has('name')">⚠️ {{ errors.first('name') }}</p>
+                                
+                            
+                                <v-text-field dark
+                                id="email" label="Email"  v-validate="'required|email'" name="email" v-model="email" required
+                                ></v-text-field>
+                                 <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email')">⚠️ {{ errors.first('email') }}</p>
+                                
+
+                                <v-text-field dark
+                                id="password" type="password" v-validate="'required|min:8'" label="Mot de passe" v-model="password"  name="password" required
+                                ></v-text-field>
+                                <p class="teal--text text--lighten-3 subheading" v-if="errors.has('password')">⚠️ {{ errors.first('password') }}</p>
+                                
+
+                                <v-text-field dark
+                                id="password-confirm" v-validate="'required'" label="Confirmation mot de passe" v-model="password_confirmation" type="password" class="" name="password_confirmation" required
+                                ></v-text-field>
+                                <p class="teal--text text--lighten-3 subheading" v-if="errors.has('password_confirmation')">⚠️ {{ errors.first('password_confirmation') }}</p>
+                                
+                            </v-flex>
+                            <v-layout justify-center>
+                                <v-btn dark type="submit" color="teal darken-1" @click="handleSubmit">S'inscrire</v-btn>
+                            </v-layout>
+                            <hr>
+                            <p>Si vous avez déjà un compte, connectez-vous : <router-link :to="{ name: 'login' }"> ici </router-link></p>  
+                        </v-flex>
+                    </v-layout>
+                </v-form>
+            </v-container>
+            <div id="fb-root"></div>  
+
+
+            <!-- <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card card-default">
                         <div class="card-header">Register</div>
@@ -42,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </template>
     <script>
@@ -71,10 +135,19 @@
                 let c_password = this.password_confirmation
                 axios.post('api/register', {name, email, password, c_password}).then(response => {
                     let data = response.data
-                    localStorage.setItem('bigStore.user', JSON.stringify(data.user))
-                    localStorage.setItem('bigStore.jwt', data.token)
-                    if (localStorage.getItem('bigStore.jwt') != null) {
+                    localStorage.setItem('IophotoStore.user', JSON.stringify(data.user))
+                    localStorage.setItem('IophotoStore.jwt', data.token)
+                    if (localStorage.getItem('IophotoStore.jwt') != null) {
                         this.$emit('loggedIn')
+
+                        var currentUser = JSON.parse(localStorage.getItem('IophotoStore.user'));
+                        swal.fire({
+                                                title: "Register with Success",
+                                                text: "Welcome " + currentUser.name + " !",
+                                                type: "success",
+                                            }).then(function () {
+
+                                            }.bind(this)).catch(errors => {});
                         let nextUrl = this.$route.params.nextUrl
                         this.$router.push((nextUrl != null ? nextUrl : '/'))
                     }
