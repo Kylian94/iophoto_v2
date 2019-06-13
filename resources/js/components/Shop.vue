@@ -25,7 +25,7 @@
                                     <span v-if="product.units <= 0">❌</span> 
                                 </template>
                                 <router-link :to="{ path: '/products/'+product.id}" >
-                                    <v-card color="" class=" card_product mx-4 mb-4" >
+                                    <v-card color="" class=" card_product mx-4 mb-4" hover>
                                     <v-layout>
                                         <v-flex xs5>
                                         <v-img
@@ -156,9 +156,7 @@ margin-right:5px; }
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-.sticky + .content {
-  
-}
+
 
 .cart {
     height: 400px;
@@ -179,13 +177,16 @@ margin-right:5px; }
 }
 
 @media only screen 
-and (min-device-width : 375px) 
+and (max-device-width : 375px) 
 { 
     .hero-section {
     height: 600px;
     background-image: url('/img/header_shop_mobile.jpg');
     align-items: center;
     margin-top: -20px;
+    }
+    .sticky + .content {
+    padding-top:200px;
     }
 }
 @media only screen 

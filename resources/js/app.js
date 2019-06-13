@@ -35,6 +35,7 @@ import Vue from 'vue'
     import Shop from './components/Shop.vue'
     import Login from './components/Login.vue'
     import Register from './components/Register.vue'
+    import Customisation from './components/Customisation.vue'
     import SingleProduct from './components/SingleProduct.vue'
     import Checkout from './components/Checkout.vue'
     import Confirmation from './components/Confirmation.vue'
@@ -73,6 +74,12 @@ import Vue from 'vue'
                 path: '/confirmation',
                 name: 'confirmation',
                 component: Confirmation
+            },
+            {
+                path: '/customisation',
+                name: 'customisation',
+                component: Customisation,
+                props: (route) => ({ pid: route.query.pid })
             },
             {
                 path: '/checkout',
