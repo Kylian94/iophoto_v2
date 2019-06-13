@@ -26,7 +26,7 @@
                 </div>
             </div> -->
             
-                <v-layout class="paddingNav hidden-sm-and-down" >
+                <v-layout class="paddingNav fullHeight hidden-sm-and-down" >
                     <v-flex md3 class="gallery " v-bind:class="{ bgDisabled : disabled }">
                         
                     </v-flex>
@@ -55,7 +55,7 @@
                                     <v-container align-center justify-center flex-column fill-height>
                                         <v-flex md12 class="parent">
                                             <img :src="product.image" :alt="product.name" class="image1">
-                                            <img src="/img/logo_dark.png" alt="" class="image2">
+                                            <img v-if="url" :src="url" class="image2">
                                         </v-flex>
                                     </v-container>
                                 </v-layout>          
@@ -63,8 +63,9 @@
                         </v-layout>
                         <v-layout justify-space-between>
                             <form method="post" class="mt-3" enctype="multipart/form-data">
-                                <input :disabled="projectName == defaultName" type="file" id="files" ref="files" multiple="" />
-                                <v-btn raised dark type="submit" class="teal darken-2" @click.prevent="uploadFiles()" :disabled="projectName == defaultName">Valider</v-btn>
+                                <input :disabled="projectName == defaultName" type="file" id="files" @change="onFileChange" ref="files" multiple="" />
+                                <v-btn raised dark class="red lighten-1" @click.prevent="deleteFile()" v-if="url">X</v-btn>
+                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="uploadFiles()" :disabled="projectName == defaultName">Valider</v-btn>
                             </form>
                             <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName">Save</v-btn>
                         </v-layout>
@@ -81,6 +82,22 @@
                 <div id="overlayBlock" class="hidden-sm-and-down">
                     
                 </div>
+                <v-layout flex-column class="paddingNav hidden-md-and-up" >
+                    <h1 class="pa-3 mx-auto">🚨 Informations 🚨</h1>
+                    <img class="gif mx-auto mb-3" src="https://media.giphy.com/media/fny1GW0e4GGGcgcUVU/giphy.gif" alt="gif_sorry">
+                    <v-flex class="grey lighten-3 pa-3">
+                        <h2>Malheureusment...</h2>
+                        <p class="subHeading">Le module de personnalisation n'est pas encore disponible sur mobile.</p>
+                    </v-flex>
+                    <v-flex class="pa-3">
+                        <h2>📣 On vous tiens au courant..</h2>
+                        <p>Pour recevoir des informations sur la sortie du module personnalisation sur mobile, renseignez votre adresse mail ci-dessous 🔻</p>
+                        <v-text-field v-model="askMobileModule" label="Email"></v-text-field>
+                        <v-layout justify-end>
+                            <v-btn dark raised class="teal darken-2">Avoir l'info</v-btn>
+                        </v-layout>
+                    </v-flex>
+                </v-layout>
 
         </div>
     </template>
@@ -97,9 +114,12 @@
                 isLoggedIn : null,
                 product : [],
                 projectName: '',
+                imgProduct: '',
                 defaultName: '',
                 disabled: true,
                 rules: [v => v.length <= 56 || 'Max 56 characters'],
+                url: null,
+                askMobileModule: '',
             }
         },
         watch : {
@@ -127,11 +147,15 @@
             
         },
         beforeMount(){
-            swal.fire({
+            console.log(screen.width)
+            if(screen.width > 380) {
+                swal.fire({
                         title: "Give it a name !",
                         text: "Please enter a name to your creation",
                         type: "warning",
                     })
+            } 
+
             axios.get(`/api/products/${this.pid}`).then(response => this.product = response.data)
 
             if (localStorage.getItem('IophotoStore.jwt') != null) {
@@ -160,12 +184,27 @@
                 axios.post('api/orders/', {address, quantity, product_id})
                      .then(response => this.$router.push('/confirmation'))
             },
+            onFileChange(e) {
+                const file = e.target.files[0];
+                const fileName = file.name;
+                this.imgProduct = fileName;
+                this.url = URL.createObjectURL(file);
+            },
+            deleteFile() {
+                this.url = '';
+            }
         },
     }
     </script>
 
     <style scoped>
-    
+    .gif {
+        height:300px;
+        width:300px;
+    }
+    .v-btn {
+      margin: 0;  
+    }
     .parent {
     position: relative;
     top: 0;
@@ -175,21 +214,22 @@
     position: relative;
     top: 0;
     left: 0;
-    height:380px;
-    width:380px;
+    height:370px;
+    width:370px;
     }
     .image2 {
     position: absolute;
-    top: 150px;
-    left: 140px;
-    height:100px;
-    width:100px;
+    top: 140px;
+    left: 115px;
+    height:140px;
+    width:140px;
     }
     .paddingNav {
         padding-top:90px;
-        height:100vh;
-
-        
+          
+    }
+    .fullHeight {
+        height:100vh; 
     }
     .page {
        height:500px;

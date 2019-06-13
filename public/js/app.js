@@ -587,6 +587,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pid'],
   scrollBehavior: function scrollBehavior() {
@@ -600,11 +617,14 @@ __webpack_require__.r(__webpack_exports__);
       isLoggedIn: null,
       product: [],
       projectName: '',
+      imgProduct: '',
       defaultName: '',
       disabled: true,
       rules: [function (v) {
         return v.length <= 56 || 'Max 56 characters';
-      }]
+      }],
+      url: null,
+      askMobileModule: ''
     };
   },
   watch: {
@@ -628,11 +648,16 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this = this;
 
-    swal.fire({
-      title: "Give it a name !",
-      text: "Please enter a name to your creation",
-      type: "warning"
-    });
+    console.log(screen.width);
+
+    if (screen.width > 380) {
+      swal.fire({
+        title: "Give it a name !",
+        text: "Please enter a name to your creation",
+        type: "warning"
+      });
+    }
+
     axios.get("/api/products/".concat(this.pid)).then(function (response) {
       return _this.product = response.data;
     });
@@ -675,6 +700,15 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         return _this2.$router.push('/confirmation');
       });
+    },
+    onFileChange: function onFileChange(e) {
+      var file = e.target.files[0];
+      var fileName = file.name;
+      this.imgProduct = fileName;
+      this.url = URL.createObjectURL(file);
+    },
+    deleteFile: function deleteFile() {
+      this.url = '';
     }
   }
 });
@@ -2632,7 +2666,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.parent[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n}\n.image1[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n    height:380px;\n    width:380px;\n}\n.image2[data-v-26588a1f] {\n    position: absolute;\n    top: 150px;\n    left: 140px;\n    height:100px;\n    width:100px;\n}\n.paddingNav[data-v-26588a1f] {\n        padding-top:90px;\n        height:100vh;\n}\n.page[data-v-26588a1f] {\n       height:500px;\n}\n.small-text[data-v-26588a1f] { font-size: 18px;\n}\n.title[data-v-26588a1f] { font-size: 36px;\n}\n#overlayGallery[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayAlbum[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 950px;\n  height: 100%;\n  top: 180px;\n  left: 475px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayBlock[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 1425px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n    ", ""]);
+exports.push([module.i, "\n.gif[data-v-26588a1f] {\n        height:300px;\n        width:300px;\n}\n.v-btn[data-v-26588a1f] {\n      margin: 0;\n}\n.parent[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n}\n.image1[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n    height:370px;\n    width:370px;\n}\n.image2[data-v-26588a1f] {\n    position: absolute;\n    top: 140px;\n    left: 115px;\n    height:140px;\n    width:140px;\n}\n.paddingNav[data-v-26588a1f] {\n        padding-top:90px;\n}\n.fullHeight[data-v-26588a1f] {\n        height:100vh;\n}\n.page[data-v-26588a1f] {\n       height:500px;\n}\n.small-text[data-v-26588a1f] { font-size: 18px;\n}\n.title[data-v-26588a1f] { font-size: 36px;\n}\n#overlayGallery[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayAlbum[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 950px;\n  height: 100%;\n  top: 180px;\n  left: 475px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayBlock[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 1425px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n    ", ""]);
 
 // exports
 
@@ -18932,7 +18966,7 @@ var render = function() {
     [
       _c(
         "v-layout",
-        { staticClass: "paddingNav hidden-sm-and-down" },
+        { staticClass: "paddingNav fullHeight hidden-sm-and-down" },
         [
           _c("v-flex", {
             staticClass: "gallery ",
@@ -19052,13 +19086,12 @@ var render = function() {
                                     }
                                   }),
                                   _vm._v(" "),
-                                  _c("img", {
-                                    staticClass: "image2",
-                                    attrs: {
-                                      src: "/img/logo_dark.png",
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm.url
+                                    ? _c("img", {
+                                        staticClass: "image2",
+                                        attrs: { src: _vm.url }
+                                      })
+                                    : _vm._e()
                                 ]
                               )
                             ],
@@ -19092,13 +19125,31 @@ var render = function() {
                           type: "file",
                           id: "files",
                           multiple: ""
-                        }
+                        },
+                        on: { change: _vm.onFileChange }
                       }),
+                      _vm._v(" "),
+                      _vm.url
+                        ? _c(
+                            "v-btn",
+                            {
+                              staticClass: "red lighten-1",
+                              attrs: { raised: "", dark: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleteFile()
+                                }
+                              }
+                            },
+                            [_vm._v("X")]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "v-btn",
                         {
-                          staticClass: "teal darken-2",
+                          staticClass: "teal lighten-1",
                           attrs: {
                             raised: "",
                             dark: "",
@@ -19154,7 +19205,81 @@ var render = function() {
       _c("div", {
         staticClass: "hidden-sm-and-down",
         attrs: { id: "overlayBlock" }
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        {
+          staticClass: "paddingNav hidden-md-and-up",
+          attrs: { "flex-column": "" }
+        },
+        [
+          _c("h1", { staticClass: "pa-3 mx-auto" }, [
+            _vm._v("🚨 Informations 🚨")
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "gif mx-auto mb-3",
+            attrs: {
+              src: "https://media.giphy.com/media/fny1GW0e4GGGcgcUVU/giphy.gif",
+              alt: "gif_sorry"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-flex", { staticClass: "grey lighten-3 pa-3" }, [
+            _c("h2", [_vm._v("Malheureusment...")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subHeading" }, [
+              _vm._v(
+                "Le module de personnalisation n'est pas encore disponible sur mobile."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            { staticClass: "pa-3" },
+            [
+              _c("h2", [_vm._v("📣 On vous tiens au courant..")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Pour recevoir des informations sur la sortie du module personnalisation sur mobile, renseignez votre adresse mail ci-dessous 🔻"
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: { label: "Email" },
+                model: {
+                  value: _vm.askMobileModule,
+                  callback: function($$v) {
+                    _vm.askMobileModule = $$v
+                  },
+                  expression: "askMobileModule"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "v-layout",
+                { attrs: { "justify-end": "" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "teal darken-2",
+                      attrs: { dark: "", raised: "" }
+                    },
+                    [_vm._v("Avoir l'info")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
