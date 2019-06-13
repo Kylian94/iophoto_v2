@@ -18,16 +18,16 @@
                 </v-layout>
                 <div  class="container content" id="example-content">
                     <div class="row justify-xs-center">
-                        <v-flex v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id" xs10 sm10 md3>
+                        <v-flex v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id" xs10 sm10 md4>
                             <v-badge raised color="grey lighten-3" overlap>
                                 <template v-slot:badge>
                                     <span v-if="product.units > 0">✅</span>
                                     <span v-if="product.units <= 0">❌</span> 
                                 </template>
-                                <router-link :to="{ path: '/products/'+product.id}" >
+                                
                                     <v-card color="" class=" card_product mx-4 mb-4" hover>
                                     <v-layout>
-                                        <v-flex xs5>
+                                        <v-flex xs5 ma-auto>
                                         <v-img
                                             :src="product.image"
                                             height="125px"
@@ -38,7 +38,7 @@
                                         <v-card-title primary-title >
                                             <div>
                                             <div class="headline">{{ product.name }}</div>
-                                            <div> {{product.description}}</div>
+                                            <div class=""> {{product.description | truncate(55)}}</div>
                                             </div>
                                         </v-card-title>
                                         </v-flex>
@@ -47,18 +47,27 @@
                                     <v-card-actions class="pa-3" >
                                         <span class="subheading teal--text text--darken-2"><b>{{ product.price}} €</b> </span>
                                         <v-spacer></v-spacer>
-                                        <v-btn dark  color="teal darken-1"
-                                                v-if="product.units > 0">
-                                        <!-- @click.native="addToCart(product)" -->
-                                            Choisir
-                                        </v-btn>
-                                        <v-btn disabled dark raised color="teal darken-1"
+                                        <router-link :to="{ path: '/products/'+product.id}" >
+                                            <v-btn dark  color="teal lighten-3 mr-2"
+                                                    >
+                                            <!-- @click.native="addToCart(product)" -->
+                                                En savoir +
+                                            </v-btn>
+                                        </router-link>
+                                        <router-link :to="{ path: '/customisation?pid='+product.id}" >
+                                            <v-btn dark  color="teal darken-1"
+                                                    v-if="product.units > 0">
+                                            <!-- @click.native="addToCart(product)" -->
+                                                Choisir
+                                            </v-btn>
+                                        </router-link>
+                                        <v-btn dark raised color="teal darken-1"
                                             v-if="product.units <= 0">
-                                            Produit épuisé
+                                            Épuisé
                                         </v-btn>
                                     </v-card-actions>
                                     </v-card>
-                                </router-link>
+                                
                             </v-badge>
                         </v-flex>      
                     </div>  
@@ -116,8 +125,8 @@
   min-width:60px;
 }
 .v-card__title {
-    min-height:250px;
-    max-height:250px;
+    min-height:150px;
+    max-height:150px;
 }
 .v-card__actions {
     height:50px;
@@ -145,8 +154,7 @@ margin-right:5px; }
   z-index:1;
 }
 .product-card-description {
-    width:300px;
-}
+    }
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
   position: fixed;

@@ -16,6 +16,7 @@
     "vee-validate": "^2.2.10",
     "vue-affix": "^0.5.2",
     "vue-router": "^3.0.6",
+    "vue-truncate-filter": "^1.1.7",
     "vue2-smooth-scroll": "^1.0.5",
     "vuetify": "^1.5.14"
   },

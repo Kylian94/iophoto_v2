@@ -6,6 +6,8 @@ import Vue from 'vue'
     import Affix from 'vue-affix';
     import fr from 'vee-validate/dist/locale/fr';
     import VeeValidate , { Validator } from 'vee-validate';
+    import VueTruncate from 'vue-truncate-filter';
+
 
     
 
@@ -27,6 +29,7 @@ import Vue from 'vue'
     Vue.use(Vuetify)
     Vue.use(VueRouter)
     Vue.use(VeeValidate);
+    Vue.use(VueTruncate)
 
     Validator.localize('fr', fr);
 

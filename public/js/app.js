@@ -589,6 +589,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pid'],
+  scrollBehavior: function scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    };
+  },
   data: function data() {
     return {
       isLoggedIn: null,
@@ -1166,6 +1172,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2674,7 +2689,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-badge__badge[data-v-e1ea323e]{\r\n    padding:15px;\r\n  min-height:60px;\r\n  min-width:60px;\n}\n.v-card__title[data-v-e1ea323e] {\r\n    min-height:250px;\r\n    max-height:250px;\n}\n.v-card__actions[data-v-e1ea323e] {\r\n    height:50px;\n}\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\r\nmargin-left:5px;\r\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\r\n\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:50vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\n.product-card-description[data-v-e1ea323e] {\r\n    width:300px;\n}\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n@media only screen \r\nand (max-device-width : 375px) \r\n{\n.hero-section[data-v-e1ea323e] {\r\n    height: 600px;\r\n    background-image: url('/img/header_shop_mobile.jpg');\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.sticky + .content[data-v-e1ea323e] {\r\n    padding-top:200px;\n}\n}\n@media only screen \r\nand (min-device-width : 812px) \r\n{\n.hero-section[data-v-e1ea323e] {\r\n        height: 850px;\r\n        background-image: url('/img/header_shop.jpg');\r\n        align-items: center;\r\n        margin-top: -20px;\n}\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.v-badge__badge[data-v-e1ea323e]{\r\n    padding:15px;\r\n  min-height:60px;\r\n  min-width:60px;\n}\n.v-card__title[data-v-e1ea323e] {\r\n    min-height:150px;\r\n    max-height:150px;\n}\n.v-card__actions[data-v-e1ea323e] {\r\n    height:50px;\n}\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\r\nmargin-left:5px;\r\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\r\n\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:50vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\n.product-card-description[data-v-e1ea323e] {\n}\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n@media only screen \r\nand (max-device-width : 375px) \r\n{\n.hero-section[data-v-e1ea323e] {\r\n    height: 600px;\r\n    background-image: url('/img/header_shop_mobile.jpg');\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.sticky + .content[data-v-e1ea323e] {\r\n    padding-top:200px;\n}\n}\n@media only screen \r\nand (min-device-width : 812px) \r\n{\n.hero-section[data-v-e1ea323e] {\r\n        height: 850px;\r\n        background-image: url('/img/header_shop.jpg');\r\n        align-items: center;\r\n        margin-top: -20px;\n}\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -18917,7 +18932,7 @@ var render = function() {
     [
       _c(
         "v-layout",
-        { staticClass: "paddingNav" },
+        { staticClass: "paddingNav hidden-sm-and-down" },
         [
           _c("v-flex", {
             staticClass: "gallery ",
@@ -19066,6 +19081,7 @@ var render = function() {
                   _c(
                     "form",
                     {
+                      staticClass: "mt-3",
                       attrs: { method: "post", enctype: "multipart/form-data" }
                     },
                     [
@@ -19125,11 +19141,20 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { attrs: { id: "overlayGallery" } }),
+      _c("div", {
+        staticClass: "hidden-sm-and-down",
+        attrs: { id: "overlayGallery" }
+      }),
       _vm._v(" "),
-      _c("div", { attrs: { id: "overlayAlbum" } }),
+      _c("div", {
+        staticClass: "hidden-sm-and-down",
+        attrs: { id: "overlayAlbum" }
+      }),
       _vm._v(" "),
-      _c("div", { attrs: { id: "overlayBlock" } })
+      _c("div", {
+        staticClass: "hidden-sm-and-down",
+        attrs: { id: "overlayBlock" }
+      })
     ],
     1
   )
@@ -20398,7 +20423,7 @@ var render = function() {
                               }
                             ],
                             key: index,
-                            attrs: { xs10: "", sm10: "", md3: "" }
+                            attrs: { xs10: "", sm10: "", md4: "" }
                           },
                           [
                             _c(
@@ -20434,107 +20459,135 @@ var render = function() {
                               [
                                 _vm._v(" "),
                                 _c(
-                                  "router-link",
+                                  "v-card",
                                   {
-                                    attrs: {
-                                      to: { path: "/products/" + product.id }
-                                    }
+                                    staticClass: " card_product mx-4 mb-4",
+                                    attrs: { color: "", hover: "" }
                                   },
                                   [
                                     _c(
-                                      "v-card",
-                                      {
-                                        staticClass: " card_product mx-4 mb-4",
-                                        attrs: { color: "", hover: "" }
-                                      },
+                                      "v-layout",
                                       [
                                         _c(
-                                          "v-layout",
+                                          "v-flex",
+                                          { attrs: { xs5: "", "ma-auto": "" } },
+                                          [
+                                            _c("v-img", {
+                                              attrs: {
+                                                src: product.image,
+                                                height: "125px",
+                                                contain: ""
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-flex",
+                                          { attrs: { xs7: "" } },
                                           [
                                             _c(
-                                              "v-flex",
-                                              { attrs: { xs5: "" } },
+                                              "v-card-title",
+                                              {
+                                                attrs: { "primary-title": "" }
+                                              },
                                               [
-                                                _c("v-img", {
-                                                  attrs: {
-                                                    src: product.image,
-                                                    height: "125px",
-                                                    contain: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              { attrs: { xs7: "" } },
-                                              [
-                                                _c(
-                                                  "v-card-title",
-                                                  {
-                                                    attrs: {
-                                                      "primary-title": ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("div", [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "headline"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(product.name)
+                                                _c("div", [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "headline" },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(product.name)
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("div", {}, [
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(
+                                                          _vm._f("truncate")(
+                                                            product.description,
+                                                            55
                                                           )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c("div", [
-                                                        _vm._v(
-                                                          " " +
-                                                            _vm._s(
-                                                              product.description
-                                                            )
                                                         )
-                                                      ])
-                                                    ])
-                                                  ]
+                                                    )
+                                                  ])
+                                                ])
+                                              ]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("v-divider", { attrs: { light: "" } }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card-actions",
+                                      { staticClass: "pa-3" },
+                                      [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "subheading teal--text text--darken-2"
+                                          },
+                                          [
+                                            _c("b", [
+                                              _vm._v(
+                                                _vm._s(product.price) + " €"
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-spacer"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: {
+                                                path: "/products/" + product.id
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  dark: "",
+                                                  color: "teal lighten-3 mr-2"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                            En savoir +\n                                        "
                                                 )
-                                              ],
-                                              1
+                                              ]
                                             )
                                           ],
                                           1
                                         ),
                                         _vm._v(" "),
-                                        _c("v-divider", {
-                                          attrs: { light: "" }
-                                        }),
-                                        _vm._v(" "),
                                         _c(
-                                          "v-card-actions",
-                                          { staticClass: "pa-3" },
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: {
+                                                path:
+                                                  "/customisation?pid=" +
+                                                  product.id
+                                              }
+                                            }
+                                          },
                                           [
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "subheading teal--text text--darken-2"
-                                              },
-                                              [
-                                                _c("b", [
-                                                  _vm._v(
-                                                    _vm._s(product.price) + " €"
-                                                  )
-                                                ])
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("v-spacer"),
-                                            _vm._v(" "),
                                             product.units > 0
                                               ? _c(
                                                   "v-btn",
@@ -20546,33 +20599,32 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                                        Choisir\n                                    "
-                                                    )
-                                                  ]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            product.units <= 0
-                                              ? _c(
-                                                  "v-btn",
-                                                  {
-                                                    attrs: {
-                                                      disabled: "",
-                                                      dark: "",
-                                                      raised: "",
-                                                      color: "teal darken-1"
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                        Produit épuisé\n                                    "
+                                                      "\n                                            Choisir\n                                        "
                                                     )
                                                   ]
                                                 )
                                               : _vm._e()
                                           ],
                                           1
-                                        )
+                                        ),
+                                        _vm._v(" "),
+                                        product.units <= 0
+                                          ? _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  dark: "",
+                                                  raised: "",
+                                                  color: "teal darken-1"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                        Épuisé\n                                    "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
                                       ],
                                       1
                                     )
@@ -24731,6 +24783,57 @@ if (inBrowser && window.Vue) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (VueRouter);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-truncate-filter/vue-truncate.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/vue-truncate-filter/vue-truncate.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+;(function () {
+
+  var vueTruncate = {};
+
+  vueTruncate.install = function (Vue) {
+    
+    /**
+     * 
+     * @param {String} text
+     * @param {Number} length
+     * @param {String} clamp
+     * 
+     */
+
+    Vue.filter('truncate', function (text, length, clamp) {
+      clamp = clamp || '...';
+      length = length || 30;
+      
+      if (text.length <= length) return text;
+
+      var tcText = text.slice(0, length - clamp.length);
+      var last = tcText.length - 1;
+      
+
+      while (last > 0 && tcText[last] !== ' ' && tcText[last] !== clamp[0]) last -= 1;
+
+      // Fix for case when text dont have any `space`
+      last = last || length - clamp.length;
+
+      tcText =  tcText.slice(0, last);
+
+      return tcText + clamp;
+    });
+  }
+
+  if (true) {
+    module.exports = vueTruncate;
+  } else {}
+
+})()
 
 
 /***/ }),
@@ -62742,17 +62845,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vee_validate_dist_locale_fr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate/dist/locale/fr */ "./node_modules/vee-validate/dist/locale/fr.js");
 /* harmony import */ var vee_validate_dist_locale_fr__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vee_validate_dist_locale_fr__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
-/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
-/* harmony import */ var _components_Shop_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Shop.vue */ "./resources/js/components/Shop.vue");
-/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
-/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
-/* harmony import */ var _components_Customisation_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Customisation.vue */ "./resources/js/components/Customisation.vue");
-/* harmony import */ var _components_SingleProduct_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/SingleProduct.vue */ "./resources/js/components/SingleProduct.vue");
-/* harmony import */ var _components_Checkout_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Checkout.vue */ "./resources/js/components/Checkout.vue");
-/* harmony import */ var _components_Confirmation_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Confirmation.vue */ "./resources/js/components/Confirmation.vue");
-/* harmony import */ var _components_UserBoard_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/UserBoard.vue */ "./resources/js/components/UserBoard.vue");
-/* harmony import */ var _components_Admin_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Admin.vue */ "./resources/js/components/Admin.vue");
+/* harmony import */ var vue_truncate_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-truncate-filter */ "./node_modules/vue-truncate-filter/vue-truncate.js");
+/* harmony import */ var vue_truncate_filter__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_truncate_filter__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
+/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_Shop_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Shop.vue */ "./resources/js/components/Shop.vue");
+/* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
+/* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
+/* harmony import */ var _components_Customisation_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Customisation.vue */ "./resources/js/components/Customisation.vue");
+/* harmony import */ var _components_SingleProduct_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SingleProduct.vue */ "./resources/js/components/SingleProduct.vue");
+/* harmony import */ var _components_Checkout_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Checkout.vue */ "./resources/js/components/Checkout.vue");
+/* harmony import */ var _components_Confirmation_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Confirmation.vue */ "./resources/js/components/Confirmation.vue");
+/* harmony import */ var _components_UserBoard_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/UserBoard.vue */ "./resources/js/components/UserBoard.vue");
+/* harmony import */ var _components_Admin_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Admin.vue */ "./resources/js/components/Admin.vue");
+
 
 
 
@@ -62776,6 +62882,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_smooth_scroll__WEBPACK_IMPOR
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_2___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vee_validate__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_truncate_filter__WEBPACK_IMPORTED_MODULE_7___default.a);
 vee_validate__WEBPACK_IMPORTED_MODULE_6__["Validator"].localize('fr', vee_validate_dist_locale_fr__WEBPACK_IMPORTED_MODULE_5___default.a);
 
 
@@ -62793,31 +62900,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '/',
     name: 'home',
-    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: '/shop',
     name: 'shop',
-    component: _components_Shop_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_Shop_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: '/login',
     name: 'login',
-    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: '/register',
     name: 'register',
-    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: '/products/:id',
     name: 'single-products',
-    component: _components_SingleProduct_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _components_SingleProduct_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: '/confirmation',
     name: 'confirmation',
-    component: _components_Confirmation_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_Confirmation_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
   }, {
     path: '/customisation',
     name: 'customisation',
-    component: _components_Customisation_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _components_Customisation_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
     props: function props(route) {
       return {
         pid: route.query.pid
@@ -62826,7 +62933,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/checkout',
     name: 'checkout',
-    component: _components_Checkout_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+    component: _components_Checkout_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
     props: function props(route) {
       return {
         pid: route.query.pid
@@ -62835,7 +62942,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/dashboard',
     name: 'userboard',
-    component: _components_UserBoard_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
+    component: _components_UserBoard_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
     meta: {
       requiresAuth: true,
       is_user: true
@@ -62843,7 +62950,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/admin/:page',
     name: 'admin-pages',
-    component: _components_Admin_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+    component: _components_Admin_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
     meta: {
       requiresAuth: true,
       is_admin: true
@@ -62851,7 +62958,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/admin',
     name: 'admin',
-    component: _components_Admin_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+    component: _components_Admin_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
     meta: {
       requiresAuth: true,
       is_admin: true
@@ -62903,7 +63010,7 @@ router.beforeEach(function (to, from, next) {
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
-    App: _components_App_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    App: _components_App_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   router: router
 });

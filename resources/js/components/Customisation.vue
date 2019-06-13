@@ -26,7 +26,7 @@
                 </div>
             </div> -->
             
-                <v-layout class="paddingNav" >
+                <v-layout class="paddingNav hidden-sm-and-down" >
                     <v-flex md3 class="gallery " v-bind:class="{ bgDisabled : disabled }">
                         
                     </v-flex>
@@ -62,7 +62,7 @@
                             </v-flex>
                         </v-layout>
                         <v-layout justify-space-between>
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="post" class="mt-3" enctype="multipart/form-data">
                                 <input :disabled="projectName == defaultName" type="file" id="files" ref="files" multiple="" />
                                 <v-btn raised dark type="submit" class="teal darken-2" @click.prevent="uploadFiles()" :disabled="projectName == defaultName">Valider</v-btn>
                             </form>
@@ -72,13 +72,13 @@
                     </v-flex>
                 </v-layout>
 
-                <div id="overlayGallery" >
+                <div id="overlayGallery" class="hidden-sm-and-down" >
                     
                 </div>
-                <div id="overlayAlbum" >
+                <div id="overlayAlbum" class="hidden-sm-and-down">
                     
                 </div>
-                <div id="overlayBlock" >
+                <div id="overlayBlock" class="hidden-sm-and-down">
                     
                 </div>
 
@@ -88,6 +88,9 @@
     <script>
     export default {
         props : ['pid'],
+        scrollBehavior() {
+            return { x: 0, y: 0 };
+        },
         data(){
             
             return {
