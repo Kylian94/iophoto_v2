@@ -8,7 +8,7 @@ One back office to manage Products / Categories / Users / Orders - create/edit/u
 
 E-commerce SPA - VueRouter, Webpack, & Vuetify
 
-<!-- ![Laravel + Vue.js](https://laraveldaily.com/wp-content/uploads/2018/11/laravel-vue.png) -->
+ ![Laravel + Vue.js SPA](http://kp-folio.fr/images/iophoto_bo.PNG) 
 
 ---
 
