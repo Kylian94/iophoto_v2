@@ -8,8 +8,8 @@
         {
             $this->call([
               UsersTableSeeder::class,
-              ProductsTableSeeder::class,
-              CategoryTableSeeder::class,
+              //ProductsTableSeeder::class,
+              //CategoryTableSeeder::class,
             ]);
         }
     }
