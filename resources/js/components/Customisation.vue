@@ -52,9 +52,9 @@
                             
                             <v-flex md12 text-md-center class="page elevation-4 nb1" >
                                 <v-layout  align-center justify-center column fill-height>
-                                    <v-container align-center justify-center flex-column fill-height>
-                                        <v-flex md12 class="parent">
-                                            <img :src="product.image" :alt="product.name" class="image1">
+                                    <v-container align-center justify-center flex-column fill-height >
+                                        <v-flex md12 class="parent" ref="printMe">
+                                            <img :src="product.image" :alt="product.name" class="image1" >
                                             <img v-if="url" :src="url" class="image2">
                                         </v-flex>
                                     </v-container>
@@ -65,10 +65,12 @@
                             <form method="post" class="mt-3" enctype="multipart/form-data">
                                 <input :disabled="projectName == defaultName" type="file" id="files" @change="onFileChange" ref="files" multiple="" />
                                 <v-btn raised dark class="red lighten-1" @click.prevent="deleteFile()" v-if="url">X</v-btn>
-                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="uploadFiles()" :disabled="projectName == defaultName">Valider</v-btn>
+                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Valider</v-btn>
                             </form>
-                            <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName">Save</v-btn>
+                            <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Save</v-btn>
                         </v-layout>
+                        <!-- OUTPUT -->
+                        <img :src="output" alt="" srcset="">
                         
                     </v-flex>
                 </v-layout>
@@ -120,6 +122,12 @@
                 rules: [v => v.length <= 56 || 'Max 56 characters'],
                 url: null,
                 askMobileModule: '',
+                output: null,
+                image: '',
+                order: [],
+                adress: '',
+                quantity : 1,
+                addingOrder: null,
             }
         },
         watch : {
@@ -145,6 +153,7 @@
         mounted() {
             this.isLoggedIn = localStorage.getItem('IophotoStore.jwt') != null
             
+            
         },
         beforeMount(){
             console.log(screen.width)
@@ -162,26 +171,24 @@
                 this.user = JSON.parse(localStorage.getItem('IophotoStore.user'))
                 axios.defaults.headers.common['Content-Type'] = 'application/json'
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('IophotoStore.jwt')
-            }     
+            }  
         },
         methods: {
-            addToCart() {
-
-            },
+            
             login() {
                 this.$router.push({name: 'login', params: {nextUrl: this.$route.fullPath}})
             },
             register() {
                 this.$router.push({name: 'register', params: {nextUrl: this.$route.fullPath}})
             },
-            placeOrder(e) {
-                e.preventDefault()
-
+            placeOrder() {
+                console.log(this.image)
                 let address = this.address
                 let product_id = this.product.id
                 let quantity = this.quantity
+                let image = this.image
 
-                axios.post('api/orders/', {address, quantity, product_id})
+                axios.post('api/orders/', {image, product_id, quantity, address})
                      .then(response => this.$router.push('/confirmation'))
             },
             onFileChange(e) {
@@ -192,7 +199,31 @@
             },
             deleteFile() {
                 this.url = '';
-            }
+            },
+            async screenShot() {
+
+                 const el = this.$refs.printMe
+                 const options = {
+                     type: 'dataURL'
+                 }
+                 this.output = await this.$html2canvas(el, options)
+                
+
+                 this.uploadFile()
+                 
+            },
+            uploadFile(event) {
+                var that = this;
+                if (this.output != null) {
+
+                    var formData = new FormData();
+                    formData.append("image", this.output)
+                    let headers = {'Content-Type': 'multipart/form-data'}
+                    axios.post("/api/upload-file-order", formData, {headers}).then(response => {
+                        that.image = response.data
+                    })
+                } 
+            },
         },
     }
     </script>
@@ -220,9 +251,9 @@
     .image2 {
     position: absolute;
     top: 140px;
-    left: 115px;
-    height:140px;
-    width:140px;
+    left: 120px;
+    height:125px;
+    width:125px;
     }
     .paddingNav {
         padding-top:90px;

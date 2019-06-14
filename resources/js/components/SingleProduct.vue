@@ -2,7 +2,7 @@
         <div class="container marginNav">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <img :src="product.image" :alt="product.name">
+                    <img class="img_page" :src="product.image" :alt="product.name">
                     <h3 class="title" v-html="product.name"></h3>
                     <p class="text-muted">{{product.description}}</p>
                     <h4>
@@ -33,5 +33,9 @@
 
     <style scoped>
     .small-text { font-size: 18px; }
+    .img_page {
+        height:250px;
+        width:250px;
+    }
     .title { font-size: 36px; }
     </style>

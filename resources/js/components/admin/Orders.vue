@@ -5,6 +5,7 @@
                     <thead>
                         <tr>
                             <td></td>
+                            <td>Image</td>
                             <td>Product</td>
                             <td>Quantity</td>
                             <td>Cost</td>
@@ -16,6 +17,7 @@
                     <tbody>
                         <tr v-for="(order,index) in orders" @key="index">
                             <td>{{index+1}}</td>
+                            <td><img class="img_list" :src="order.image" alt="" srcset=""></td>
                             <td v-html="order.product.name"></td>
                             <td>{{order.quantity}}</td>
                             <td>{{order.quantity * order.product.price}}</td>
@@ -50,3 +52,10 @@
         }
     }
     </script>
+    <style scoped>
+     .img_list {
+         height:100px;
+         width:100px;
+     }
+    </style>
+    

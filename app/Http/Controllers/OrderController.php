@@ -5,6 +5,8 @@
     use App\Order;
     use Auth;
     use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
     class OrderController extends Controller
     {
@@ -28,10 +30,11 @@
         public function store(Request $request)
         {
             $order = Order::create([
+                'image' => $request->image,
                 'product_id' => $request->product_id,
                 'user_id' => Auth::id(),
                 'quantity' => $request->quantity,
-                'address' => $request->address
+                'address' => $request->address,
             ]);
 
             return response()->json([
@@ -56,6 +59,22 @@
                 'status' => $status,
                 'message' => $status ? 'Order Updated!' : 'Error Updating Order'
             ]);
+        }
+
+        public function uploadFile(Request $request)
+        {
+            
+            if(!$request->input('image')){
+                return response()->json('image error', 401);
+            }
+            
+            $image = $request->input('image');
+            $image= str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).'.'.'png';
+            \File::put(public_path(). '/images/' . $imageName, base64_decode($image));
+
+            return response()->json(asset("images/".$imageName),201);
         }
 
         public function destroy(Order $order)

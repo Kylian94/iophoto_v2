@@ -10,6 +10,7 @@
         {
             Schema::create('orders', function (Blueprint $table) {
                 $table->increments('id');
+                $table->string('image');
                 $table->unsignedInteger('product_id');
                 $table->unsignedInteger('user_id');
                 $table->unsignedInteger('quantity')->default(1);

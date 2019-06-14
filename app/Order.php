@@ -9,7 +9,7 @@
         use SoftDeletes;
 
         protected $fillable = [
-            'product_id', 'user_id', 'quantity', 'address' 
+            'product_id', 'user_id', 'quantity', 'address' , 'image',
         ];
 
         public function user()

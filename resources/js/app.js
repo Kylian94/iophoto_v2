@@ -7,6 +7,10 @@ import Vue from 'vue'
     import fr from 'vee-validate/dist/locale/fr';
     import VeeValidate , { Validator } from 'vee-validate';
     import VueTruncate from 'vue-truncate-filter';
+    import VueHtml2Canvas from 'vue-html2canvas';
+ 
+
+    
 
 
     
@@ -30,6 +34,9 @@ import Vue from 'vue'
     Vue.use(VueRouter)
     Vue.use(VeeValidate);
     Vue.use(VueTruncate)
+    Vue.use(VueHtml2Canvas);
+    
+   
 
     Validator.localize('fr', fr);
 

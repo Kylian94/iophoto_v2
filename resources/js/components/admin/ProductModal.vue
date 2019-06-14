@@ -178,6 +178,7 @@ select:focus {
             },
             uploadFile(event) {
                 if (this.attachment != null) {
+                    // console.log(this.attachment)
                     var formData = new FormData();
                     formData.append("image", this.attachment)
                     let headers = {'Content-Type': 'multipart/form-data'}

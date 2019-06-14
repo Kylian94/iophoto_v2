@@ -4,12 +4,10 @@
                 <h2 class="title">All your orders</h2>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <br>
-                        <div class="row">
-                            <div class="col-md-2 product-box" v-for="(order,index) in orders" v-bind:key="index">
-                                <v-img :src="order.product.image" height="300px" :alt="order.product.name"></v-img>
+                
+                        <v-layout>
+                            <v-card class="mr-3 product-box" v-for="(order,index) in orders" v-bind:key="index">
+                                <v-img :src="order.image" height="300px" :alt="order.product.name"></v-img>
                                 <h5><span v-html="order.product.name"></span><br>
                                     <span class="small-text text-muted">$ {{order.product.price}}</span>
                                 </h5>
@@ -19,17 +17,15 @@
                                 </span>
                                 <br><br>
                                 <p><strong>Delivery address:</strong> <br>{{order.address}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </v-card>
+                        </v-layout>
             </div>
         </div>
     </template>
 
     <style scoped>
     .small-text { font-size: 14px; }
-    .product-box { border: 1px solid #cccccc; padding: 10px 15px; }
+    .product-box { border: 1px solid #cccccc; padding: 10px 15px; width:300px;}
     .hero-section { background: #ababab; height: 20vh; align-items: center; margin-bottom: 20px; margin-top: -20px; }
     .title { font-size: 60px; color: #ffffff; }
     </style>

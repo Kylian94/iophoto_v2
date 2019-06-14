@@ -8,6 +8,7 @@
     Route::get('/categories', 'CategoryController@index');
     Route::get('/categories/{category}','CategoryController@show');
     Route::post('/upload-file', 'ProductController@uploadFile');
+    Route::post('/upload-file-order', 'OrderController@uploadFile');
     Route::get('/products/{product}', 'ProductController@show');
 
     Route::group(['middleware' => 'auth:api'], function(){
