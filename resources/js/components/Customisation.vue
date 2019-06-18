@@ -65,12 +65,17 @@
                             <form method="post" class="mt-3" enctype="multipart/form-data">
                                 <input :disabled="projectName == defaultName" type="file" id="files" @change="onFileChange" ref="files" multiple="" />
                                 <v-btn raised dark class="red lighten-1" @click.prevent="deleteFile()" v-if="url">X</v-btn>
-                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Valider</v-btn>
+                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Valider l'image</v-btn>
                             </form>
-                            <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Save</v-btn>
+                            
+                                <div class="float-right">
+                                    <v-btn raised hover dark color="teal lighten-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="addCart()">Continuer</v-btn>
+                                    <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Acheter</v-btn>
+                                </div>
+                            
                         </v-layout>
                         <!-- OUTPUT -->
-                        <img :src="output" alt="" srcset="">
+                        <img :src="output" alt="" srcset="" hidden>
                         
                     </v-flex>
                 </v-layout>
@@ -128,6 +133,15 @@
                 adress: '',
                 quantity : 1,
                 addingOrder: null,
+                carts: [],
+                cartadd: {
+                    id: '',
+                    name: '',
+                    price : '',
+                    quantity: '',
+                    image: '',
+                },
+                
             }
         },
         watch : {
@@ -173,6 +187,9 @@
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('IophotoStore.jwt')
             }  
         },
+        created() {
+            this.viewCart();
+        },
         methods: {
             
             login() {
@@ -181,8 +198,36 @@
             register() {
                 this.$router.push({name: 'register', params: {nextUrl: this.$route.fullPath}})
             },
+            viewCart() {
+                if(localStorage.getItem('IophotoStore.carts')) {
+                    this.carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
+                    //this.badges = this.carts.length;  
+                }
+            },
+            addCart() {
+                //console.log(this.product.id)
+                this.cartadd.id = this.product.id
+                this.cartadd.name = this.product.name
+                this.cartadd.price = this.product.price
+                this.cartadd.quantity = this.quantity
+                this.cartadd.image = this.image
+                this.carts.push(this.cartadd);
+                //localStorage.setItem('IophotoStore.carts', JSON.stringify(this.carts))
+                this.cartadd = {}
+                this.storeCart()
+            },
+            removeCart(product) {
+                this.carts.splice(product, 1)
+                this.storeCart()
+            },
+             storeCart(){
+                 let parsed = JSON.stringify(this.carts);
+                 localStorage.setItem('IophotoStore.carts', parsed);
+                 this.viewCart()
+                 //this.$router.push("/shop")
+             },
             placeOrder() {
-                console.log(this.image)
+                //console.log(this.image)
                 let address = this.address
                 let product_id = this.product.id
                 let quantity = this.quantity

@@ -135,7 +135,9 @@
                 let c_password = this.password_confirmation
                 axios.post('api/register', {name, email, password, c_password}).then(response => {
                     let data = response.data
+                    let carts = []
                     localStorage.setItem('IophotoStore.user', JSON.stringify(data.user))
+                    localStorage.setItem('IophotoStore.carts', carts)
                     localStorage.setItem('IophotoStore.jwt', data.token)
                     if (localStorage.getItem('IophotoStore.jwt') != null) {
                         this.$emit('loggedIn')

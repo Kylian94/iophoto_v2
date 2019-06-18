@@ -1,19 +1,21 @@
 <template>
         <div class="container marginNav">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <img class="img_page" :src="product.image" :alt="product.name">
+            <v-layout justify-center wrap>
+                <v-flex md4 xs12 sm12>
+                    <v-img :src="product.image" :alt="product.name + ' image'" :aspect-ratio="1"></v-img>
+                </v-flex>
+                <v-flex md4 xs12 sm12 column pa-4>
                     <h3 class="title" v-html="product.name"></h3>
-                    <p class="text-muted">{{product.description}}</p>
-                    <h4>
-                        <span class="small-text text-muted float-left">$ {{product.price}}</span>
-                        <span class="small-text float-right">Available Quantity: {{product.units}}</span>
-                    </h4>
-                    <br>
-                    <hr>
-                    <router-link :to="{ path: '/customisation?pid='+product.id }" class="col-md-4 btn btn-sm btn-primary float-right">Custom your own</router-link>
-                </div>
-            </div>
+                    <v-flex md7>
+                        <p class="texte-muted">{{product.description}}</p>
+                    </v-flex>
+                    <p class="small-text text-muted">{{product.price}} €</p>
+                    <router-link :to="{ path: '/customisation?pid='+product.id }" class="m-0">
+                        <v-btn class="teal darken-2 white--text ma-0" raised hover>Custom your own</v-btn>
+                    </router-link>
+                    
+                </v-flex>
+            </v-layout>
         </div>
     </template>
 

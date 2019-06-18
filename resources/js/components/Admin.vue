@@ -12,7 +12,7 @@
                         <v-flex>
                             <v-toolbar flat class="teal lighten-3">
                             <v-list>
-                                <v-list-tile @click="setComponent('main')">
+                                <v-list-tile @click.prevent="setComponent('main')">
                                     
                                             <v-list-tile-title class="title">
                                                 Dashboard
@@ -27,7 +27,7 @@
 
                     
                     <v-list dense class="pt-0">
-                    <v-list-tile  @click="setComponent('products')">
+                    <v-list-tile  @click.prevent="setComponent('products')">
                         <v-list-tile-action>
                         📦
                         </v-list-tile-action>

@@ -18,7 +18,7 @@
                 </v-layout>
                 <div  class="container content" id="example-content">
                     <div class="row justify-xs-center">
-                        <v-flex v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id" xs10 sm10 md4>
+                        <v-flex v-for="(product, index) in products" v-bind:key="index" v-show="product.category_id == category.id" xs12 sm12 md4>
                             <v-badge raised color="grey lighten-3" overlap>
                                 <template v-slot:badge>
                                     <span v-if="product.units > 0">✅</span>
