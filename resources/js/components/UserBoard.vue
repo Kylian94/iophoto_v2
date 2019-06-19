@@ -4,22 +4,6 @@
                 <h2 class="title text--white text-md-center text-xs-center">Your account</h2>
             </div>
             <div class="container">
-                        <!-- <h1 dark class="title">Orders</h1>
-                        <hr>
-                        <v-layout>
-                            <v-card class="mr-3 product-box" v-for="(order,index) in orders" v-bind:key="index">
-                                <v-img :src="order.image" height="300px" :alt="order.product.name"></v-img>
-                                <h5><span v-html="order.product.name"></span><br>
-                                    <span class="small-text text-muted">$ {{order.product.price}}</span>
-                                </h5>
-                                <hr>
-                                <span class="small-text text-muted">Quantity: {{order.quantity}}
-                                    <span class="float-right">{{order.is_delivered == 1? "shipped!" : "not shipped"}}</span>
-                                </span>
-                                <br><br>
-                                <p><strong>Delivery address:</strong> <br>{{order.address}}</p>
-                            </v-card>
-                        </v-layout> -->
                 <v-expansion-panel>
                     <v-expansion-panel-content>
                     <template v-slot:header>
