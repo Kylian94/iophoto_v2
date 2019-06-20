@@ -38,6 +38,7 @@
                             <table class="table table-striped text-left">
                                 <tbody>
                                     <tr v-for="(cart, n) in carts" v-bind:key="cart.id" :index="n">
+                                        <td><img class="img_cart" :src="cart.image" alt="image_product"></td>
                                         <td>{{cart.name}}</td>
                                         <td>{{cart.price}} €</td>
                                         <td><input type="text" readonly class="form-control" v-model="cart.quantity"></td>
@@ -65,12 +66,22 @@
                 user_type: 0,
                 isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null,
                 carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
-                badges : JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+                badges : JSON.parse(localStorage.getItem('IophotoStore.carts')).length,
                 
             }
         },
         mounted() {
             this.setDefaults()
+            
+            const carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
+            if (carts) {
+                this.carts = carts
+            }
+            const badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+            if (badges) {
+                this.badges = badges
+            }
+
             
         },
         computed: {
@@ -120,6 +131,7 @@
                 let parsed = JSON.stringify(this.carts);
                 localStorage.setItem('IophotoStore.carts', parsed);
                 this.viewCart();
+                
             },
             change() {
                 this.isLoggedIn = localStorage.getItem('IophotoStore.jwt') != null
@@ -143,5 +155,9 @@
 }
 .nav-link {
     cursor:pointer;
+}
+.img_cart {
+    width:100px;
+    height:100px;
 }
 </style>

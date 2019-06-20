@@ -76,7 +76,7 @@
                             let carts = []
 
                             localStorage.setItem('IophotoStore.user', JSON.stringify(user))
-                            localStorage.setItem('IophotoStore.carts', carts)
+                            localStorage.setItem('IophotoStore.carts', JSON.stringify(carts))
                             localStorage.setItem('IophotoStore.jwt', response.data.token)
 
                             if (localStorage.getItem('IophotoStore.jwt') != null) {

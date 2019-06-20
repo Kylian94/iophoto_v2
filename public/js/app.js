@@ -350,6 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -362,6 +363,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.setDefaults();
+    var carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
+
+    if (carts) {
+      this.carts = carts;
+    }
+
+    var badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length;
+
+    if (badges) {
+      this.badges = badges;
+    }
   },
   computed: {
     totalprice: function totalprice() {
@@ -821,7 +833,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     storeCart: function storeCart() {
       var parsed = JSON.stringify(this.carts);
       localStorage.setItem('IophotoStore.carts', parsed);
-      this.viewCart(); //this.$router.push("/shop")
+      this.viewCart();
+      window.location.assign("/shop"); //this.$router.push("/shop")
     },
     placeOrder: function placeOrder() {
       var _this2 = this;
@@ -867,7 +880,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 this.output = _context.sent;
-                this.uploadFile();
+
+                if (this.url == null) {
+                  swal.fire({
+                    title: "Image required",
+                    text: "You may forget an image..",
+                    type: "warning"
+                  }).then(function () {}.bind(this))["catch"](function (errors) {});
+                } else {
+                  swal.fire({
+                    title: "Image upload",
+                    text: "Your image uploaded succefully",
+                    type: "success"
+                  }).then(function () {
+                    this.uploadFile();
+                  }.bind(this))["catch"](function (errors) {});
+                }
 
               case 6:
               case "end":
@@ -884,6 +912,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return screenShot;
     }(),
     uploadFile: function uploadFile(event) {
+      var _this3 = this;
+
       var that = this;
 
       if (this.output != null) {
@@ -896,6 +926,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           headers: headers
         }).then(function (response) {
           that.image = response.data;
+          that.image = _this3.image;
         });
       }
     }
@@ -1145,7 +1176,7 @@ __webpack_require__.r(__webpack_exports__);
           var is_admin = user.is_admin;
           var carts = [];
           localStorage.setItem('IophotoStore.user', JSON.stringify(user));
-          localStorage.setItem('IophotoStore.carts', carts);
+          localStorage.setItem('IophotoStore.carts', JSON.stringify(carts));
           localStorage.setItem('IophotoStore.jwt', response.data.token);
 
           if (localStorage.getItem('IophotoStore.jwt') != null) {
@@ -1544,22 +1575,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2834,7 +2849,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.homeNav {\r\n    min-height:110px;\r\n    max-height:110px;\n}\n.nav-link {\r\n    cursor:pointer;\n}\r\n", ""]);
+exports.push([module.i, "\n.homeNav {\r\n    min-height:110px;\r\n    max-height:110px;\n}\n.nav-link {\r\n    cursor:pointer;\n}\n.img_cart {\r\n    width:100px;\r\n    height:100px;\n}\r\n", ""]);
 
 // exports
 
@@ -19748,6 +19763,16 @@ var render = function() {
                             "tr",
                             { key: cart.id, attrs: { index: n } },
                             [
+                              _c("td", [
+                                _c("img", {
+                                  staticClass: "img_cart",
+                                  attrs: {
+                                    src: cart.image,
+                                    alt: "image_product"
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(cart.name))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(cart.price) + " €")]),
@@ -20318,7 +20343,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Valider l'image")]
+                      [_vm._v("Upload Image")]
                     )
                   ],
                   1
@@ -20326,7 +20351,17 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "float-right" },
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.url,
+                        expression: "url"
+                      }
+                    ],
+                    staticClass: "float-right"
+                  },
                   [
                     _c(
                       "v-btn",

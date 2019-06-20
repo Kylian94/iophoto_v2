@@ -65,10 +65,10 @@
                             <form method="post" class="mt-3" enctype="multipart/form-data">
                                 <input :disabled="projectName == defaultName" type="file" id="files" @change="onFileChange" ref="files" multiple="" />
                                 <v-btn raised dark class="red lighten-1" @click.prevent="deleteFile()" v-if="url">X</v-btn>
-                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Valider l'image</v-btn>
+                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Upload Image</v-btn>
                             </form>
                             
-                                <div class="float-right">
+                                <div class="float-right" v-show="url">
                                     <v-btn raised hover dark color="teal lighten-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="addCart()">Continuer</v-btn>
                                     <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Acheter</v-btn>
                                 </div>
@@ -224,6 +224,8 @@
                  let parsed = JSON.stringify(this.carts);
                  localStorage.setItem('IophotoStore.carts', parsed);
                  this.viewCart()
+                 
+                 window.location.assign("/shop")
                  //this.$router.push("/shop")
              },
             placeOrder() {
@@ -247,14 +249,35 @@
             },
             async screenShot() {
 
-                 const el = this.$refs.printMe
-                 const options = {
-                     type: 'dataURL'
-                 }
-                 this.output = await this.$html2canvas(el, options)
+                const el = this.$refs.printMe
+                const options = {
+                    type: 'dataURL'
+                }
+                this.output = await this.$html2canvas(el, options)
+            
+                if(this.url == null) {
+                    swal.fire({
+                    title: "Image required",
+                    text: "You may forget an image..",
+                    type: "warning",
+                }).then(function () {
+
+                }.bind(this)).catch(errors => {});
+                } else {
+                 
+                    swal.fire({
+                        title: "Image upload",
+                        text: "Your image uploaded succefully",
+                        type: "success",
+                    }).then(function () {
+                        this.uploadFile()
+                    }.bind(this)).catch(errors => {});
+                }
+
                 
 
-                 this.uploadFile()
+                
+                 
                  
             },
             uploadFile(event) {
@@ -266,6 +289,7 @@
                     let headers = {'Content-Type': 'multipart/form-data'}
                     axios.post("/api/upload-file-order", formData, {headers}).then(response => {
                         that.image = response.data
+                        that.image = this.image
                     })
                 } 
             },
