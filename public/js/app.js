@@ -912,8 +912,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return screenShot;
     }(),
     uploadFile: function uploadFile(event) {
-      var _this3 = this;
-
       var that = this;
 
       if (this.output != null) {
@@ -926,7 +924,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           headers: headers
         }).then(function (response) {
           that.image = response.data;
-          that.image = _this3.image;
         });
       }
     }
@@ -20356,8 +20353,8 @@ var render = function() {
                       {
                         name: "show",
                         rawName: "v-show",
-                        value: _vm.url,
-                        expression: "url"
+                        value: _vm.output,
+                        expression: "output"
                       }
                     ],
                     staticClass: "float-right"

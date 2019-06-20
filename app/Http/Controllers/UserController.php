@@ -62,7 +62,7 @@
 
         public function showOrders(User $user)
         {
-            return response()->json($user->orders()->with(['product'])->get());
+            return response()->json($user->carts()->with(['order'])->get());
         }
 
         public function store(Request $request)

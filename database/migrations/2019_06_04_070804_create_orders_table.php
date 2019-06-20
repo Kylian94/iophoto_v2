@@ -11,13 +11,12 @@
             Schema::create('orders', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('image');
-                $table->unsignedInteger('product_id');
-                $table->unsignedInteger('user_id');
-                $table->unsignedInteger('quantity')->default(1);
-                $table->string('address')->nullable();
-                $table->boolean('is_delivered')->default(false);
+                $table->integer('product_id');
+                $table->integer('user_id');
+                $table->integer('cart_id');
+                $table->integer('quantity')->default(1);
+                $table->float('amount');
                 $table->timestamps();
-                $table->softDeletes();
             });
         }
 

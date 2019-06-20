@@ -68,7 +68,7 @@
                                 <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Upload Image</v-btn>
                             </form>
                             
-                                <div class="float-right" v-show="url">
+                                <div class="float-right" v-show="output">
                                     <v-btn raised hover dark color="teal lighten-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="addCart()">Continuer</v-btn>
                                     <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Acheter</v-btn>
                                 </div>
@@ -289,7 +289,7 @@
                     let headers = {'Content-Type': 'multipart/form-data'}
                     axios.post("/api/upload-file-order", formData, {headers}).then(response => {
                         that.image = response.data
-                        that.image = this.image
+                        
                     })
                 } 
             },

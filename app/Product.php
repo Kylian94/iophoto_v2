@@ -12,10 +12,12 @@
             'name', 'price', 'units', 'description', 'image', 'category_id'
         ];
 
-        public function orders(){
+        public function orders()
+        {
             return $this->hasMany(Order::class);
         }
-        public function categories(){
+        public function categories()
+        {
             return $this->hasMany(Category::class);
         }
     }

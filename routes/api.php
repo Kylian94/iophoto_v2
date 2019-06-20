@@ -9,6 +9,9 @@
     Route::get('/categories/{category}','CategoryController@show');
     Route::post('/upload-file', 'ProductController@uploadFile');
     Route::post('/upload-file-order', 'OrderController@uploadFile');
+    Route::get('/cart', 'CartController@show');
+    Route::get('/orders', 'CartController@index');
+    Route::post('/cart', 'CartController@store');
     Route::get('/products/{product}', 'ProductController@show');
 
     Route::group(['middleware' => 'auth:api'], function(){
@@ -22,6 +25,7 @@
         Route::patch('products/{product}/units/add','ProductController@updateUnits');
         Route::patch('orders/{order}/deliver','OrderController@deliverOrder');
         Route::resource('/orders', 'OrderController');
+        Route::resource('/carts', 'CartController');
         Route::resource('/users', 'UserController')->except(['index', 'show', 'login', 'register']);
         Route::resource('/products', 'ProductController')->except(['index','show']);
         Route::resource('/categories', 'CategoryController')->except(['index','show']);
