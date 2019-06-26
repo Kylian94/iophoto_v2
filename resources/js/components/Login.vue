@@ -85,18 +85,11 @@
                                 if (this.$route.params.nextUrl != null) {
                                     this.$router.push(this.$route.params.nextUrl)
                                     
-                                    swal.fire({
-                                                title: "Login Success",
-                                                text: "Welcome " + currentUser.name + " !",
-                                                type: "success",
-                                            }).then(function () {
-
-                                            }.bind(this)).catch(errors => {});
                                 } else {
                                     this.$router.push((is_admin == 1 ? 'admin' : '/'))
                                     swal.fire({
                                                 title: "Login Success",
-                                                text: "Welcome Admin : " + currentUser.name + " !",
+                                                text: "Welcome : " + currentUser.name + " !",
                                                 type: "success",
                                             }).then(function () {
 

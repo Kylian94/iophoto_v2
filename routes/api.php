@@ -13,6 +13,7 @@
     Route::get('/orders', 'CartController@index');
     Route::post('/cart', 'CartController@store');
     Route::get('/products/{product}', 'ProductController@show');
+    Route::get('/checkout', 'CheckoutController@index')->name('checkout');
 
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('/users','UserController@index');

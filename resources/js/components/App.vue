@@ -49,7 +49,7 @@
                         </div>
                         <div class="modal-footer">
                             Total Price : {{totalprice}} € <br>
-                            <a href="/checkout" class="btn btn-primary">Payer</a>
+                            <router-link :to="'/checkout'" data-dismiss="modal"> <v-btn raised hover class="teal dark-darken-3 white--text">Valider le panier</v-btn> </router-link>
                         </div>
                     </div>
                 </div>
@@ -73,14 +73,19 @@
         mounted() {
             this.setDefaults()
             
-            const carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
-            if (carts) {
-                this.carts = carts
-            }
-            const badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
-            if (badges) {
-                this.badges = badges
-            }
+            // let carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
+            // if (carts) {
+            //     this.carts = carts
+            // } else {
+            //     this.carts = []
+            // }
+            
+            // let badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+            // if (badges) {
+            //     this.badges = badges
+            // } else {
+            //     this.badges = '0'
+            // }
 
             
         },
@@ -115,7 +120,10 @@
                     this.user_type = user.is_admin
                 }
             },
-            
+            closeModal() {
+                document.querySelector('#cart').modal('hide')
+                
+            },
             viewCart() {
                 if(localStorage.getItem('IophotoStore.carts') != null) {
                     this.carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
@@ -143,7 +151,7 @@
                 localStorage.removeItem('IophotoStore.carts')
                 localStorage.removeItem('carts')
                 this.change()
-                this.$router.push('/')
+                window.location.assign("/")
             }
         }
     }

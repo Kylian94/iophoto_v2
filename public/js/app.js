@@ -362,18 +362,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.setDefaults();
-    var carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
-
-    if (carts) {
-      this.carts = carts;
-    }
-
-    var badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length;
-
-    if (badges) {
-      this.badges = badges;
-    }
+    this.setDefaults(); // let carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
+    // if (carts) {
+    //     this.carts = carts
+    // } else {
+    //     this.carts = []
+    // }
+    // let badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+    // if (badges) {
+    //     this.badges = badges
+    // } else {
+    //     this.badges = '0'
+    // }
   },
   computed: {
     totalprice: function totalprice() {
@@ -405,6 +405,9 @@ __webpack_require__.r(__webpack_exports__);
         this.user_type = user.is_admin;
       }
     },
+    closeModal: function closeModal() {
+      document.querySelector('#cart').modal('hide');
+    },
     viewCart: function viewCart() {
       if (localStorage.getItem('IophotoStore.carts') != null) {
         this.carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
@@ -430,7 +433,7 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.removeItem('IophotoStore.carts');
       localStorage.removeItem('carts');
       this.change();
-      this.$router.push('/');
+      window.location.assign("/");
     }
   }
 });
@@ -488,26 +491,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pid'],
   data: function data() {
     return {
-      address: "",
-      quantity: 1,
-      isLoggedIn: null,
-      product: []
+      carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
+      total: '0',
+      isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null
     };
   },
   mounted: function mounted() {
     this.isLoggedIn = localStorage.getItem('IophotoStore.jwt') != null;
   },
+  created: function created() {
+    this.viewcart();
+  },
+  computed: {},
   beforeMount: function beforeMount() {
-    var _this = this;
-
-    axios.get("/api/products/".concat(this.pid)).then(function (response) {
-      return _this.product = response.data;
-    });
-
     if (localStorage.getItem('IophotoStore.jwt') != null) {
       this.user = JSON.parse(localStorage.getItem('IophotoStore.user'));
       axios.defaults.headers.common['Content-Type'] = 'application/json';
@@ -515,6 +547,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    viewcart: function viewcart() {
+      if (localStorage.getItem('IophotoStore.carts')) {
+        this.carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
+        this.total = this.carts.reduce(function (total, item) {
+          return total + item.quantity * item.price;
+        }, 0);
+      }
+    },
     login: function login() {
       this.$router.push({
         name: 'login',
@@ -532,7 +572,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     placeOrder: function placeOrder(e) {
-      var _this2 = this;
+      var _this = this;
 
       e.preventDefault();
       var address = this.address;
@@ -543,7 +583,7 @@ __webpack_require__.r(__webpack_exports__);
         quantity: quantity,
         product_id: product_id
       }).then(function (response) {
-        return _this2.$router.push('/confirmation');
+        return _this.$router.push('/confirmation');
       });
     },
     checkUnits: function checkUnits(e) {
@@ -861,6 +901,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     deleteFile: function deleteFile() {
       this.url = '';
+      this.output = '';
+      this.imgProduct = '';
+      this.image = '';
     },
     screenShot: function () {
       var _screenShot = _asyncToGenerator(
@@ -1183,18 +1226,12 @@ __webpack_require__.r(__webpack_exports__);
 
             if (_this.$route.params.nextUrl != null) {
               _this.$router.push(_this.$route.params.nextUrl);
-
-              swal.fire({
-                title: "Login Success",
-                text: "Welcome " + currentUser.name + " !",
-                type: "success"
-              }).then(function () {}.bind(_this))["catch"](function (errors) {});
             } else {
               _this.$router.push(is_admin == 1 ? 'admin' : '/');
 
               swal.fire({
                 title: "Login Success",
-                text: "Welcome Admin : " + currentUser.name + " !",
+                text: "Welcome : " + currentUser.name + " !",
                 type: "success"
               }).then(function () {}.bind(_this))["catch"](function (errors) {});
             }
@@ -19825,23 +19862,35 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _vm._v(
-                    "\n                        Total Price : " +
-                      _vm._s(_vm.totalprice) +
-                      " € "
-                  ),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { href: "/checkout" }
-                    },
-                    [_vm._v("Payer")]
-                  )
-                ])
+                _c(
+                  "div",
+                  { staticClass: "modal-footer" },
+                  [
+                    _vm._v(
+                      "\n                        Total Price : " +
+                        _vm._s(_vm.totalprice) +
+                        " € "
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/checkout", "data-dismiss": "modal" } },
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            staticClass: "teal dark-darken-3 white--text",
+                            attrs: { raised: "", hover: "" }
+                          },
+                          [_vm._v("Valider le panier")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
               ])
             ]
           )
@@ -19907,146 +19956,160 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container marginNav" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-8 offset-md-2" }, [
-        _c("div", { staticClass: "order-box" }, [
-          _c("img", {
-            attrs: { src: _vm.product.image, alt: _vm.product.name }
-          }),
-          _vm._v(" "),
-          _c("h2", {
-            staticClass: "title",
-            domProps: { innerHTML: _vm._s(_vm.product.name) }
-          }),
-          _vm._v(" "),
-          _c("p", { staticClass: "small-text text-muted float-left" }, [
-            _vm._v("$ " + _vm._s(_vm.product.price))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "small-text text-muted float-right" }, [
-            _vm._v("Available Units: " + _vm._s(_vm.product.units))
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("label", { staticClass: "row" }, [
-            _c("span", { staticClass: "col-md-2 float-left" }, [
-              _vm._v("Quantity: ")
-            ]),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.quantity,
-                  expression: "quantity"
-                }
-              ],
-              staticClass: "col-md-2 float-left",
-              attrs: {
-                type: "number",
-                name: "units",
-                min: "1",
-                max: _vm.product.units
-              },
-              domProps: { value: _vm.quantity },
-              on: {
-                change: _vm.checkUnits,
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.quantity = $event.target.value
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", [
-          !_vm.isLoggedIn
-            ? _c("div", [
-                _c("h2", [_vm._v("You need to login to continue")]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "col-md-4 btn btn-primary float-left",
-                    on: { click: _vm.login }
-                  },
-                  [_vm._v("Login")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "col-md-4 btn btn-danger float-right",
-                    on: { click: _vm.register }
-                  },
-                  [_vm._v("Create an account")]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.isLoggedIn
-            ? _c("div", [
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-3 col-form-label",
-                      attrs: { for: "address" }
-                    },
-                    [_vm._v("Delivery Address")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-9" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.address,
-                          expression: "address"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { id: "address", type: "text", required: "" },
-                      domProps: { value: _vm.address },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.address = $event.target.value
-                        }
-                      }
-                    })
-                  ])
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c(
+          "v-layout",
+          [
+            _c("v-flex", { staticClass: "md8" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("h3", { staticClass: "card-header" }, [
+                  _vm._v("Order summary")
                 ]),
                 _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _vm.isLoggedIn
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "col-md-4 btn btn-sm btn-success float-right",
-                        on: { click: _vm.placeOrder }
-                      },
-                      [_vm._v("Continue")]
-                    )
-                  : _vm._e()
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "table",
+                    { staticClass: "table table-striped table-bordered" },
+                    [
+                      _c("thead", [
+                        _c("tr", [
+                          _c("th", [_vm._v("Product")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Price")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Quantity")])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.carts, function(cart, n) {
+                          return _c(
+                            "tr",
+                            { key: cart.id, attrs: { index: n } },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "v-layout",
+                                    { attrs: { "flex-column": "" } },
+                                    [
+                                      _c("v-flex", [_vm._v(_vm._s(cart.name))]),
+                                      _vm._v(" "),
+                                      _c("v-flex", [
+                                        _c("img", {
+                                          staticClass: "img_cart",
+                                          attrs: {
+                                            src: cart.image,
+                                            alt: "image_product"
+                                          }
+                                        })
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(cart.price) + " €")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(cart.quantity))])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-2 text-right" }, [
+                    _c("p", [_vm._v("Total : " + _vm._s(_vm.total) + " €")]),
+                    _vm._v(" "),
+                    !_vm.isLoggedIn
+                      ? _c(
+                          "div",
+                          [
+                            _c("h4", [
+                              _vm._v("Vous devez être connecter pour continuer")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/login" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass:
+                                      "teal teal-darken-2 white--text",
+                                    attrs: { raised: "", hover: "" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Se connecter\n                                    "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/register" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass:
+                                      "teal teal-lighten-1 white--text",
+                                    attrs: { raised: "", hover: "" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Créer un compte\n                                    "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "div",
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "teal teal-lighten-3 white--text",
+                                attrs: { raised: "", hover: "" }
+                              },
+                              [_vm._v("Payer avec Stripe")]
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ])
+                ])
               ])
-            : _vm._e()
-        ])
-      ])
-    ])
+            ])
+          ],
+          1
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -20353,8 +20416,8 @@ var render = function() {
                       {
                         name: "show",
                         rawName: "v-show",
-                        value: _vm.output,
-                        expression: "output"
+                        value: _vm.image,
+                        expression: "image"
                       }
                     ],
                     staticClass: "float-right"

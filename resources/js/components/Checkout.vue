@@ -1,35 +1,67 @@
 <template>
         <div class="container marginNav">
             <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="order-box">
-                        <img :src="product.image" :alt="product.name">
-                        <h2 class="title" v-html="product.name"></h2>
-                        <p class="small-text text-muted float-left">$ {{product.price}}</p>
-                        <p class="small-text text-muted float-right">Available Units: {{product.units}}</p>
-                        <br>
-                        <hr>
-                        <label class="row"><span class="col-md-2 float-left">Quantity: </span><input type="number" name="units" min="1" :max="product.units" class="col-md-2 float-left" v-model="quantity" @change="checkUnits"></label>
-                    </div>
-                    <br>
-                    <div>
-                        <div v-if="!isLoggedIn">
-                            <h2>You need to login to continue</h2>
-                            <button class="col-md-4 btn btn-primary float-left" @click="login">Login</button>
-                            <button class="col-md-4 btn btn-danger float-right" @click="register">Create an account</button>
-                        </div>
-                        <div v-if="isLoggedIn">
-                            <div class="row">
-                                <label for="address" class="col-md-3 col-form-label">Delivery Address</label>
-                                <div class="col-md-9">
-                                    <input id="address" type="text" class="form-control" v-model="address" required>
+                <v-layout>
+                    <v-flex class="md8">
+                        <div class="card">
+                            <h3 class="card-header">Order summary</h3>
+                            <div class="card-body">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(cart, n) in carts" v-bind:key="cart.id" :index="n">
+                                            <td>
+                                                 <v-layout flex-column>
+                                                    <v-flex>{{cart.name}}</v-flex>
+                                                    <v-flex><img class="img_cart" :src="cart.image" alt="image_product"></v-flex>
+                                                </v-layout>
+                                            </td>
+                                            <td>{{cart.price}} €</td>
+                                            <td>{{cart.quantity}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="mt-2 text-right">
+                                    <p>Total : {{ total }} €</p>
+                                    <div v-if="!isLoggedIn">
+                                        <h4>Vous devez être connecter pour continuer</h4>
+                                        <router-link :to="'/login'">
+                                            <v-btn raised hover class="teal teal-darken-2 white--text">
+                                                Se connecter
+                                            </v-btn>
+                                        </router-link>
+                                        <router-link :to="'/register'">
+                                            <v-btn raised hover class="teal teal-lighten-1 white--text">
+                                                Créer un compte
+                                            </v-btn>
+                                        </router-link>
+                                    </div>
+                                    <div v-if="isLoggedIn">
+                                        <v-btn raised hover class="teal teal-lighten-3 white--text">Payer avec Stripe</v-btn>
+                                    </div>
+                                    
                                 </div>
                             </div>
-                            <br>
-                            <button class="col-md-4 btn btn-sm btn-success float-right" v-if="isLoggedIn" @click="placeOrder">Continue</button>
                         </div>
-                    </div>
-                </div>
+                        
+                            <!-- <tbody>
+                                <tr v-for="(cart, n) in carts" v-bind:key="cart.id" :index="n">
+                                    <td><img class="img_cart" :src="cart.image" alt="image_product"></td>
+                                    <td>{{cart.name}}</td>
+                                    <td>{{cart.price}} €</td>
+                                    <td><input type="text" readonly class="form-control" v-model="cart.quantity"></td>
+                                    <td><button @click="removeCart(n)" class="btn btn-danger white--text">X</button></td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                    </v-flex>
+                </v-layout>
             </div>
         </div>
     </template>
@@ -45,25 +77,47 @@
         props : ['pid'],
         data(){
             return {
-                address : "",
-                quantity : 1,
-                isLoggedIn : null,
-                product : []
+                carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
+                total: '0',
+                isLoggedIn : localStorage.getItem('IophotoStore.jwt') != null
+                
             }
         },
         mounted() {
             this.isLoggedIn = localStorage.getItem('IophotoStore.jwt') != null
+            
+            
+        },
+        created() {
+            this.viewcart()
+        },
+        computed: {
+             
         },
         beforeMount() {
-            axios.get(`/api/products/${this.pid}`).then(response => this.product = response.data)
-
+           
             if (localStorage.getItem('IophotoStore.jwt') != null) {
                 this.user = JSON.parse(localStorage.getItem('IophotoStore.user'))
                 axios.defaults.headers.common['Content-Type'] = 'application/json'
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('IophotoStore.jwt')
             }
+
+            
+            
+           
         },
         methods : {
+
+            viewcart() {
+                if(localStorage.getItem('IophotoStore.carts')) {
+                    this.carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
+                    this.total = this.carts.reduce((total, item) => {
+                        return total + item.quantity * item.price;
+                    }, 0)
+                    
+                }
+            },
+            
             login() {
                 this.$router.push({name: 'login', params: {nextUrl: this.$route.fullPath}})
             },

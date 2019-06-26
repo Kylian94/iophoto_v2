@@ -68,7 +68,7 @@
                                 <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Upload Image</v-btn>
                             </form>
                             
-                                <div class="float-right" v-show="output">
+                                <div class="float-right" v-show="image">
                                     <v-btn raised hover dark color="teal lighten-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="addCart()">Continuer</v-btn>
                                     <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Acheter</v-btn>
                                 </div>
@@ -220,14 +220,14 @@
                 this.carts.splice(product, 1)
                 this.storeCart()
             },
-             storeCart(){
-                 let parsed = JSON.stringify(this.carts);
-                 localStorage.setItem('IophotoStore.carts', parsed);
-                 this.viewCart()
-                 
-                 window.location.assign("/shop")
-                 //this.$router.push("/shop")
-             },
+            storeCart(){
+                let parsed = JSON.stringify(this.carts);
+                localStorage.setItem('IophotoStore.carts', parsed);
+                this.viewCart()
+                
+                window.location.assign("/shop")
+                //this.$router.push("/shop")
+            },
             placeOrder() {
                 //console.log(this.image)
                 let address = this.address
@@ -245,7 +245,11 @@
                 this.url = URL.createObjectURL(file);
             },
             deleteFile() {
-                this.url = '';
+                this.url = ''
+                this.output = ''
+                this.imgProduct = ''
+                this.image = ''
+
             },
             async screenShot() {
 
