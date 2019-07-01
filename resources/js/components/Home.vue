@@ -4,12 +4,14 @@
 
             <v-layout class="full-height" dark grey darken-3 align-center justify-space-between fill-height wrap>
                 <v-flex xs12 sm12 md6 pl-4>
-                    <h1 class="display-4 font-weight-black white--text hidden-sm-and-down">LOREM IPSUM ABEBAT ERATUM</h1>
-                    <h1 class="display-1 font-weight-black white--text hidden-sm-and-up">LOREM IPSUM ABEBAT ERATUM</h1>
-                        <v-btn class="font-weight-bold large" dark color="teal darken-1" href="#scrollBot" v-smooth-scroll="{ duration: 1000, offset: -130}"> DÉCOUVRIR </v-btn>
+                    <h1 class="display-4 font-weight-black white--text hidden-sm-and-down " data-aos="fade-right" data-aos-delay="1000"
+                        data-aos-duration="1500">LOREM IPSUM ABEBAT ERATUM</h1>
+                    <h1 class="display-1 font-weight-black white--text hidden-sm-and-up ">LOREM IPSUM ABEBAT ERATUM</h1>
+                        <v-btn class="font-weight-bold large " data-aos="flip-up" data-aos-delay="2500"
+                        data-aos-duration="1000" dark color="teal darken-1" href="#scrollBot" v-smooth-scroll="{ duration: 1000, offset: -130}"> DÉCOUVRIR </v-btn>
                 </v-flex>
                 <v-flex xs12 sm12 md5>
-                    <v-img src="/img/appareil_home.png"></v-img>
+                    <v-img data-aos="fade-left" data-aos-delay="2000" data-aos-duration="1500" src="/img/appareil_home.png"></v-img>
                 </v-flex>
             </v-layout>
 
@@ -18,12 +20,13 @@
                 
                 <v-flex column>
                     <v-layout justify-center>
-                        <p id="scrollBot" class="title text-xs-center text-sm-center" center >Découvrez nos articles à personaliser - Concevez - Montez - Produisez !</p>
+                        <p id="scrollBot" class="title text-xs-center text-sm-center" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom" center >Découvrez nos articles à personaliser - Concevez - Montez - Produisez !</p>
                     </v-layout>
                     <v-container >
                         <v-layout justify-space-around align-center mt-5 wrap >
                             <v-flex xs10 sm10 md3 mb-2 v-for="(category,index) in categories" v-bind:key="index">
-                                <v-card class="mx-2">
+                                <v-card class="mx-2" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                                     <v-parallax
                                     class="white--text"
                                     height="200"
@@ -45,7 +48,7 @@
                                     </div>
                                     </v-card-title>
                                     <v-card-actions>
-                                    <v-btn flat color="teal darken-1"><router-link :to="`/shop#`+category.name" class="teal--text text--darken-2">See now</router-link></v-btn>
+                                    <v-btn flat color="teal darken-1"><router-link :to="`/shop#`+category.name" class="teal--text text--darken-2">Découvrir</router-link></v-btn>
                                     </v-card-actions>
                                 </v-card>
                             </v-flex>
@@ -62,7 +65,7 @@
             </v-layout>
             <v-layout class="full-height newsletter">
                 <v-layout align-center justify-center>
-                    <v-flex xs10 sm10 md3 >
+                    <v-flex xs10 sm10 md3 data-aos="zoom-in-up">
                         <p class="title white--text text-xs-center text-sm-center" center >Restez au courant des nouveautés en vous inscrivant à la newsletter !</p>   
                         <v-text-field dark
                         class=""

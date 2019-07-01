@@ -1,25 +1,26 @@
 <template>
         <v-layout ml-4 mt-2>
-                
-                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
-                    <v-flex class="text-md-center text-xs-center">
-                        <a class="white--text" href='/admin/products'>📦 Products ({{products.length}})</a>
-                    </v-flex>
-                </v-layout>
-                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
-                    <v-flex class="text-md-center text-xs-center">
-                    <a class="white--text" href='/admin/categories'>📂 Categories ({{categories.length}})</a>
-                    </v-flex>
-                </v-layout>
-                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink">
-                    <v-flex class="text-md-center text-xs-center">
-                    <a class="white--text" href='/admin/users'>🐵 Users ({{users.length}})</a>
-                    </v-flex>
-                </v-layout>
-                <v-layout class="md-3 product-box align-center justify-items-center big-text adminCTA navCatLink">
-                    <v-flex class="text-md-center text-xs-center">
-                        <a class="white--text" href='/admin/orders'>🚚 Orders ({{orders.length}})</a>
-                    </v-flex>
+                <v-layout flex  wrap>
+                    <v-layout md3 xs12 sm12 class=" product-box align-center justify-items-center big-text adminCTA  navCatLink">
+                        <v-flex class="text-md-center text-xs-center">
+                            <a class="white--text" href='/admin/products'>📦 Products ({{products.length}})</a>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout md3 xs12 sm12 class=" product-box align-center justify-items-center big-text adminCTA  navCatLink">
+                        <v-flex class="text-md-center text-xs-center">
+                        <a class="white--text" href='/admin/categories'>📂 Categories ({{categories.length}})</a>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout md3 xs12 sm12 class=" product-box align-center justify-items-center big-text adminCTA  navCatLink">
+                        <v-flex class="text-md-center text-xs-center">
+                        <a class="white--text" href='/admin/users'>🐵 Users ({{users.length}})</a>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout md3 xs12 sm12 class=" product-box align-center justify-items-center big-text adminCTA navCatLink">
+                        <v-flex class="text-md-center text-xs-center">
+                            <a class="white--text" href='/admin/orders'>🚚 Orders ({{orders.length}})</a>
+                        </v-flex>
+                    </v-layout>
                 </v-layout>
                 <hr>
         </v-layout>

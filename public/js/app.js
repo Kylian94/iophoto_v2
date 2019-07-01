@@ -523,6 +523,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pid'],
   data: function data() {
@@ -984,6 +994,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -1582,10 +1595,109 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+window.onunload = function () {
+  window.scrollTo(0, 0);
+};
+
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      product: []
+      product: [],
+      products: []
     };
   },
   beforeMount: function beforeMount() {
@@ -1594,6 +1706,10 @@ __webpack_require__.r(__webpack_exports__);
     var url = "/api/products/".concat(this.$route.params.id);
     axios.get(url).then(function (response) {
       return _this.product = response.data;
+    });
+    var url_products = "/api/products/";
+    axios.get(url_products).then(function (response) {
+      return _this.products = response.data;
     });
   }
 });
@@ -2016,6 +2132,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -3016,7 +3133,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.small-text[data-v-3da200a8] { font-size: 18px;\n}\n.img_page[data-v-3da200a8] {\n    height:250px;\n    width:250px;\n}\n.title[data-v-3da200a8] { font-size: 36px;\n}\n", ""]);
+exports.push([module.i, "\n.small-text[data-v-3da200a8] { font-size: 18px;\n}\n.img_page[data-v-3da200a8] {\n    height:250px;\n    width:250px;\n}\n.title[data-v-3da200a8] { font-size: 36px;\n}\n.list_products[data-v-3da200a8] {\n    height:150px;\n    width: 150px;\n}\n", ""]);
 
 // exports
 
@@ -19963,7 +20080,7 @@ var render = function() {
         _c(
           "v-layout",
           [
-            _c("v-flex", { staticClass: "md8" }, [
+            _c("v-flex", {}, [
               _c("div", { staticClass: "card" }, [
                 _c("h3", { staticClass: "card-header" }, [
                   _vm._v("Order summary")
@@ -19978,64 +20095,100 @@ var render = function() {
                         _c("tr", [
                           _c("th", [_vm._v("Product")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("Price")]),
+                          _c("th", [_vm._v("Quantity")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("Quantity")])
+                          _c("th", [_vm._v("Price")])
                         ])
                       ]),
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.carts, function(cart, n) {
-                          return _c(
-                            "tr",
-                            { key: cart.id, attrs: { index: n } },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "v-layout",
-                                    { attrs: { "flex-column": "" } },
-                                    [
-                                      _c("v-flex", [_vm._v(_vm._s(cart.name))]),
-                                      _vm._v(" "),
-                                      _c("v-flex", [
-                                        _c("img", {
-                                          staticClass: "img_cart",
-                                          attrs: {
-                                            src: cart.image,
-                                            alt: "image_product"
-                                          }
-                                        })
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(cart.price) + " €")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(cart.quantity))])
-                            ]
-                          )
-                        }),
-                        0
+                        [
+                          _vm._l(_vm.carts, function(cart, n) {
+                            return _c(
+                              "tr",
+                              { key: cart.id, attrs: { index: n } },
+                              [
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-layout",
+                                      { attrs: { "flex-column": "" } },
+                                      [
+                                        _c("v-flex", [
+                                          _vm._v(_vm._s(cart.name))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("v-flex", [
+                                          _c("img", {
+                                            staticClass: "img_cart",
+                                            attrs: {
+                                              src: cart.image,
+                                              alt: "image_product"
+                                            }
+                                          })
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(cart.quantity) + " ")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(cart.price) + " €")])
+                              ]
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Livraison")]),
+                            _vm._v(" "),
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("OFFERTE")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("TVA")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("20%")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(Math.floor((_vm.total * 20) / 100)) +
+                                  " €"
+                              )
+                            ])
+                          ])
+                        ],
+                        2
                       )
                     ]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "mt-2 text-right" }, [
-                    _c("p", [_vm._v("Total : " + _vm._s(_vm.total) + " €")]),
+                    _c("p", [
+                      _vm._v(
+                        "Total : " +
+                          _vm._s(
+                            Math.round(
+                              (_vm.total + Math.floor((_vm.total * 20) / 100)) *
+                                100
+                            ) / 100
+                          ) +
+                          "€"
+                      )
+                    ]),
                     _vm._v(" "),
                     !_vm.isLoggedIn
                       ? _c(
                           "div",
                           [
                             _c("h4", [
-                              _vm._v("Vous devez être connecter pour continuer")
+                              _vm._v("Vous devez être connecté pour continuer")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -20619,7 +20772,12 @@ var render = function() {
                     "h1",
                     {
                       staticClass:
-                        "display-4 font-weight-black white--text hidden-sm-and-down"
+                        "display-4 font-weight-black white--text hidden-sm-and-down ",
+                      attrs: {
+                        "data-aos": "fade-right",
+                        "data-aos-delay": "1000",
+                        "data-aos-duration": "1500"
+                      }
                     },
                     [_vm._v("LOREM IPSUM ABEBAT ERATUM")]
                   ),
@@ -20628,7 +20786,7 @@ var render = function() {
                     "h1",
                     {
                       staticClass:
-                        "display-1 font-weight-black white--text hidden-sm-and-up"
+                        "display-1 font-weight-black white--text hidden-sm-and-up "
                     },
                     [_vm._v("LOREM IPSUM ABEBAT ERATUM")]
                   ),
@@ -20644,8 +20802,11 @@ var render = function() {
                           expression: "{ duration: 1000, offset: -130}"
                         }
                       ],
-                      staticClass: "font-weight-bold large",
+                      staticClass: "font-weight-bold large ",
                       attrs: {
+                        "data-aos": "flip-up",
+                        "data-aos-delay": "2500",
+                        "data-aos-duration": "1000",
                         dark: "",
                         color: "teal darken-1",
                         href: "#scrollBot"
@@ -20660,7 +20821,16 @@ var render = function() {
               _c(
                 "v-flex",
                 { attrs: { xs12: "", sm12: "", md5: "" } },
-                [_c("v-img", { attrs: { src: "/img/appareil_home.png" } })],
+                [
+                  _c("v-img", {
+                    attrs: {
+                      "data-aos": "fade-left",
+                      "data-aos-delay": "2000",
+                      "data-aos-duration": "1500",
+                      src: "/img/appareil_home.png"
+                    }
+                  })
+                ],
                 1
               )
             ],
@@ -20680,7 +20850,12 @@ var render = function() {
                       "p",
                       {
                         staticClass: "title text-xs-center text-sm-center",
-                        attrs: { id: "scrollBot", center: "" }
+                        attrs: {
+                          id: "scrollBot",
+                          "data-aos": "fade-up",
+                          "data-aos-anchor-placement": "center-bottom",
+                          center: ""
+                        }
                       },
                       [
                         _vm._v(
@@ -20713,7 +20888,13 @@ var render = function() {
                             [
                               _c(
                                 "v-card",
-                                { staticClass: "mx-2" },
+                                {
+                                  staticClass: "mx-2",
+                                  attrs: {
+                                    "data-aos": "fade-up",
+                                    "data-aos-anchor-placement": "center-bottom"
+                                  }
+                                },
                                 [
                                   _c(
                                     "v-parallax",
@@ -20799,7 +20980,7 @@ var render = function() {
                                                 to: "/shop#" + category.name
                                               }
                                             },
-                                            [_vm._v("See now")]
+                                            [_vm._v("Découvrir")]
                                           )
                                         ],
                                         1
@@ -20865,7 +21046,14 @@ var render = function() {
                 [
                   _c(
                     "v-flex",
-                    { attrs: { xs10: "", sm10: "", md3: "" } },
+                    {
+                      attrs: {
+                        xs10: "",
+                        sm10: "",
+                        md3: "",
+                        "data-aos": "zoom-in-up"
+                      }
+                    },
                     [
                       _c(
                         "p",
@@ -22089,41 +22277,147 @@ var render = function() {
     [
       _c(
         "v-layout",
-        { attrs: { "justify-center": "", wrap: "" } },
         [
           _c(
-            "v-flex",
-            { attrs: { md4: "", xs12: "", sm12: "" } },
+            "v-layout",
+            { attrs: { "justify-center": "", wrap: "" } },
             [
-              _c("v-img", {
-                attrs: {
-                  src: _vm.product.image,
-                  alt: _vm.product.name + " image",
-                  "aspect-ratio": 1
-                }
-              })
+              _c(
+                "v-flex",
+                { attrs: { md6: "", s12: "", sm12: "" } },
+                [
+                  _c("v-img", {
+                    attrs: {
+                      src: "https://picsum.photos/200/250?grayscale",
+                      alt: _vm.product.name + " image",
+                      "aspect-ratio": 1
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { md6: "", xs12: "", sm12: "" } },
+                [
+                  _c("v-img", {
+                    attrs: {
+                      src: _vm.product.image,
+                      alt: _vm.product.name + " image",
+                      "aspect-ratio": 1
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { md6: "", xs12: "", sm12: "" } },
+                [
+                  _c("v-img", {
+                    attrs: {
+                      src: "https://picsum.photos/200/300?grayscale",
+                      alt: _vm.product.name + " image",
+                      "aspect-ratio": 1
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { md6: "", xs12: "", sm12: "" } },
+                [
+                  _c("v-img", {
+                    attrs: {
+                      src: "https://picsum.photos/250/300?grayscale",
+                      alt: _vm.product.name + " image",
+                      "aspect-ratio": 1
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           ),
           _vm._v(" "),
           _c(
             "v-flex",
-            { attrs: { md4: "", xs12: "", sm12: "", column: "", "pa-4": "" } },
+            { attrs: { md5: "", xs12: "", sm12: "", column: "", "pa-4": "" } },
             [
-              _c("h3", {
-                staticClass: "title",
-                domProps: { innerHTML: _vm._s(_vm.product.name) }
-              }),
+              _c(
+                "v-layout",
+                { attrs: { "justify-space-between": "", "align-center": "" } },
+                [
+                  _c("h3", {
+                    staticClass: "title",
+                    domProps: { innerHTML: _vm._s(_vm.product.name) }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "small-text text-muted" }, [
+                    _vm._v(_vm._s(_vm.product.price) + " €")
+                  ])
+                ]
+              ),
               _vm._v(" "),
-              _c("v-flex", { attrs: { md7: "" } }, [
-                _c("p", { staticClass: "texte-muted" }, [
-                  _vm._v(_vm._s(_vm.product.description))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "small-text text-muted" }, [
-                _vm._v(_vm._s(_vm.product.price) + " €")
-              ]),
+              _vm.product.name == ("T-shirt Homme" || false)
+                ? _c(
+                    "div",
+                    [
+                      _c("p", { staticClass: "subheading" }, [
+                        _vm._v("Choisissez votre taille")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        { staticClass: "mb-3", attrs: { wrap: "" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "white grey--text title mx-0 my-1",
+                              attrs: { hover: "" }
+                            },
+                            [_vm._v("S")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "white grey--text title mx-2 my-1",
+                              attrs: { hover: "" }
+                            },
+                            [_vm._v("M")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "white grey--text title mx-2 my-1",
+                              attrs: { hover: "" }
+                            },
+                            [_vm._v("L")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "white grey--text title ma-0 my-1",
+                              attrs: { hover: "" }
+                            },
+                            [_vm._v("XL")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "router-link",
@@ -22137,18 +22431,252 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      staticClass: "teal darken-2 white--text ma-0",
+                      staticClass: "teal darken-2 white--text mx-0 mb-3",
                       attrs: { raised: "", hover: "" }
                     },
-                    [_vm._v("Custom your own")]
+                    [_vm._v("Personnaliser le votre !")]
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("v-flex", { attrs: { md10: "" } }, [
+                _c("p", { staticClass: "texte-muted" }, [
+                  _vm._v(_vm._s(_vm.product.description))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "texte-muted" }, [
+                  _vm._v("⚠️ Article vierge à personnaliser")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-expansion-panel",
+                [
+                  _c(
+                    "v-expansion-panel-content",
+                    {
+                      scopedSlots: _vm._u([
+                        {
+                          key: "header",
+                          fn: function() {
+                            return [
+                              _c(
+                                "div",
+                                { staticClass: "title font-weight-light" },
+                                [_vm._v("🚚 Livraion et retours gratuits")]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "subheading" }, [
+                              _vm._v(
+                                "Livraison standard gratuite avec votre compte IO.Photo."
+                              )
+                            ]),
+                            _c("br"),
+                            _c("br"),
+                            _vm._v(
+                              "\n\n                        ⚫️ Le délai des livraisons standard est de 2 à 4 jours ; nous effectuons des livraisons 5 jours sur 7."
+                            ),
+                            _c("br"),
+                            _c("br"),
+                            _vm._v(
+                              "\n                        ⚫️ Pour une commande passée avant 13 heures avec option de livraison le lendemain, du lundi au jeudi."
+                            ),
+                            _c("br"),
+                            _c("br"),
+                            _vm._v(
+                              "\n                        ⚫️ Possibilité de retirer les commandes en magasin IO.Photo et dans une centaine de points de retrait faciles d'accès."
+                            ),
+                            _c("br"),
+                            _c("br"),
+                            _vm._v(
+                              "\n                        ⚫️ Vous pouvez retourner votre commande gratuitement, quelle que soit la raison, dans un délai de 30 jours.\n                    "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-expansion-panel",
+                [
+                  _c(
+                    "v-expansion-panel-content",
+                    {
+                      scopedSlots: _vm._u([
+                        {
+                          key: "header",
+                          fn: function() {
+                            return [
+                              _c(
+                                "div",
+                                { staticClass: "title font-weight-light" },
+                                [_vm._v("🌍 Eco-responsable")]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _vm._v(
+                              "\n                        Les produits recyclables IO.Photo vendus en France disposent du logo de recyclage Triman. Il s'agit d'une exigence juridique pour les revendeurs opérant sur le marché français, depuis le 1er janvier 2015."
+                            ),
+                            _c("br"),
+                            _c("br"),
+                            _vm._v(
+                              "\n\n                        Cela signifie que les produits recyclables que vous vendons sont soumis juridiquement à la collecte sélective des déchets (conformément au système français de « Responsabilité élargie du producteur » (REP)).\n                    "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "subheading font-weight-light my-2" }, [
+                _vm._v("♻️ Ce produit peut être recyclé.")
+              ])
             ],
             1
           )
         ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        {
+          staticClass: "mt-4",
+          attrs: { "justify-center": "", "align-center": "", "flex-column": "" }
+        },
+        [
+          _c("h1", { staticClass: "title mt-4 mx-auto" }, [
+            _vm._v("Découvrez "),
+            _vm.product.name == "Serviette XXL"
+              ? _c("span", [_vm._v("la")])
+              : _c("span", [_vm._v("le")]),
+            _vm._v(" " + _vm._s(_vm.product.name))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "title mx-auto mt-3" }, [_vm._v("∨")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        { staticClass: "container", attrs: { "justify-center": "" } },
+        [
+          _c(
+            "v-flex",
+            { attrs: { md6: "", xs12: "", sm12: "" } },
+            [_c("v-img", { attrs: { src: _vm.product.image } })],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        {
+          staticClass: "mt-4",
+          attrs: { "justify-center": "", "align-center": "", "flex-column": "" }
+        },
+        [
+          _c("h1", { staticClass: "title mt-4 mx-auto" }, [
+            _vm._v("Personnalisez "),
+            _vm.product.name == "Serviette XXL"
+              ? _c("span", [_vm._v("la")])
+              : _c("span", [_vm._v("le")])
+          ]),
+          _vm._v(" "),
+          _c("v-flex", { attrs: { md6: "", xs12: "", sm12: "" } }, [
+            _c(
+              "p",
+              {
+                staticClass:
+                  "subheading font-weight-light mx-auto mt-3 text-center"
+              },
+              [
+                _vm._v(
+                  "Le " +
+                    _vm._s(_vm.product.name) +
+                    " est vierge et à personnaliser. Sélectionnez vos plus belles photos et appliquez les sur votre support."
+                )
+              ]
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-layout", { staticClass: "mt-4" }, [
+        _c("h4", { staticClass: "title mt-3" }, [
+          _vm._v("Vous aimerez peut-être aussi")
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        { staticClass: "container", attrs: { wrap: "" } },
+        _vm._l(_vm.products, function(product, index) {
+          return _c(
+            "v-flex",
+            { key: index, attrs: { md3: "", xs6: "", sm6: "" } },
+            [
+              _c(
+                "a",
+                { attrs: { href: "/products/" + product.id } },
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { "flex-column": "", "align-center": "" } },
+                    [
+                      _c("v-img", {
+                        staticClass: "list_products",
+                        attrs: { src: product.image }
+                      }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "subheading" }, [
+                        _vm._v(_vm._s(product.name))
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        }),
         1
       )
     ],
@@ -22710,78 +23238,99 @@ var render = function() {
     [
       _c(
         "v-layout",
-        {
-          staticClass:
-            "md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink"
-        },
+        { attrs: { flex: "", wrap: "" } },
         [
-          _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
-            _c(
-              "a",
-              {
-                staticClass: "white--text",
-                attrs: { href: "/admin/products" }
-              },
-              [_vm._v("📦 Products (" + _vm._s(_vm.products.length) + ")")]
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-layout",
-        {
-          staticClass:
-            "md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink"
-        },
-        [
-          _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
-            _c(
-              "a",
-              {
-                staticClass: "white--text",
-                attrs: { href: "/admin/categories" }
-              },
-              [_vm._v("📂 Categories (" + _vm._s(_vm.categories.length) + ")")]
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-layout",
-        {
-          staticClass:
-            "md-3 product-box align-center justify-items-center big-text adminCTA  navCatLink"
-        },
-        [
-          _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
-            _c(
-              "a",
-              { staticClass: "white--text", attrs: { href: "/admin/users" } },
-              [_vm._v("🐵 Users (" + _vm._s(_vm.users.length) + ")")]
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-layout",
-        {
-          staticClass:
-            "md-3 product-box align-center justify-items-center big-text adminCTA navCatLink"
-        },
-        [
-          _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
-            _c(
-              "a",
-              { staticClass: "white--text", attrs: { href: "/admin/orders" } },
-              [_vm._v("🚚 Orders (" + _vm._s(_vm.orders.length) + ")")]
-            )
-          ])
+          _c(
+            "v-layout",
+            {
+              staticClass:
+                " product-box align-center justify-items-center big-text adminCTA  navCatLink",
+              attrs: { md3: "", xs12: "", sm12: "" }
+            },
+            [
+              _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "white--text",
+                    attrs: { href: "/admin/products" }
+                  },
+                  [_vm._v("📦 Products (" + _vm._s(_vm.products.length) + ")")]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            {
+              staticClass:
+                " product-box align-center justify-items-center big-text adminCTA  navCatLink",
+              attrs: { md3: "", xs12: "", sm12: "" }
+            },
+            [
+              _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "white--text",
+                    attrs: { href: "/admin/categories" }
+                  },
+                  [
+                    _vm._v(
+                      "📂 Categories (" + _vm._s(_vm.categories.length) + ")"
+                    )
+                  ]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            {
+              staticClass:
+                " product-box align-center justify-items-center big-text adminCTA  navCatLink",
+              attrs: { md3: "", xs12: "", sm12: "" }
+            },
+            [
+              _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "white--text",
+                    attrs: { href: "/admin/users" }
+                  },
+                  [_vm._v("🐵 Users (" + _vm._s(_vm.users.length) + ")")]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            {
+              staticClass:
+                " product-box align-center justify-items-center big-text adminCTA navCatLink",
+              attrs: { md3: "", xs12: "", sm12: "" }
+            },
+            [
+              _c("v-flex", { staticClass: "text-md-center text-xs-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "white--text",
+                    attrs: { href: "/admin/orders" }
+                  },
+                  [_vm._v("🚚 Orders (" + _vm._s(_vm.orders.length) + ")")]
+                )
+              ])
+            ],
+            1
+          )
         ],
         1
       ),
@@ -64604,7 +65153,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       requiresAuth: true,
       is_admin: true
     }
-  }]
+  }],
+  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    };
+  }
 });
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {

@@ -2,7 +2,7 @@
         <div class="container marginNav">
             <div class="row">
                 <v-layout>
-                    <v-flex class="md8">
+                    <v-flex class="">
                         <div class="card">
                             <h3 class="card-header">Order summary</h3>
                             <div class="card-body">
@@ -10,8 +10,8 @@
                                     <thead>
                                         <tr>
                                             <th>Product</th>
-                                            <th>Price</th>
                                             <th>Quantity</th>
+                                            <th>Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -22,15 +22,25 @@
                                                     <v-flex><img class="img_cart" :src="cart.image" alt="image_product"></v-flex>
                                                 </v-layout>
                                             </td>
+                                            <td>{{cart.quantity}} </td>
                                             <td>{{cart.price}} €</td>
-                                            <td>{{cart.quantity}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Livraison</td>
+                                            <td></td>
+                                            <td>OFFERTE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TVA</td>
+                                            <td>20%</td>
+                                            <td>{{ Math.floor(total*20/100)}} €</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="mt-2 text-right">
-                                    <p>Total : {{ total }} €</p>
+                                    <p>Total : {{ Math.round((total + Math.floor(total*20/100))*100)/100 }}€</p>
                                     <div v-if="!isLoggedIn">
-                                        <h4>Vous devez être connecter pour continuer</h4>
+                                        <h4>Vous devez être connecté pour continuer</h4>
                                         <router-link :to="'/login'">
                                             <v-btn raised hover class="teal teal-darken-2 white--text">
                                                 Se connecter

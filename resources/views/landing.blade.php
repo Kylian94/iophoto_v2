@@ -10,6 +10,7 @@
         
         <link href=" {{ mix('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         
         
     </head>
@@ -22,6 +23,15 @@
         <script crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2"></script>
         <script src="/js/facebook.js"></script>
         <script src="/js/html2canvas.min.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+                initClassName: 'aos-init', // class applied after initialization
+                animatedClassName: 'aos-animate', // class applied on animation
+                useClassNames: true, // if true, will add content of `data-aos` as classes on scroll
+            });
+        </script>
         
         
     </body>

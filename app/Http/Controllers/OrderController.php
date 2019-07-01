@@ -30,11 +30,11 @@ use Illuminate\Support\Facades\File;
         public function store(Request $request)
         {
             $order = Order::create([
-                'image' => $request->image,
-                'product_id' => $request->product_id,
+                'ref' => $request->ref,
                 'user_id' => Auth::id(),
-                'quantity' => $request->quantity,
-                'address' => $request->address,
+                
+                'address_id' => $request->address_id,
+                
             ]);
 
             return response()->json([

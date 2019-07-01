@@ -28,10 +28,11 @@ class CartController extends Controller
     {
         $cart = Cart::create([
             'image' => $request->image,
-            'ref' => time(),
+            'name' => $request->name,
             'user_id' => Auth::id(),
-            'amount' => $request->amount,
-            'address_id' => $request->address,
+            'order_id' => $request->id,
+            'price' => $request->price,
+            
         ]);
 
         return response()->json([
