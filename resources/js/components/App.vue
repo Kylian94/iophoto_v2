@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="navbar homeNav navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top">
-            
+            <div class="container">
                 <img class="mr-2" src="/img/logo_white.png" alt="logo IOPhoto">
                 <router-link :to="{name: 'home'}" class="navbar-brand title">IO.Photo</router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
                         <li class="nav-link white--text" v-if="isLoggedIn" @click="logout">⛔️ Logout</li>
                     </ul>
                 </div>
-            
+            </div>
         </nav>
         <main class="">
             <div class="modal fade" id="cart">

@@ -20251,127 +20251,136 @@ var render = function() {
           "navbar homeNav navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top"
       },
       [
-        _c("img", {
-          staticClass: "mr-2",
-          attrs: { src: "/img/logo_white.png", alt: "logo IOPhoto" }
-        }),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "navbar-brand title",
-            attrs: { to: { name: "home" } }
-          },
-          [_vm._v("IO.Photo")]
-        ),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
         _c(
           "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarSupportedContent" }
-          },
+          { staticClass: "container" },
           [
-            _c("ul", { staticClass: "navbar-nav mr-auto" }),
+            _c("img", {
+              staticClass: "mr-2",
+              attrs: { src: "/img/logo_white.png", alt: "logo IOPhoto" }
+            }),
             _vm._v(" "),
             _c(
-              "ul",
-              { staticClass: "navbar-nav ml-auto" },
+              "router-link",
+              {
+                staticClass: "navbar-brand title",
+                attrs: { to: { name: "home" } }
+              },
+              [_vm._v("IO.Photo")]
+            ),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse navbar-collapse",
+                attrs: { id: "navbarSupportedContent" }
+              },
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link white--text",
-                    attrs: { to: { name: "shop" } }
-                  },
-                  [_vm._v("🎁 Boutique")]
-                ),
+                _c("ul", { staticClass: "navbar-nav mr-auto" }),
                 _vm._v(" "),
                 _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link white--text",
-                    attrs: { to: { name: "about" } }
-                  },
-                  [_vm._v("📰 A propos")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "nav-link white--text",
-                    attrs: { "data-toggle": "modal", "data-target": "#cart" }
-                  },
-                  [_vm._v("🛒 Shopping Cart (" + _vm._s(_vm.badges) + ")")]
-                ),
-                _vm._v(" "),
-                !_vm.isLoggedIn
-                  ? _c(
+                  "ul",
+                  { staticClass: "navbar-nav ml-auto" },
+                  [
+                    _c(
                       "router-link",
                       {
                         staticClass: "nav-link white--text",
-                        attrs: { to: { name: "login" } }
+                        attrs: { to: { name: "shop" } }
                       },
-                      [_vm._v("🔒 Connexion")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                !_vm.isLoggedIn
-                  ? _c("router-link", {
-                      staticClass: "nav-link white--text",
-                      attrs: { to: { name: "register" } }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.isLoggedIn
-                  ? _c(
-                      "span",
-                      [
-                        _vm.user_type == 0
-                          ? _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link white--text",
-                                attrs: { to: { name: "userboard" } }
-                              },
-                              [_vm._v("🤷‍♂ Hi, " + _vm._s(_vm.name))]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.user_type == 1
-                          ? _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link white--text",
-                                attrs: { to: { name: "admin" } }
-                              },
-                              [_vm._v("🧙‍ Hi, " + _vm._s(_vm.name))]
-                            )
-                          : _vm._e()
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.isLoggedIn
-                  ? _c(
-                      "li",
+                      [_vm._v("🎁 Boutique")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
                       {
                         staticClass: "nav-link white--text",
-                        on: { click: _vm.logout }
+                        attrs: { to: { name: "about" } }
                       },
-                      [_vm._v("⛔️ Logout")]
-                    )
-                  : _vm._e()
-              ],
-              1
+                      [_vm._v("📰 A propos")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "nav-link white--text",
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#cart"
+                        }
+                      },
+                      [_vm._v("🛒 Shopping Cart (" + _vm._s(_vm.badges) + ")")]
+                    ),
+                    _vm._v(" "),
+                    !_vm.isLoggedIn
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link white--text",
+                            attrs: { to: { name: "login" } }
+                          },
+                          [_vm._v("🔒 Connexion")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.isLoggedIn
+                      ? _c("router-link", {
+                          staticClass: "nav-link white--text",
+                          attrs: { to: { name: "register" } }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "span",
+                          [
+                            _vm.user_type == 0
+                              ? _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "nav-link white--text",
+                                    attrs: { to: { name: "userboard" } }
+                                  },
+                                  [_vm._v("🤷‍♂ Hi, " + _vm._s(_vm.name))]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.user_type == 1
+                              ? _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "nav-link white--text",
+                                    attrs: { to: { name: "admin" } }
+                                  },
+                                  [_vm._v("🧙‍ Hi, " + _vm._s(_vm.name))]
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "li",
+                          {
+                            staticClass: "nav-link white--text",
+                            on: { click: _vm.logout }
+                          },
+                          [_vm._v("⛔️ Logout")]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ]
             )
-          ]
+          ],
+          1
         )
-      ],
-      1
+      ]
     ),
     _vm._v(" "),
     _c(
@@ -21250,7 +21259,9 @@ var render = function() {
             [
               _c(
                 "v-flex",
-                { attrs: { xs12: "", sm12: "", md6: "", "pl-4": "" } },
+                {
+                  attrs: { xs12: "", sm12: "", md6: "", "pl-4": "", "ml-4": "" }
+                },
                 [
                   _c(
                     "h1",
@@ -65679,10 +65690,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       requiresAuth: true,
       is_admin: true
     }
-  }] //  scrollBehavior (to, from, savedPosition) {
-  //      return { x: 0, y: 0 }
-  //    }
-
+  }],
+  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    };
+  }
 });
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {

@@ -3,7 +3,7 @@
         <v-flex column>
 
             <v-layout class="full-height" dark grey darken-3 align-center justify-space-between fill-height wrap>
-                <v-flex xs12 sm12 md6 pl-4>
+                <v-flex xs12 sm12 md6 pl-4 ml-4>
                     <h1 class="display-4 font-weight-black white--text hidden-sm-and-down " data-aos="fade-right" data-aos-delay="1000"
                         data-aos-duration="1500">LOREM IPSUM ABEBAT ERATUM</h1>
                     <h1 class="display-1 font-weight-black white--text hidden-sm-and-up ">LOREM IPSUM ABEBAT ERATUM</h1>
