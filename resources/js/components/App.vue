@@ -13,7 +13,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <router-link :to="{ name: 'shop' }" class="nav-link white--text">🎁 Boutique</router-link>
-                        <router-link :to="{ name: 'a-propos' }" class="nav-link white--text">📰 A propos</router-link>
+                        <router-link :to="{ name: 'about' }" class="nav-link white--text">📰 A propos</router-link>
                         <button data-toggle="modal" data-target="#cart" class="nav-link white--text">🛒 Shopping Cart ({{badges}})</button>
                         <router-link :to="{ name: 'login' }" class="nav-link white--text" v-if="!isLoggedIn">🔒 Connexion</router-link>
                         <router-link :to="{ name: 'register' }" class="nav-link white--text" v-if="!isLoggedIn"></router-link>
@@ -26,7 +26,7 @@
                 </div>
             
         </nav>
-        <main class="py-4">
+        <main class="">
             <div class="modal fade" id="cart">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">

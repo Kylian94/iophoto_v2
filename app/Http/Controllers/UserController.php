@@ -95,6 +95,7 @@
             ]);
         }
 
+    
         public function destroy(User $user)
         {
             $status = $user->delete();

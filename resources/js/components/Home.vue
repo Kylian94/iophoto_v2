@@ -65,15 +65,26 @@
             </v-layout>
             <v-layout class="full-height newsletter">
                 <v-layout align-center justify-center>
-                    <v-flex xs10 sm10 md3 data-aos="zoom-in-up">
+                    <v-flex xs10 sm10 md3 data-aos="zoom-in-up" v-if="isLoggedIn">
                         <p class="title white--text text-xs-center text-sm-center" center >Restez au courant des nouveautés en vous inscrivant à la newsletter !</p>   
-                        <v-text-field dark
+                        <!-- <v-text-field dark
                         class=""
-                        label="Email" v-validate="'email'" v-model="email_newsletter" name="email"
+                        label="Email" v-validate="'email'" v-model="newsletter_email" name="email"
                         ></v-text-field>
-                        <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email')">⚠️ {{ errors.first('email') }}</p>
+                        <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email')">⚠️ {{ errors.first('email') }}</p> -->
                         <v-layout align-center justify-center>
                             <v-btn dark type="submit" color="teal darken-1"> S'inscrire</v-btn>
+                        </v-layout>
+                    </v-flex>
+                    <v-flex xs10 sm10 md3 data-aos="zoom-in-up" v-if="!isLoggedIn">
+                        <p class="title white--text text-xs-center text-sm-center" center >Restez au courant des nouveautés en créant votre compte maintenant !</p>   
+                        <!-- <v-text-field dark
+                        class=""
+                        label="Email" v-validate="'email'" v-model="newsletter_email" name="email"
+                        ></v-text-field>
+                        <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email')">⚠️ {{ errors.first('email') }}</p> -->
+                        <v-layout align-center justify-center>
+                            <v-btn dark type="submit" color="teal darken-1" @click="register()">Créer un compte</v-btn>
                         </v-layout>
                     </v-flex>
                 </v-layout>
@@ -120,19 +131,37 @@
 </template>
 <script>
 export default {
-    scrollBehavior() {
-    return { x: 0, y: 0 };
-  },
+   
   data(){
             return {
                 categories : [],
-                email_newsletter : "",
+                newsletter_email : "",
                 email_contact : "",
                 message_contact : "",
+                isLoggedIn : localStorage.getItem('IophotoStore.jwt') != null
             }
+        },
+        beforeMount() {
+           
+            if (localStorage.getItem('IophotoStore.jwt') != null) {
+                this.user = JSON.parse(localStorage.getItem('IophotoStore.user'))
+                axios.defaults.headers.common['Content-Type'] = 'application/json'
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('IophotoStore.jwt')
+            }
+
+            
+            
+           
         },
   mounted() {
       axios.get("api/categories/").then(response => this.categories = response.data)
+      this.isLoggedIn = localStorage.getItem('IophotoStore.jwt') != null
+  },
+  methods: {
+    
+    register() {
+        this.$router.push({name: 'register', params: {nextUrl: this.$route.fullPath}})
+    },
   },
 }
 </script>

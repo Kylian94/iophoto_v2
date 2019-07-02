@@ -42,6 +42,7 @@
 
     import App from './components/App.vue'
     import Home from './components/Home.vue'
+    import About from './components/About.vue'
     import Shop from './components/Shop.vue'
     import Login from './components/Login.vue'
     import Register from './components/Register.vue'
@@ -59,6 +60,11 @@
                 path: '/',
                 name: 'home',
                 component: Home
+            },
+            {
+                path: '/about',
+                name: 'about',
+                component: About
             },
             {
                 path: '/shop',
@@ -126,9 +132,9 @@
             },
             
         ],
-         scrollBehavior (to, from, savedPosition) {
-             return { x: 0, y: 0 }
-           }
+        //  scrollBehavior (to, from, savedPosition) {
+        //      return { x: 0, y: 0 }
+        //    }
     })
 
     router.beforeEach((to, from, next) => {
