@@ -11,7 +11,7 @@
                     </template>
                     <v-card>
                             <v-layout >
-                                <v-btn raised hover class="teal darken-2 white--text mx-3">New adress</v-btn>
+                                <v-btn raised hover class="teal darken-2 white--text mx-3" @click="newAddress">New adress</v-btn>
                             </v-layout>
                             
                                 <v-radio-group v-model="adress" class="ma-0">
@@ -42,6 +42,8 @@
                     </v-card>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
+                <modal @close="endEditing" :user="editingAddress" v-show="editingAddress != null"></modal>
+                <modal @close="addAddress"  :user="addingAddress" v-show="addingAddress != null"></modal>
                 <v-expansion-panel>
                     <v-expansion-panel-content>
                     <template v-slot:header>
@@ -77,22 +79,63 @@
     </style>
 
     <script>
+    import Modal from './AddressModal'
     export default {
         data() {
             return {
                 user : null,
                 orders : [], 
                 adress: '',
+                editingAddress: null,
+                addingAddress: null,
             }
         },
+        components: {Modal},
         beforeMount() {
             this.user = JSON.parse(localStorage.getItem('IophotoStore.user'))
 
             axios.defaults.headers.common['Content-Type'] = 'application/json'
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('IophotoStore.jwt')
 
-            axios.get(`api/users/${this.user.id}/orders`)
-                 .then(response => this.orders = response.data)
-        }
+            
+        },
+        methods: {
+            newAddress() {
+                this.addingAddress = {
+                    name: null,
+                    email: null,
+                    password: null,
+                    is_admin: null,
+                }
+            }, 
+
+            endEditing(user) {
+                this.editingAddress = null
+
+                let index = this.users.indexOf(user)
+                let name = user.name
+                let email = user.email
+                let password = user.password
+                let is_admin = user.is_admin
+            
+                // axios.patch(`/api/users/${user.id}`, {name, email, password, is_admin})
+                //      .then(response => this.users[index] = user)
+            },
+            addAddress(user) {
+                this.addingUser = null
+
+                let name = user.name
+                let email = user.email
+                let password = user.password
+                let is_admin = user.is_admin
+                
+
+            
+                // axios.post("/api/users/", {name, email, password, is_admin})
+                //      .then(response => this.users.push(user))
+                //      .then(toast.fire({ type: 'success', title: 'User has been created'}))
+                     
+            },
+        },
     }
     </script>
