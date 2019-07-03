@@ -673,23 +673,21 @@ __webpack_require__.r(__webpack_exports__);
       user_type: 0,
       isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null,
       carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
-      badges: JSON.parse(localStorage.getItem('IophotoStore.carts')).length,
-      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-google-plus', 'fa fa-linkedin', 'fa fa-instagram']
+      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-google-plus', 'fa fa-linkedin', 'fa fa-instagram'],
+      badges: JSON.parse(localStorage.getItem('IophotoStore.carts')).length
     };
   },
+  beforeMount: function beforeMount() {
+    if (this.isLoggedIn) {
+      var user = JSON.parse(localStorage.getItem('IophotoStore.user'));
+      var carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
+      var badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length;
+      this.name = user.name;
+      this.user_type = user.is_admin;
+    }
+  },
   mounted: function mounted() {
-    this.setDefaults(); // let carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
-    // if (carts) {
-    //     this.carts = carts
-    // } else {
-    //     this.carts = []
-    // }
-    // let badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
-    // if (badges) {
-    //     this.badges = badges
-    // } else {
-    //     this.badges = '0'
-    // }
+    this.setDefaults();
   },
   computed: {
     totalprice: function totalprice() {
@@ -703,20 +701,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  watch: {// badges() {
-    //      let badges = 0;
-    //      if(localStorage.getItem('IophotoStore.carts') != null) {
-    //          badges = this.localStorage.getItem('IophotoStore.carts').length
-    //      }
-    //      return badges
-    //  }
-  },
+  watch: {},
   methods: {
     setDefaults: function setDefaults() {
       if (this.isLoggedIn) {
         var user = JSON.parse(localStorage.getItem('IophotoStore.user'));
         var carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
-        var badges = 0;
+        var badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length;
         this.name = user.name;
         this.user_type = user.is_admin;
       }
@@ -966,6 +957,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -1664,48 +1656,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -21435,6 +21385,14 @@ var render = function() {
                             { attrs: { md6: "" } },
                             [
                               _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
                                 staticClass: "projectName",
                                 attrs: {
                                   label: "Nom de votre projet",
@@ -21442,6 +21400,7 @@ var render = function() {
                                   m0: "",
                                   required: "",
                                   counter: "",
+                                  minlenght: "2",
                                   maxlength: "56",
                                   rules: _vm.rules
                                 },
@@ -21452,7 +21411,25 @@ var render = function() {
                                   },
                                   expression: "projectName"
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("projectName")
+                                ? _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "teal--text text--lighten-3 subheading"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "⚠️ " +
+                                          _vm._s(
+                                            _vm.errors.first("projectName")
+                                          )
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
                             ],
                             1
                           ),

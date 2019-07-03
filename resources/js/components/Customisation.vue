@@ -38,7 +38,8 @@
                                 
                                     <v-layout align-center justify-center id="borderRed" class="borderRed">
                                         <v-flex md6  >
-                                            <v-text-field v-model="projectName" class="projectName" label="Nom de votre projet" p0 m0 required counter maxlength="56" :rules="rules"></v-text-field>
+                                            <v-text-field v-model="projectName" class="projectName" label="Nom de votre projet" p0 m0 required counter minlenght="2" v-validate="'required'" maxlength="56" :rules="rules"></v-text-field>
+                                            <p class="teal--text text--lighten-3 subheading" v-if="errors.has('projectName')">⚠️ {{ errors.first('projectName') }}</p>
                                         </v-flex>
                                         <v-flex md2 v-show="projectName.length > 1">
                                             <i  data-aos="fade-right" class="fa fa-check fa-3x teal--text" aria-hidden="true"></i>

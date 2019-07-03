@@ -93,6 +93,7 @@
 </template>
 <script>
     export default {
+    
         
         data() {
             return {
@@ -100,7 +101,7 @@
                 user_type: 0,
                 isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null,
                 carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
-                badges : JSON.parse(localStorage.getItem('IophotoStore.carts')).length,
+                
                 icons: [
                     'fa fa-facebook',
                     'fa fa-twitter',
@@ -108,27 +109,21 @@
                     'fa fa-linkedin',
                     'fa fa-instagram'
                 ],
-                
+                badges: JSON.parse(localStorage.getItem('IophotoStore.carts')).length
             }
+        },
+        beforeMount() {
+            if (this.isLoggedIn) {
+                    let user = JSON.parse(localStorage.getItem('IophotoStore.user'))
+                    let carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
+                    let badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+                    this.name = user.name
+                    this.user_type = user.is_admin
+                }
         },
         mounted() {
             this.setDefaults()
-            
-            // let carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
-            // if (carts) {
-            //     this.carts = carts
-            // } else {
-            //     this.carts = []
-            // }
-            
-            // let badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
-            // if (badges) {
-            //     this.badges = badges
-            // } else {
-            //     this.badges = '0'
-            // }
-
-            
+             
         },
         computed: {
             totalprice() {
@@ -143,20 +138,14 @@
              
         },
         watch: {
-            // badges() {
-            //      let badges = 0;
-            //      if(localStorage.getItem('IophotoStore.carts') != null) {
-            //          badges = this.localStorage.getItem('IophotoStore.carts').length
-            //      }
-            //      return badges
-            //  }
+           
         },
         methods : {
             setDefaults() {
                 if (this.isLoggedIn) {
                     let user = JSON.parse(localStorage.getItem('IophotoStore.user'))
                     let carts = JSON.parse(localStorage.getItem('IophotoStore.carts'))
-                    let badges = 0
+                    let badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length
                     this.name = user.name
                     this.user_type = user.is_admin
                 }
@@ -193,8 +182,8 @@
                 localStorage.removeItem('carts')
                 this.change()
                 window.location.assign("/")
-            }
-        }
+            },
+        },
     }
 </script>
 <style>
