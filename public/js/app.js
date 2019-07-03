@@ -633,6 +633,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -640,7 +672,8 @@ __webpack_require__.r(__webpack_exports__);
       user_type: 0,
       isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null,
       carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
-      badges: JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+      badges: JSON.parse(localStorage.getItem('IophotoStore.carts')).length,
+      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-google-plus', 'fa fa-linkedin', 'fa fa-instagram']
     };
   },
   mounted: function mounted() {
@@ -2032,6 +2065,7 @@ window.onbeforeunload = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddressModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressModal */ "./resources/js/components/AddressModal.vue");
+//
 //
 //
 //
@@ -3528,7 +3562,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.small-text[data-v-430dfe80] { font-size: 14px;\n}\n.product-box[data-v-430dfe80] { border: 1px solid #cccccc; padding: 10px 15px; width:300px;}\n.hero-section[data-v-430dfe80] { background: #ababab; height: 20vh; align-items: center; margin-bottom: 20px; margin-top: -20px;\n}\n.title[data-v-430dfe80] { font-size: 60px;\n}\n", ""]);
+exports.push([module.i, "\n.small-text[data-v-430dfe80] { font-size: 14px;\n}\n.product-box[data-v-430dfe80] { border: 1px solid #cccccc; padding: 10px 15px; width:300px;}\n.hero-section[data-v-430dfe80] { background: #ababab; height: 20vh; align-items: center; margin-bottom: 20px; margin-top: -20px;\n}\n.title[data-v-430dfe80] { font-size: 60px;\n}\n\n", ""]);
 
 // exports
 
@@ -20634,274 +20668,335 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "navbar homeNav navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "container" },
-          [
-            _c("img", {
-              staticClass: "mr-2",
-              attrs: { src: "/img/logo_white.png", alt: "logo IOPhoto" }
-            }),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "navbar-brand title",
-                attrs: { to: { name: "home" } }
-              },
-              [_vm._v("IO.Photo")]
-            ),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse",
-                attrs: { id: "navbarSupportedContent" }
-              },
-              [
-                _c("ul", { staticClass: "navbar-nav mr-auto" }),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  { staticClass: "navbar-nav ml-auto" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link white--text",
-                        attrs: { to: { name: "shop" } }
-                      },
-                      [_vm._v("🎁 Boutique")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link white--text",
-                        attrs: { to: { name: "about" } }
-                      },
-                      [_vm._v("📰 A propos")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "nav-link white--text",
-                        attrs: {
-                          "data-toggle": "modal",
-                          "data-target": "#cart"
-                        }
-                      },
-                      [_vm._v("🛒 Shopping Cart (" + _vm._s(_vm.badges) + ")")]
-                    ),
-                    _vm._v(" "),
-                    !_vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link white--text",
-                            attrs: { to: { name: "login" } }
-                          },
-                          [_vm._v("🔒 Connexion")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.isLoggedIn
-                      ? _c("router-link", {
-                          staticClass: "nav-link white--text",
-                          attrs: { to: { name: "register" } }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "span",
-                          [
-                            _vm.user_type == 0
-                              ? _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link white--text",
-                                    attrs: { to: { name: "userboard" } }
-                                  },
-                                  [_vm._v("🤷‍♂ Hi, " + _vm._s(_vm.name))]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.user_type == 1
-                              ? _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link white--text",
-                                    attrs: { to: { name: "admin" } }
-                                  },
-                                  [_vm._v("🧙‍ Hi, " + _vm._s(_vm.name))]
-                                )
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "li",
-                          {
-                            staticClass: "nav-link white--text",
-                            on: { click: _vm.logout }
-                          },
-                          [_vm._v("⛔️ Logout")]
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ]
-            )
-          ],
-          1
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "main",
-      {},
-      [
-        _c("div", { staticClass: "modal fade", attrs: { id: "cart" } }, [
+  return _c(
+    "div",
+    [
+      _c(
+        "nav",
+        {
+          staticClass:
+            "navbar homeNav navbar-expand-md navbar-dark navbar-laravel grey darken-4 fixed-top"
+        },
+        [
           _c(
             "div",
-            { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+            { staticClass: "container" },
             [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
+              _c("img", {
+                staticClass: "mr-2",
+                attrs: { src: "/img/logo_white.png", alt: "logo IOPhoto" }
+              }),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "navbar-brand title",
+                  attrs: { to: { name: "home" } }
+                },
+                [_vm._v("IO.Photo")]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "collapse navbar-collapse",
+                  attrs: { id: "navbarSupportedContent" }
+                },
+                [
+                  _c("ul", { staticClass: "navbar-nav mr-auto" }),
+                  _vm._v(" "),
                   _c(
-                    "table",
-                    { staticClass: "table table-striped text-left" },
+                    "ul",
+                    { staticClass: "navbar-nav ml-auto" },
                     [
                       _c(
-                        "tbody",
-                        _vm._l(_vm.carts, function(cart, n) {
-                          return _c(
-                            "tr",
-                            { key: cart.id, attrs: { index: n } },
-                            [
-                              _c("td", [
-                                _c("img", {
-                                  staticClass: "img_cart",
-                                  attrs: {
-                                    src: cart.image,
-                                    alt: "image_product"
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(cart.name))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(cart.price) + " €")]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: cart.quantity,
-                                      expression: "cart.quantity"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "text", readonly: "" },
-                                  domProps: { value: cart.quantity },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        cart,
-                                        "quantity",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger white--text",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.removeCart(n)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("X")]
-                                )
-                              ])
-                            ]
+                        "router-link",
+                        {
+                          staticClass: "nav-link white--text",
+                          attrs: { to: { name: "shop" } }
+                        },
+                        [_vm._v("🎁 Boutique")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link white--text",
+                          attrs: { to: { name: "about" } }
+                        },
+                        [_vm._v("📰 A propos")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "nav-link white--text",
+                          attrs: {
+                            "data-toggle": "modal",
+                            "data-target": "#cart"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "🛒 Shopping Cart (" + _vm._s(_vm.badges) + ")"
                           )
-                        }),
-                        0
-                      )
-                    ]
+                        ]
+                      ),
+                      _vm._v(" "),
+                      !_vm.isLoggedIn
+                        ? _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link white--text",
+                              attrs: { to: { name: "login" } }
+                            },
+                            [_vm._v("🔒 Connexion")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.isLoggedIn
+                        ? _c("router-link", {
+                            staticClass: "nav-link white--text",
+                            attrs: { to: { name: "register" } }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isLoggedIn
+                        ? _c(
+                            "span",
+                            [
+                              _vm.user_type == 0
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link white--text",
+                                      attrs: { to: { name: "userboard" } }
+                                    },
+                                    [_vm._v("🤷‍♂ Hi, " + _vm._s(_vm.name))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.user_type == 1
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link white--text",
+                                      attrs: { to: { name: "admin" } }
+                                    },
+                                    [_vm._v("🧙‍ Hi, " + _vm._s(_vm.name))]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isLoggedIn
+                        ? _c(
+                            "li",
+                            {
+                              staticClass: "nav-link white--text",
+                              on: { click: _vm.logout }
+                            },
+                            [_vm._v("⛔️ Logout")]
+                          )
+                        : _vm._e()
+                    ],
+                    1
                   )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "modal-footer" },
-                  [
-                    _vm._v(
-                      "\n                        Total Price : " +
-                        _vm._s(_vm.totalprice) +
-                        " € "
-                    ),
-                    _c("br"),
-                    _vm._v(" "),
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "main",
+        {},
+        [
+          _c("div", { staticClass: "modal fade", attrs: { id: "cart" } }, [
+            _c(
+              "div",
+              { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
                     _c(
-                      "router-link",
-                      { attrs: { to: "/checkout", "data-dismiss": "modal" } },
+                      "table",
+                      { staticClass: "table table-striped text-left" },
                       [
                         _c(
-                          "v-btn",
-                          {
-                            staticClass: "teal dark-darken-3 white--text",
-                            attrs: { raised: "", hover: "" }
-                          },
-                          [_vm._v("Valider le panier")]
+                          "tbody",
+                          _vm._l(_vm.carts, function(cart, n) {
+                            return _c(
+                              "tr",
+                              { key: cart.id, attrs: { index: n } },
+                              [
+                                _c("td", [
+                                  _c("img", {
+                                    staticClass: "img_cart",
+                                    attrs: {
+                                      src: cart.image,
+                                      alt: "image_product"
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(cart.name))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(cart.price) + " €")]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: cart.quantity,
+                                        expression: "cart.quantity"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { type: "text", readonly: "" },
+                                    domProps: { value: cart.quantity },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          cart,
+                                          "quantity",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger white--text",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.removeCart(n)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("X")]
+                                  )
+                                ])
+                              ]
+                            )
+                          }),
+                          0
                         )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "modal-footer" },
+                    [
+                      _vm._v(
+                        "\n                        Total Price : " +
+                          _vm._s(_vm.totalprice) +
+                          " € "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/checkout", "data-dismiss": "modal" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "teal dark-darken-3 white--text",
+                              attrs: { raised: "", hover: "" }
+                            },
+                            [_vm._v("Valider le panier")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("router-view", { on: { loggedIn: _vm.change } })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-footer",
+        { attrs: { dark: "", height: "auto" } },
+        [
+          _c(
+            "v-card",
+            { staticClass: "flex", attrs: { flat: "", tile: "" } },
+            [
+              _c(
+                "v-card-title",
+                { staticClass: "teal" },
+                [
+                  _c("strong", { staticClass: "subheading" }, [
+                    _vm._v("Get connected with us on social networks!")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _vm._l(_vm.icons, function(icon) {
+                    return _c(
+                      "v-btn",
+                      {
+                        key: icon,
+                        staticClass: "mx-3",
+                        attrs: { dark: "", icon: "" }
+                      },
+                      [
+                        _c("v-icon", { attrs: { size: "24px" } }, [
+                          _vm._v(_vm._s(icon))
+                        ])
                       ],
                       1
                     )
-                  ],
-                  1
-                )
-              ])
-            ]
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                { staticClass: "grey darken-3 justify-center" },
+                [
+                  _vm._v("\n            ©2019 — "),
+                  _c("strong", [_vm._v("IO.Photo")])
+                ]
+              )
+            ],
+            1
           )
-        ]),
-        _vm._v(" "),
-        _c("router-view", { on: { loggedIn: _vm.change } })
-      ],
-      1
-    )
-  ])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -23632,7 +23727,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "container" },
+      { staticClass: "container full-height" },
       [
         _c(
           "v-expansion-panel",

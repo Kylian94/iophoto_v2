@@ -3,7 +3,7 @@
             <div class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
                 <h2 class="title text--white text-md-center text-xs-center">Your account</h2>
             </div>
-            <div class="container">
+            <div class="container full-height">
                 <v-expansion-panel>
                     <v-expansion-panel-content>
                     <template v-slot:header>
@@ -76,6 +76,7 @@
     .product-box { border: 1px solid #cccccc; padding: 10px 15px; width:300px;}
     .hero-section { background: #ababab; height: 20vh; align-items: center; margin-bottom: 20px; margin-top: -20px; }
     .title { font-size: 60px; }
+    
     </style>
 
     <script>
