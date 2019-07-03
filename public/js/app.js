@@ -665,6 +665,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1479,7 +1480,8 @@ __webpack_require__.r(__webpack_exports__);
       newsletter_email: "",
       email_contact: "",
       message_contact: "",
-      isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null
+      isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null,
+      info: {}
     };
   },
   beforeMount: function beforeMount() {
@@ -1504,6 +1506,31 @@ __webpack_require__.r(__webpack_exports__);
         params: {
           nextUrl: this.$route.fullPath
         }
+      });
+    },
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      axios.post('api/email/', {
+        email: this.info.email,
+        content: this.info.content
+      }).then(function (response) {
+        console.log(response);
+        _this2.success = response.data.success;
+
+        if (_this2.success) {
+          swal.fire({
+            title: "Success",
+            text: "Your message is successfully send",
+            type: "success"
+          }).then(function () {
+            this.info.email = "";
+            this.info.content = "";
+          }.bind(_this2))["catch"](function (errors) {});
+        }
+      })["catch"](function (error) {
+        console.log(error);
+        _this2.success = false;
       });
     }
   }
@@ -22381,6 +22408,13 @@ var render = function() {
                                       label: "Email",
                                       value: "",
                                       name: "email_contact"
+                                    },
+                                    model: {
+                                      value: _vm.info.email,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.info, "email", $$v)
+                                      },
+                                      expression: "info.email"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -22417,6 +22451,13 @@ var render = function() {
                                       dark: "",
                                       name: "message_contact",
                                       label: "Message"
+                                    },
+                                    model: {
+                                      value: _vm.info.content,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.info, "content", $$v)
+                                      },
+                                      expression: "info.content"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -22460,6 +22501,11 @@ var render = function() {
                                         dark: "",
                                         type: "submit",
                                         color: "teal darken-1"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.onSubmit()
+                                        }
                                       }
                                     },
                                     [_vm._v(" Envoyer")]

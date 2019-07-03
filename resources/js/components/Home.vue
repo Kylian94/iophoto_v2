@@ -104,19 +104,19 @@
                                 <v-flex column grey darken-3 pa-4 class="mt-5">
                                     <v-text-field dark
                                     class="" v-validate="'required|email'"
-                                    label="Email" value="" name="email_contact"
+                                    label="Email" value="" v-model="info.email" name="email_contact"
                                     ></v-text-field>
                                      <p class="teal--text text--lighten-3 subheading" v-if="errors.has('email_contact')">⚠️ {{ errors.first('email_contact') }}</p>
                                 
                                 
-                                    <v-textarea dark
+                                    <v-textarea dark v-model="info.content"
                                         name="message_contact" v-validate="'required|min:5|max:255'"
                                         label="Message" ></v-textarea>
                                          <p class="teal--text text--lighten-3 subheading" v-if="errors.has('message_contact')">⚠️ {{ errors.first('message_contact') }}</p>
                                     
                                 </v-flex>
                                 <v-layout align-center justify-center class="mt-5">
-                                    <v-btn dark type="submit" color="teal darken-1"> Envoyer</v-btn>
+                                    <v-btn dark type="submit" color="teal darken-1" @click="onSubmit()"> Envoyer</v-btn>
                                 </v-layout>
                             </v-flex>
                         </v-layout>
@@ -138,7 +138,8 @@ export default {
                 newsletter_email : "",
                 email_contact : "",
                 message_contact : "",
-                isLoggedIn : localStorage.getItem('IophotoStore.jwt') != null
+                isLoggedIn : localStorage.getItem('IophotoStore.jwt') != null,
+                info : {}
             }
         },
         beforeMount() {
@@ -162,6 +163,29 @@ export default {
     register() {
         this.$router.push({name: 'register', params: {nextUrl: this.$route.fullPath}})
     },
+    onSubmit() {
+        axios.post('api/email/',
+                    {email:this.info.email,content:this.info.content})
+                  .then(response => {
+                    console.log(response);
+                      this.success = response.data.success;
+                      if(this.success){
+                        swal.fire({
+                            title: "Success",
+                            text: "Your message is successfully send",
+                            type: "success",
+                        }).then(function () {
+                            this.info.email = ""
+                            this.info.content = ""
+                        }.bind(this)).catch(errors => {});
+                      }
+                  })
+                  .catch(error => {
+                    console.log(error)
+                    this.success = false
+                  });
+
+    }
   },
 }
 </script>

@@ -6,6 +6,8 @@
     use App\User;
     use Validator;
     use Illuminate\Http\Request;
+    use App\Mail\SendMailable;
+    use Mail;
 
     class UserController extends Controller
     {
@@ -105,4 +107,16 @@
                 'message' => $status ? 'User Deleted!' : 'Error Deleting User'
             ]);
         }
-    }
+        public function sendMail(Request $request) {
+            $email = $request->email;
+            $content = $request->content;
+            $objDemo = new \stdClass();
+            $objDemo->email =  $email;
+            $objDemo->content =  $content;
+            Mail::to("kylian.petitgenet@gmail.com")->send(new SendMailable($objDemo));
+    
+            return response()->json(['success'=>true,'email'=>$email,'content'=>$content]);
+        }
+
+}
+    

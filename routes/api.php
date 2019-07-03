@@ -12,6 +12,7 @@
     Route::get('/cart', 'CartController@show');
     Route::get('/orders', 'CartController@index');
     Route::post('/cart', 'CartController@store');
+    Route::post('/email', 'UserController@sendMail');
     Route::get('/products/{product}', 'ProductController@show');
     Route::get('/checkout', 'CheckoutController@index')->name('checkout');
 
