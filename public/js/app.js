@@ -1076,6 +1076,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pid'],
   scrollBehavior: function scrollBehavior() {
@@ -1191,6 +1222,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.cartadd = {};
       this.storeCart();
     },
+    validCart: function validCart() {
+      this.cartadd.id = this.product.id;
+      this.cartadd.name = this.product.name;
+      this.cartadd.price = this.product.price;
+      this.cartadd.quantity = this.quantity;
+      this.cartadd.image = this.image;
+      this.carts.push(this.cartadd); //localStorage.setItem('IophotoStore.carts', JSON.stringify(this.carts))
+
+      this.cartadd = {};
+      var parsed = JSON.stringify(this.carts);
+      localStorage.setItem('IophotoStore.carts', parsed);
+      this.viewCart();
+    },
     removeCart: function removeCart(product) {
       this.carts.splice(product, 1);
       this.storeCart();
@@ -1202,21 +1246,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       window.location.assign("/shop"); //this.$router.push("/shop")
     },
     placeOrder: function placeOrder() {
-      var _this2 = this;
-
       //console.log(this.image)
-      var address = this.address;
-      var product_id = this.product.id;
-      var quantity = this.quantity;
-      var image = this.image;
-      axios.post('api/orders/', {
-        image: image,
-        product_id: product_id,
-        quantity: quantity,
-        address: address
-      }).then(function (response) {
-        return _this2.$router.push('/confirmation');
-      });
+      this.validCart();
+      window.location.assign("/checkout");
     },
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
@@ -3467,7 +3499,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.gif[data-v-26588a1f] {\n        height:300px;\n        width:300px;\n}\n.v-btn[data-v-26588a1f] {\n      margin: 0;\n}\n.parent[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n}\n.image1[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n    height:370px;\n    width:370px;\n}\n.image2[data-v-26588a1f] {\n    position: absolute;\n    top: 140px;\n    left: 120px;\n    height:125px;\n    width:125px;\n}\n.paddingNav[data-v-26588a1f] {\n        padding-top:90px;\n}\n.fullHeight[data-v-26588a1f] {\n        height:100vh;\n}\n.page[data-v-26588a1f] {\n       height:500px;\n}\n.small-text[data-v-26588a1f] { font-size: 18px;\n}\n.title[data-v-26588a1f] { font-size: 36px;\n}\n#overlayGallery[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayAlbum[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 950px;\n  height: 100%;\n  top: 180px;\n  left: 475px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayBlock[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 1425px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n    ", ""]);
+exports.push([module.i, "\n.gif[data-v-26588a1f] {\n        height:300px;\n        width:300px;\n}\n.v-btn[data-v-26588a1f] {\n      margin: 0;\n}\n.parent[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n}\n.image1[data-v-26588a1f] {\n    position: relative;\n    top: 0;\n    left: 0;\n    height:370px;\n    width:370px;\n}\n.image2[data-v-26588a1f] {\n    position: absolute;\n    top: 140px;\n    left: 120px;\n    height:125px;\n    width:125px;\n}\n.paddingNav[data-v-26588a1f] {\n        padding-top:90px;\n}\n.fullHeight[data-v-26588a1f] {\n        height:100vh;\n}\n.page[data-v-26588a1f] {\n       height:500px;\n}\n.small-text[data-v-26588a1f] { font-size: 18px;\n}\n.title[data-v-26588a1f] { font-size: 36px;\n}\n#overlayGallery[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayAlbum[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 950px;\n  height: 100%;\n  top: 180px;\n  left: 475px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n#overlayBlock[data-v-26588a1f] {\n  position: fixed;\n  display: block;\n  width: 475px;\n  height: 100%;\n  top: 0;\n  left: 1425px;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0,0,0,0.5);\n  z-index: 2;\n  cursor:  not-allowed;\n}\n.step-pill[data-v-26588a1f] {\n    border-radius: 50%;\n}\n    ", ""]);
 
 // exports
 
@@ -21051,7 +21083,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container marginNav" }, [
+  return _c("div", { staticClass: "container marginNav full-height" }, [
     _c(
       "div",
       { staticClass: "row" },
@@ -21333,7 +21365,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "customPage" },
+    { staticClass: "customPage py-4" },
     [
       _c(
         "v-layout",
@@ -21361,43 +21393,65 @@ var render = function() {
                     {},
                     [
                       _c(
-                        "v-form",
+                        "v-layout",
+                        {
+                          staticClass: "borderRed",
+                          attrs: {
+                            "align-center": "",
+                            "justify-center": "",
+                            id: "borderRed"
+                          }
+                        },
                         [
                           _c(
-                            "v-layout",
-                            {
-                              staticClass: "borderRed",
-                              attrs: { "justify-center": "", id: "borderRed" }
-                            },
+                            "v-flex",
+                            { attrs: { md6: "" } },
                             [
-                              _c(
-                                "v-flex",
-                                { attrs: { md6: "" } },
-                                [
-                                  _c("v-text-field", {
-                                    staticClass: "projectName",
-                                    attrs: {
-                                      label: "Nom de votre projet",
-                                      p0: "",
-                                      m0: "",
-                                      required: "",
-                                      counter: "",
-                                      maxlength: "56",
-                                      rules: _vm.rules
-                                    },
-                                    model: {
-                                      value: _vm.projectName,
-                                      callback: function($$v) {
-                                        _vm.projectName = $$v
-                                      },
-                                      expression: "projectName"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
+                              _c("v-text-field", {
+                                staticClass: "projectName",
+                                attrs: {
+                                  label: "Nom de votre projet",
+                                  p0: "",
+                                  m0: "",
+                                  required: "",
+                                  counter: "",
+                                  maxlength: "56",
+                                  rules: _vm.rules
+                                },
+                                model: {
+                                  value: _vm.projectName,
+                                  callback: function($$v) {
+                                    _vm.projectName = $$v
+                                  },
+                                  expression: "projectName"
+                                }
+                              })
                             ],
                             1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.projectName.length > 1,
+                                  expression: "projectName.length > 1"
+                                }
+                              ],
+                              attrs: { md2: "" }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-check fa-3x teal--text",
+                                attrs: {
+                                  "data-aos": "fade-right",
+                                  "aria-hidden": "true"
+                                }
+                              })
+                            ]
                           )
                         ],
                         1
@@ -21482,10 +21536,111 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c(
+                "v-layout",
+                {
+                  attrs: {
+                    "align-center": "",
+                    "justify-space-between": "",
+                    "mt-3": ""
+                  }
+                },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { md4: "" } },
+                    [
+                      _c(
+                        "v-layout",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.projectName.length > 1,
+                              expression: "projectName.length > 1"
+                            }
+                          ]
+                        },
+                        [
+                          _c("v-flex", { attrs: { md1: "" } }, [
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "text-center font-weight-black white--text teal teal-darken-3 step-pill px-2 py-1"
+                              },
+                              [_vm._v("1")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "subheading ml-2 teal--text" },
+                            [_vm._v("Ajouter votre image")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.image,
+                          expression: "image"
+                        }
+                      ],
+                      attrs: { md4: "" }
+                    },
+                    [
+                      _c(
+                        "v-layout",
+                        [
+                          _c("v-flex", { attrs: { md1: "" } }, [
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "text-center font-weight-black white--text teal teal-darken-3 step-pill px-2 py-1"
+                              },
+                              [_vm._v("2")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "subheading ml-2 teal--text" },
+                            [_vm._v("Continuer ou valider votre article")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("v-layout", { attrs: { "justify-space-between": "" } }, [
                 _c(
                   "form",
                   {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.projectName.length > 1,
+                        expression: "projectName.length > 1"
+                      }
+                    ],
                     staticClass: "mt-3",
                     attrs: { method: "post", enctype: "multipart/form-data" }
                   },
@@ -21518,25 +21673,27 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        staticClass: "teal lighten-1",
-                        attrs: {
-                          raised: "",
-                          dark: "",
-                          type: "submit",
-                          disabled: _vm.projectName == _vm.defaultName
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.screenShot()
-                          }
-                        }
-                      },
-                      [_vm._v("Upload Image")]
-                    )
+                    _vm.url
+                      ? _c(
+                          "v-btn",
+                          {
+                            staticClass: "teal lighten-1",
+                            attrs: {
+                              raised: "",
+                              dark: "",
+                              type: "submit",
+                              disabled: _vm.projectName == _vm.defaultName
+                            },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.screenShot()
+                              }
+                            }
+                          },
+                          [_vm._v("Confirmer")]
+                        )
+                      : _vm._e()
                   ],
                   1
                 ),
@@ -21556,41 +21713,54 @@ var render = function() {
                   },
                   [
                     _c(
-                      "v-btn",
-                      {
-                        attrs: {
-                          raised: "",
-                          hover: "",
-                          dark: "",
-                          color: "teal lighten-2 mt-3 mx-0 ",
-                          disabled: _vm.projectName == _vm.defaultName
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.addCart()
-                          }
-                        }
-                      },
-                      [_vm._v("Continuer")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: {
-                          raised: "",
-                          hover: "",
-                          dark: "",
-                          color: "teal darken-2 mt-3 mx-0 ",
-                          disabled: _vm.projectName == _vm.defaultName
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.placeOrder()
-                          }
-                        }
-                      },
-                      [_vm._v("Acheter")]
+                      "v-layout",
+                      { attrs: { "flex-column": "" } },
+                      [
+                        _c(
+                          "v-layout",
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  raised: "",
+                                  hover: "",
+                                  dark: "",
+                                  color: "teal lighten-2 mt-3 mx-0 ",
+                                  disabled: _vm.projectName == _vm.defaultName
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addCart()
+                                  }
+                                }
+                              },
+                              [_vm._v("Continuer")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  raised: "",
+                                  hover: "",
+                                  dark: "",
+                                  color: "teal darken-2 mt-3 mx-0 ",
+                                  disabled: _vm.projectName == _vm.defaultName
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.placeOrder()
+                                  }
+                                }
+                              },
+                              [_vm._v("Acheter")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
                     )
                   ],
                   1

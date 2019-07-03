@@ -1,5 +1,5 @@
 <template>
-        <div class="customPage">
+        <div class="customPage py-4">
             <!-- <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <img :src="product.image" :alt="product.name">
@@ -35,15 +35,18 @@
                             
                                 
                                 <v-flex class="">
-                                    <v-form>
-                                    <v-layout justify-center id="borderRed" class="borderRed">
+                                
+                                    <v-layout align-center justify-center id="borderRed" class="borderRed">
                                         <v-flex md6  >
                                             <v-text-field v-model="projectName" class="projectName" label="Nom de votre projet" p0 m0 required counter maxlength="56" :rules="rules"></v-text-field>
+                                        </v-flex>
+                                        <v-flex md2 v-show="projectName.length > 1">
+                                            <i  data-aos="fade-right" class="fa fa-check fa-3x teal--text" aria-hidden="true"></i>
                                         </v-flex>
                                         <!-- <v-btn type="submit" class="teal darken-1 white--text mt-3" >Save</v-btn> -->
                                     </v-layout>
                                         
-                                    </v-form>
+                                    
                                 </v-flex>
 
                         </v-layout>
@@ -61,16 +64,44 @@
                                 </v-layout>          
                             </v-flex>
                         </v-layout>
+                        <v-layout align-center justify-space-between mt-3>
+                            <v-flex md4>
+                                <v-layout v-show="projectName.length > 1">
+                                    <v-flex md1>
+                                    <p class="text-center font-weight-black white--text teal teal-darken-3 step-pill px-2 py-1">1</p>
+                                    </v-flex>
+                                    <p class="subheading ml-2 teal--text">Ajouter votre image</p>
+                                </v-layout>
+                            </v-flex>       
+                            <v-flex md4 v-show="image">
+                                 <v-layout>
+                                    <v-flex md1>
+                                        <p class="text-center font-weight-black white--text teal teal-darken-3 step-pill px-2 py-1">2</p>
+                                    </v-flex>
+                                    <p class="subheading ml-2 teal--text">Continuer ou valider votre article</p>
+                                 </v-layout>
+                            </v-flex>
+                                
+                        </v-layout>
+                        
                         <v-layout justify-space-between>
-                            <form method="post" class="mt-3" enctype="multipart/form-data">
+                            
+                            <form method="post" class="mt-3" enctype="multipart/form-data" v-show="projectName.length > 1" >
+                                
                                 <input :disabled="projectName == defaultName" type="file" id="files" @change="onFileChange" ref="files" multiple="" />
                                 <v-btn raised dark class="red lighten-1" @click.prevent="deleteFile()" v-if="url">X</v-btn>
-                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName">Upload Image</v-btn>
+                                <v-btn raised dark type="submit" class="teal lighten-1" @click.prevent="screenShot()" :disabled="projectName == defaultName" v-if="url">Confirmer</v-btn>
                             </form>
                             
                                 <div class="float-right" v-show="image">
-                                    <v-btn raised hover dark color="teal lighten-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="addCart()">Continuer</v-btn>
-                                    <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Acheter</v-btn>
+                                    <v-layout flex-column>
+                                        
+                                        <v-layout>
+                                             <v-btn raised hover dark color="teal lighten-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="addCart()">Continuer</v-btn>
+                                            <v-btn raised hover dark color="teal darken-2 mt-3 mx-0 " :disabled="projectName == defaultName" @click="placeOrder()">Acheter</v-btn>
+                                        </v-layout>
+                                    </v-layout>
+                                   
                                 </div>
                             
                         </v-layout>
@@ -216,6 +247,19 @@
                 this.cartadd = {}
                 this.storeCart()
             },
+            validCart() {
+                this.cartadd.id = this.product.id
+                this.cartadd.name = this.product.name
+                this.cartadd.price = this.product.price
+                this.cartadd.quantity = this.quantity
+                this.cartadd.image = this.image
+                this.carts.push(this.cartadd);
+                //localStorage.setItem('IophotoStore.carts', JSON.stringify(this.carts))
+                this.cartadd = {}
+                let parsed = JSON.stringify(this.carts);
+                localStorage.setItem('IophotoStore.carts', parsed);
+                this.viewCart()
+            },
             removeCart(product) {
                 this.carts.splice(product, 1)
                 this.storeCart()
@@ -230,13 +274,8 @@
             },
             placeOrder() {
                 //console.log(this.image)
-                let address = this.address
-                let product_id = this.product.id
-                let quantity = this.quantity
-                let image = this.image
-
-                axios.post('api/orders/', {image, product_id, quantity, address})
-                     .then(response => this.$router.push('/confirmation'))
+                this.validCart()
+                     window.location.assign("/checkout")
             },
             onFileChange(e) {
                 const file = e.target.files[0];
@@ -379,5 +418,8 @@
   background-color: rgba(0,0,0,0.5);
   z-index: 2;
   cursor:  not-allowed;
+}
+.step-pill {
+    border-radius: 50%;
 }
     </style>

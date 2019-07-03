@@ -1,5 +1,5 @@
 <template>
-        <div class="container marginNav">
+        <div class="container marginNav full-height">
             <div class="row">
                 <v-layout>
                     <v-flex class="">
