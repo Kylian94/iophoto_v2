@@ -8,7 +8,7 @@ One back office to manage Products / Categories / Users / Orders - create/edit/u
 
 E-commerce SPA - VueRouter, Webpack, & Vuetify
 
- ![Laravel + Vue.js SPA](http://kp-folio.fr/images/iophoto_bo.PNG) 
+ ![iophoto img](http://img.kp-dev.fr/visuel-iophoto.jpg) 
 
 ---
 
