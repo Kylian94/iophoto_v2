@@ -36959,7 +36959,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\Iophoto\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/kylian/Documents/dev/iophoto/iophoto_v2/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
 
 
 /***/ })

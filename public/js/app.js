@@ -666,22 +666,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: null,
       user_type: 0,
-      isLoggedIn: localStorage.getItem('IophotoStore.jwt') != null,
-      carts: JSON.parse(localStorage.getItem('IophotoStore.carts')),
-      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-google-plus', 'fa fa-linkedin', 'fa fa-instagram'],
-      badges: JSON.parse(localStorage.getItem('IophotoStore.carts')).length
+      isLoggedIn: localStorage.getItem("IophotoStore.jwt") != null,
+      carts: JSON.parse(localStorage.getItem("IophotoStore.carts")),
+      icons: ["fa fa-facebook", "fa fa-twitter", "fa fa-google-plus", "fa fa-linkedin", "fa fa-instagram"],
+      badges: JSON.parse(localStorage.getItem("IophotoStore.carts").length)
     };
   },
   beforeMount: function beforeMount() {
     if (this.isLoggedIn) {
-      var user = JSON.parse(localStorage.getItem('IophotoStore.user'));
-      var carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
-      var badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length;
+      var user = JSON.parse(localStorage.getItem("IophotoStore.user"));
+      var carts = JSON.parse(localStorage.getItem("IophotoStore.carts"));
+      var badges = JSON.parse(localStorage.getItem("IophotoStore.carts")).length;
       this.name = user.name;
       this.user_type = user.is_admin;
     }
@@ -693,7 +712,7 @@ __webpack_require__.r(__webpack_exports__);
     totalprice: function totalprice() {
       var totalprice = 0;
 
-      if (localStorage.getItem('IophotoStore.carts') != null) {
+      if (localStorage.getItem("IophotoStore.carts") != null) {
         this.carts.forEach(function (e) {
           totalprice += e.price;
         });
@@ -705,19 +724,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setDefaults: function setDefaults() {
       if (this.isLoggedIn) {
-        var user = JSON.parse(localStorage.getItem('IophotoStore.user'));
-        var carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
-        var badges = JSON.parse(localStorage.getItem('IophotoStore.carts')).length;
+        var user = JSON.parse(localStorage.getItem("IophotoStore.user"));
+        var carts = JSON.parse(localStorage.getItem("IophotoStore.carts"));
+        var badges = JSON.parse(localStorage.getItem("IophotoStore.carts")).length;
         this.name = user.name;
         this.user_type = user.is_admin;
       }
     },
     closeModal: function closeModal() {
-      document.querySelector('#cart').modal('hide');
+      document.querySelector("#cart").modal("hide");
     },
     viewCart: function viewCart() {
-      if (localStorage.getItem('IophotoStore.carts') != null) {
-        this.carts = JSON.parse(localStorage.getItem('IophotoStore.carts'));
+      if (localStorage.getItem("IophotoStore.carts") != null) {
+        this.carts = JSON.parse(localStorage.getItem("IophotoStore.carts"));
         this.badges = this.carts.length;
       }
     },
@@ -727,18 +746,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     storeCart: function storeCart() {
       var parsed = JSON.stringify(this.carts);
-      localStorage.setItem('IophotoStore.carts', parsed);
+      localStorage.setItem("IophotoStore.carts", parsed);
       this.viewCart();
     },
     change: function change() {
-      this.isLoggedIn = localStorage.getItem('IophotoStore.jwt') != null;
+      this.isLoggedIn = localStorage.getItem("IophotoStore.jwt") != null;
       this.setDefaults();
     },
     logout: function logout() {
-      localStorage.removeItem('IophotoStore.jwt');
-      localStorage.removeItem('IophotoStore.user');
-      localStorage.removeItem('IophotoStore.carts');
-      localStorage.removeItem('carts');
+      localStorage.removeItem("IophotoStore.jwt");
+      localStorage.removeItem("IophotoStore.user");
+      localStorage.removeItem("IophotoStore.carts");
+      localStorage.removeItem("carts");
       this.change();
       window.location.assign("/");
     }
@@ -3419,7 +3438,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.homeNav {\r\n    min-height:110px;\r\n    max-height:110px;\n}\n.nav-link {\r\n    cursor:pointer;\n}\n.img_cart {\r\n    width:100px;\r\n    height:100px;\n}\r\n", ""]);
+exports.push([module.i, "\n.homeNav {\n  min-height: 110px;\n  max-height: 110px;\n}\n.nav-link {\n  cursor: pointer;\n}\n.img_cart {\n  width: 100px;\n  height: 100px;\n}\n", ""]);
 
 // exports
 
@@ -3533,7 +3552,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-badge__badge[data-v-e1ea323e]{\r\n    padding:15px;\r\n  min-height:60px;\r\n  min-width:60px;\n}\n.v-card__title[data-v-e1ea323e] {\r\n    min-height:150px;\r\n    max-height:150px;\n}\n.v-card__actions[data-v-e1ea323e] {\r\n    height:50px;\n}\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\r\nmargin-left:5px;\r\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\r\n\r\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\r\n    min-height:50vh;\n}\n.header[data-v-e1ea323e] {\r\n  padding:30px;\r\n  background: #555;\r\n  color: #f1f1f1;\n}\r\n\r\n/* Page content */\n.content[data-v-e1ea323e] {\r\n  \r\n  z-index:1;\n}\n.product-card-description[data-v-e1ea323e] {\n}\r\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\r\n  position: fixed;\r\n  top: 110px;\r\n  width: 100%;\r\n  z-index:2;\n}\r\n\r\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.cart[data-v-e1ea323e] {\r\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\r\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\r\n    border-top-left-radius:5px;\r\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\r\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\r\n    /* border: 1px solid #cccccc; */\r\n    padding: 10px 15px;\n}\n@media only screen \r\nand (max-device-width : 375px) \r\n{\n.hero-section[data-v-e1ea323e] {\r\n    height: 600px;\r\n    background-image: url('/img/header_shop_mobile.jpg');\r\n    align-items: center;\r\n    margin-top: -20px;\n}\n.sticky + .content[data-v-e1ea323e] {\r\n    padding-top:200px;\n}\n}\n@media only screen \r\nand (min-device-width : 812px) \r\n{\n.hero-section[data-v-e1ea323e] {\r\n        height: 850px;\r\n        background-image: url('/img/header_shop.jpg');\r\n        align-items: center;\r\n        margin-top: -20px;\n}\n}\n.images_shop[data-v-e1ea323e] {\r\n    max-width:200px;\r\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\r\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\r\n    display: flex;\r\n    align-items: center;\r\n    margin: 1em 0;\r\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\r\n    content: '';\r\n    flex: 1;\r\n    margin: 0 .75em;\r\n    border-bottom: 1px solid #000;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.v-badge__badge[data-v-e1ea323e]{\n    padding:15px;\n  min-height:60px;\n  min-width:60px;\n}\n.v-card__title[data-v-e1ea323e] {\n    min-height:150px;\n    max-height:150px;\n}\n.v-card__actions[data-v-e1ea323e] {\n    height:50px;\n}\na[data-v-e1ea323e] {  text-decoration: none;}\n.navCatLink[data-v-e1ea323e] { transition: all .3s ease-in-out;\nmargin-left:5px;\nmargin-right:5px;\n}\n.navCatLink[data-v-e1ea323e]:hover { -webkit-transform: scale(1.3); transform: scale(1.3);\n}\n\n/* Style the header */\n.categoryPart[data-v-e1ea323e] {\n    min-height:50vh;\n}\n.header[data-v-e1ea323e] {\n  padding:30px;\n  background: #555;\n  color: #f1f1f1;\n}\n\n/* Page content */\n.content[data-v-e1ea323e] {\n  \n  z-index:1;\n}\n.product-card-description[data-v-e1ea323e] {\n}\n/* The sticky class is added to the header with JS when it reaches its scroll position */\n.sticky[data-v-e1ea323e] {\n  position: fixed;\n  top: 110px;\n  width: 100%;\n  z-index:2;\n}\n\n/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */\n.cart[data-v-e1ea323e] {\n    height: 400px;\n}\n.rounded-card[data-v-e1ea323e] {\n    border-radius:5px;\n}\n.rounded-img[data-v-e1ea323e] {\n    border-top-left-radius:5px;\n    border-top-right-radius:5px;\n}\n.small-text[data-v-e1ea323e] {\n    font-size: 14px;\n}\n.product-box[data-v-e1ea323e] {\n    /* border: 1px solid #cccccc; */\n    padding: 10px 15px;\n}\n@media only screen \nand (max-device-width : 375px) \n{\n.hero-section[data-v-e1ea323e] {\n    height: 600px;\n    background-image: url('/img/header_shop_mobile.jpg');\n    align-items: center;\n    margin-top: -20px;\n}\n.sticky + .content[data-v-e1ea323e] {\n    padding-top:200px;\n}\n}\n@media only screen \nand (min-device-width : 812px) \n{\n.hero-section[data-v-e1ea323e] {\n        height: 850px;\n        background-image: url('/img/header_shop.jpg');\n        align-items: center;\n        margin-top: -20px;\n}\n}\n.images_shop[data-v-e1ea323e] {\n    max-width:200px;\n    max-height:200px;\n}\n.marginNav[data-v-e1ea323e] {\n    margin-top:100px;\n}\n.hr[data-v-e1ea323e] {\n    display: flex;\n    align-items: center;\n    margin: 1em 0;\n    width:340px;\n}\n.hr[data-v-e1ea323e]::after {\n    content: '';\n    flex: 1;\n    margin: 0 .75em;\n    border-bottom: 1px solid #000;\n}\n\n", ""]);
 
 // exports
 
@@ -20917,9 +20936,9 @@ var render = function() {
                     { staticClass: "modal-footer" },
                     [
                       _vm._v(
-                        "\n                        Total Price : " +
+                        "\n            Total Price : " +
                           _vm._s(_vm.totalprice) +
-                          " € "
+                          " €\n            "
                       ),
                       _c("br"),
                       _vm._v(" "),
@@ -20993,7 +21012,7 @@ var render = function() {
                 "v-card-actions",
                 { staticClass: "grey darken-3 justify-center" },
                 [
-                  _vm._v("\n            ©2019 — "),
+                  _vm._v("\n        ©2019 —\n        "),
                   _c("strong", [_vm._v("IO.Photo")])
                 ]
               )
@@ -68247,8 +68266,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\Iophoto\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\Iophoto\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/kylian/Documents/dev/iophoto/iophoto_v2/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/kylian/Documents/dev/iophoto/iophoto_v2/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
